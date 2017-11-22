@@ -1,0 +1,62 @@
+spring:
+  datasource:
+    druid:
+      url: @jdbc.url@
+      username: @jdbc.username@
+      password: @jdbc.password@
+      driver-class-name: com.mysql.jdbc.Driver
+      initial-size: 5
+      max-active: 8
+      pool-prepared-statements: false
+      max-open-prepared-statements: -1
+      validation-query: select 'x'
+      validation-query-timeout: 5
+      test-while-idle: true
+      filters: stat,wall
+      web-stat-filter:
+        enabled: true
+        urlPattern: "/*"
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        enabled: true
+        urlPattern: "/druid/*"
+        resetEnable: false
+        loginUsername: admin
+        loginPassword: 123456
+      aop-patterns: top.zuishare.service.*
+  aop:
+    proxy-target-class: true
+  profiles:
+    avtive: @env@
+    include: @env@
+  http:
+    encoding:
+      force: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+    cache: false
+logging:
+  config: classpath:log4j2.xml
+
+server:
+  port: 8081
+---
+spring:
+  profiles: win-local
+server:
+  port: 8082
+---
+spring:
+  profiles: mac-local
+server:
+  port: 8082
+---
+spring:
+  profiles: prd
+server:
+  port: 8080
+
