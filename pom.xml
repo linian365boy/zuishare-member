@@ -120,6 +120,16 @@
       <resource>
         <directory>${basedir}/src/main/resources</directory>
         <filtering>true</filtering>
+        <excludes>
+          <exclude>static/css/fonts/**</exclude>
+        </excludes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>static/css/fonts/**</include>
+        </includes>
       </resource>
     </resources>
 
@@ -146,19 +156,19 @@
       <properties>
         <env>win-local</env>
       </properties>
-        <activation>
-            <!-- 默认启用环境配置 -->
-            <activeByDefault>true</activeByDefault>
-        </activation>
     </profile>
     <profile>
       <id>mac-local</id>
       <properties>
         <env>mac-local</env>
       </properties>
+      <activation>
+        <!-- 默认启用环境配置 -->
+        <activeByDefault>true</activeByDefault>
+      </activation>
     </profile>
     <profile>
-      <id>prf</id>
+      <id>prd</id>
       <properties>
         <env>prd</env>
       </properties>
