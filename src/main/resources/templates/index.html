@@ -1,12 +1,495 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Good Thymes Virtual Grocery</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta http-equiv="Cache-Control" content="no-transform"/>
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<title>最分享 | 分享身边最好的东西</title>
+<meta name="description" content="最分享 | 分享身边最好的东西"/>
+<meta name="keywords" content="最分享,分享最好的东西,最分享地址,福利,优惠,分享网站,zuishare,zuifenxiang"/>
+<link rel="stylesheet" id="style-css" href="../static/css/style.css" th:href="@{css/style.css}" type="text/css" media="all"/>
+<script type="text/javascript" src="../static/js/jquery.min.js" th:src="@{js/jquery.min.js}"></script>
+<script type="text/javascript" src="../static/js/jquery-ias.js" th:src="@{js/jquery-ias.js}"></script>
+<script type="text/javascript" src="../static/js/jquery.lazyload.js" th:src="@{js/jquery.lazyload.js}"></script>
+<script type="text/javascript" src="../static/js/tipso.js" th:src="@{js/tipso.js}"></script>
+<script type="text/javascript" src="../static/js/script.js" th:src="@{js/script.js}"></script>
+<script type="text/javascript" src="../static/js/flexisel.js" th:src="@{js/flexisel.js}"></script>
+<style>
+	a:hover,.top-menu a:hover,.show-more span,.cat-box .icon-cat,.single-content a,
+	.single-content a:visited,#site-nav .down-menu > .current-menu-item > a,.entry-meta a,
+	#site-nav .down-menu > .current-menu-item > a:hover,
+	#site-nav .down-menu > li > a:hover,#site-nav .down-menu > li.sfHover > a, .cat-title .fa-bars,
+	.widget-title .fa-bars,.at, .at a,#user-profile a:hover,#comments .fa-exclamation-circle, #comments .fa-check-square, #comments .fa-spinner,
+	 #comments .fa-pencil-square-o {color: #dd3333;}
+	.sf-arrows > li > .sf-with-ul:focus:after,.sf-arrows > li:hover > .sf-with-ul:after,.sf-arrows > .sfHover > .sf-with-ul:after{border-top-color: #dd3333;}
+	.thumbnail .cat,.format-cat,.format-img-cat {background: #dd3333;opacity: 0.8;}
+	#login h1 a,.format-aside .post-format a,#searchform button,.li-icon-1,.li-icon-2,.li-icon-3,.new-icon, .title-l,.buttons a, .li-number, .post-format {background: #dd3333;}
+	.entry-more a, .qqonline a, #login input[type='submit'] {background: #dd3333;}
+	.entry-more a {	right: -1px;}
+	.entry-more a:hover {color: #fff;background: #595959;}
+	.entry-direct a:hover {border: 1px solid #dd3333;}
+	#down a,.page-links span,.reply a:hover,.widget_categories a:hover,.widget_links a:hover,
+	#respond #submit:hover,.rslides_tabs .rslides_here a,#fontsize:hover,
+	.single-meta .comment a:hover,.single-meta .edit-link a:hover,.r-hide a:hover,.meta-nav:hover,
+	.nav-single i:hover, .widget_categories a:hover, .widget_links a:hover, .tagcloud a:hover, #sidebar .widget_nav_menu a:hover {background: #dd3333;border: 1px solid #dd3333;}
+	.comment-tool a, .link-all a:hover, .link-f a:hover, .ias-trigger-next a:hover  {background: #dd3333;border: 1px solid #dd3333;}
+	.login-t, .login-t a, .login-b, .social-main a, .at-top-ico, .at-top-header a {background: #dd3333;}
+	.entry-header h1 {border-left: 5px solid #dd3333;border-right: 5px solid #dd3333;}
+	.slider-caption, .grid,icon-zan, .grid-cat {background: #dd3333;opacity: 0.8;}
+	@media screen and (min-width: 900px) {#scroll li a:hover {background: #dd3333;border: 1px solid #dd3333;}.nav-search,.custom-more a, .cat-more a {background: #dd3333;}}
+	@media screen and (max-width: 900px) {#navigation-toggle:hover,.nav-search:hover,.mobile-login a:hover,.nav-mobile:hover, {color: #dd3333;}}
+	@media screen and (min-width: 550px) {.pagination span.current, .pagination a:hover {background: #dd3333;border: 1px solid #dd3333;}}
+	@media screen and (max-width: 550px) {.pagination .prev,.pagination .next {background: #dd3333;}}
+	.single-content h3 {border-left: 5px solid #dd3333;}
+	.page-links  a:hover span {background: #a3a3a3;border: 1px solid #a3a3a3;}
+	.single-content a:hover {color: #555;}
+	.format-aside .post-format a:hover,.cat-more a:hover,.custom-more a:hover {color: #fff;}
+	.social-main a:hover {color: #fff;}
+</style>
+ 	<script src="../static/js/share.js" th:src="@{js/share.js}"></script>
+	<link rel="stylesheet" href="../static/css/share_style1_16.css" th:href="@{css/share_style1_16.css}"/>
 </head>
-<body>
-<!--<p th:text="#{home.welcome}">Welcome to our website!</p>-->
-<p th:text="${hello}">Welcome to our website!</p>
-<p >Welcome to our website!</p>
+<body class="home blog" style="">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header">
+	<nav id="top-header">
+		<div class="top-nav">
+							<div id="user-profile">
+					欢迎光临！			
+										<span class="nav-set">
+				 	<span class="nav-login">
+				 						<a href="/login" class="flatbtn" id="login-main">登录</a>
+										</span>
+				</span>
+							</div>			
+			<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container">
+				<ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="top-menu">
+					<li id="menu-item-66" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-66">
+						<a href="/about">关于</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav><!-- #top-header -->
+
+	<div id="menu-box">
+		<div id="top-menu">
+			<span class="nav-search"><i class="fa fa-search"></i></span>
+			<span class="mobile-login"><a href="http://www.zuishare.top/#login" id="login-mobile">
+				<i class="fa fa-sun-o"></i></a></span>
+			<hgroup class="logo-sites">
+			<h1 class="site-title"><a href="http://www.zuishare.top/" title="最分享" rel="home">最分享</a></h1>
+						<p class="site-description">分享身边最好的东西</p>
+			</hgroup><!-- .logo-site -->
+			<div id="site-nav-wrap">
+				<div id="sidr-close"><a href="http://www.zuishare.top/#sidr-close" class="toggle-sidr-close">×</a></div>
+				<nav id="site-nav" class="main-nav">
+					<a href="http://www.zuishare.top/#sidr-main" id="navigation-toggle" class="bars"><i class="fa fa-bars"></i></a>
+					<div class="menu-%e4%b8%bb%e8%8f%9c%e5%8d%95-container">
+						<ul id="menu-%e4%b8%bb%e8%8f%9c%e5%8d%95" class="down-menu nav-menu sf-js-enabled sf-arrows">
+							<li id="menu-item-11" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11">
+								<a href="http://www.zuishare.top/">首页</a></li>
+							<li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10">
+								<a href="http://www.zuishare.top/?cat=4">推荐</a></li>
+							<li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7">
+								<a href="http://www.zuishare.top/?cat=5">下载吧</a></li>
+							<li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8">
+								<a href="http://www.zuishare.top/?cat=2">电影推荐</a></li>
+							<li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9">
+								<a href="http://www.zuishare.top/?cat=3">购物网赚</a></li>
+							<li id="menu-item-125" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-125">
+								<a href="http://www.zuishare.top/?cat=23">时光</a></li>
+							</ul></div>
+				</nav><!-- #site-nav -->
+			</div><!-- #site-nav-wrap -->
+			<div class="clear"></div>
+		</div><!-- #top-menu -->
+	</div><!-- #menu-box -->
+</header><!-- #masthead -->
+
+<div id="search-main">
+	<div id="searchbar">
+	<form method="get" id="searchform" action="http://www.zuishare.top/">
+		<input type="text" value="" name="s" id="s" placeholder="输入搜索内容" required=""/>
+		<button type="submit" id="searchsubmit">搜索</button>
+	</form>
+</div>		<div class="clear"></div>
+</div>		<nav class="breadcrumb">
+		现在位置： 首页	</nav>
+	<div id="content" class="site-content">
+				<div class="clear"></div>
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+			<div class="wow" data-wow-delay="0.3s">
+				<article id="post-136" class="post-136 post type-post status-publish format-standard hentry category-dytj tag-24 tag-21 tag-25">
+					<figure class="thumbnail">
+						<a href="http://www.zuishare.top/?p=136"><img src="/images/image.jpg" alt="《权力的游戏》第7季回归,附:第2集下载  熟肉（已更新）"/></a>
+						<span class="cat"><a href="http://www.zuishare.top/?cat=2">电影推荐</a></span>
+					</figure>
+					<header class="entry-header">
+						<h2 class="entry-title"><a href="http://www.zuishare.top/?p=136" rel="bookmark">《权力的游戏》第7季回归,附:第2集下载  熟肉（已更新）</a></h2>
+					</header><!-- .entry-header -->
+					<div class="entry-content">
+						<div class="archive-content">
+							&nbsp; &nbsp; 第2集（熟肉）下载 链接: http://pan.baidu.com/s/1ge7a78f 密码: huid &nbsp; 第一集（生肉...
+						</div>
+						<span class="title-l"></span>
+						<span class="entry-meta">
+							<span class="date">2017年07月17日&nbsp;</span>
+							<span class="views">阅读 1,021 views</span>
+							<span class="comment"><a href="http://www.zuishare.top/?p=136#respond">
+								<i class="fa fa-comment-o"></i> 发表评论</a>
+							</span>
+						</span>
+					<div class="clear"></div>
+					</div><!-- .entry-content -->
+					<span class="entry-more"><a href="http://www.zuishare.top/?p=136" rel="bookmark">阅读全文</a></span>
+				</article><!-- #post -->
+			</div>
+			<div class="wow" data-wow-delay="0.3s">
+				<article id="post-131" class="post-131 post type-post status-publish format-standard hentry category-srsg">
+					<figure class="thumbnail">
+						<a href="http://www.zuishare.top/?p=131"><img src="/images/image.jpg" alt="时光：哄抬B价，原谅我一个都没有"/></a>			<span class="cat"><a href="http://www.zuishare.top/?cat=23">时光</a></span>
+					</figure>
+					<header class="entry-header">
+						<h2 class="entry-title"><a href="http://www.zuishare.top/?p=131" rel="bookmark">时光：哄抬B价，原谅我一个都没有</a></h2>
+					</header><!-- .entry-header -->
+					<div class="entry-content">
+						<div class="archive-content">现在我才明白，相亲是套路，见父母更是套路。 贫穷的小编，六样神器，我一个都没有~~~~~~~ &nbsp; 点我观看			</div>
+						<span class="title-l"></span>
+						<span class="entry-meta">
+						<span class="date">2017年05月19日&nbsp;</span>
+						<span class="views">阅读 139 views</span>
+							<span class="comment"><a href="http://www.zuishare.top/?p=131#respond"><i class="fa fa-comment-o"></i> 发表评论</a></span>
+						</span>
+					<div class="clear"></div>
+					</div><!-- .entry-content -->
+					<span class="entry-more"><a href="http://www.zuishare.top/?p=131" rel="bookmark">阅读全文</a></span>
+				</article><!-- #post -->
+			</div>
+			<div class="wow" data-wow-delay="0.3s"><article id="post-126" class="post-126 post type-post status-publish format-standard hentry category-gwwz">
+			<figure class="thumbnail">
+			<a href="http://www.zuishare.top/?p=126"><img src="/images/image.jpg" alt="安徽的电信卡，0月租ifree，现在只要4.9元——50元话费"/></a>			<span class="cat"><a href="http://www.zuishare.top/?cat=3">购物网赚</a></span>
+		</figure>
+		<header class="entry-header">
+					<h2 class="entry-title"><a href="http://www.zuishare.top/?p=126" rel="bookmark">安徽的电信卡，0月租ifree，现在只要4.9元——50元话费</a></h2>			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+					<div class="archive-content">
+				&nbsp; 正值天猫517通信狂欢节（持续到5月17号），原本安徽0月租的ifree卡，以前一直是20元，现在只要4.9，里面有50元话费，一人最多只能办5张，以...			</div>
+			<span class="title-l"></span>
+													<span class="entry-meta">
+				<span class="date">2017年05月16日&nbsp;</span>
+				<span class="views">阅读 77 views</span>									<span class="comment"><a href="http://www.zuishare.top/?p=126#respond"><i class="fa fa-comment-o"></i> 发表评论</a></span>
+							</span>
+				<div class="clear"></div>
+	</div><!-- .entry-content -->
+
+					<span class="entry-more"><a href="http://www.zuishare.top/?p=126" rel="bookmark">阅读全文</a></span>
+			</article><!-- #post --></div>
+
+				
+							<div class="wow fadeInUp" data-wow-delay="0.3s"><article id="post-119" class="post-119 post type-post status-publish format-standard hentry category-uncategorized">
+			<figure class="thumbnail">
+			<a href="http://www.zuishare.top/?p=119"><img src="/images/image.jpg" alt="勒索病毒凶猛: 高校、公安系统已沦陷，附有最全的补漏洞的方法"/></a>			<span class="cat"><a href="http://www.zuishare.top/?cat=1">未分类</a></span>
+		</figure>
+		<header class="entry-header">
+					<h2 class="entry-title"><a href="http://www.zuishare.top/?p=119" rel="bookmark">勒索病毒凶猛: 高校、公安系统已沦陷，附有最全的补漏洞的方法</a></h2>			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+					<div class="archive-content">
+				&nbsp; 全球爆发电脑勒索病毒,“疫情”已波及99个国家。包括中国、俄罗斯、英国、美国在内的众多国家,都被该病毒搅得鸡犬不宁。 你的电脑一旦中了这个病毒，是没法...			</div>
+			<span class="title-l"></span>
+													<span class="entry-meta">
+				<span class="date">2017年05月14日&nbsp;</span>
+				<span class="views">阅读 77 views</span>									<span class="comment"><a href="http://www.zuishare.top/?p=119#respond"><i class="fa fa-comment-o"></i> 发表评论</a></span>
+							</span>
+				<div class="clear"></div>
+	</div><!-- .entry-content -->
+
+					<span class="entry-more"><a href="http://www.zuishare.top/?p=119" rel="bookmark">阅读全文</a></span>
+			</article><!-- #post --></div>
+
+				
+							<div class="wow fadeInUp" data-wow-delay="0.3s"><article id="post-102" class="post-102 post type-post status-publish format-standard hentry category-xrtj tag-20 tag-19">
+			<figure class="thumbnail">
+			<a href="http://www.zuishare.top/?p=102"><img src="/images/image.jpg" alt="推荐：新版和骗子有趣对话，这个套路我给100分"/></a>			<span class="cat"><a href="http://www.zuishare.top/?cat=4">推荐</a></span>
+		</figure>
+		<header class="entry-header">
+					<h2 class="entry-title"><a href="http://www.zuishare.top/?p=102" rel="bookmark">推荐：新版和骗子有趣对话，这个套路我给100分</a></h2>			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+					<div class="archive-content">
+				这里推荐一个微博搞笑的博主“酷酷的滕” 主要和一些电线杆、厕所小广告的电话骗子“对话”，有微博网友跟帖发电话号码，这个博主在趣斗骗子 包括：伪装成领导诈骗、法师教隔...			</div>
+			<span class="title-l"></span>
+													<span class="entry-meta">
+				<span class="date">2017年05月13日&nbsp;</span>
+				<span class="views">阅读 92 views</span>									<span class="comment"><a href="http://www.zuishare.top/?p=102#respond"><i class="fa fa-comment-o"></i> 发表评论</a></span>
+							</span>
+				<div class="clear"></div>
+	</div><!-- .entry-content -->
+
+					<span class="entry-more"><a href="http://www.zuishare.top/?p=102" rel="bookmark">阅读全文</a></span>
+			</article><!-- #post --></div>
+
+				
+							<div class="wow fadeInUp" data-wow-delay="0.3s"><article id="post-97" class="post-97 post type-post status-publish format-standard hentry category-dytj tag-21 tag-22">
+			<figure class="thumbnail">
+			<a href="http://www.zuishare.top/?p=97"><img src="/images/image.jpg" alt="电影推荐:阿米尔.汗《摔跤吧！爸爸》，今年看过最好的电影，没有之一"/></a>			<span class="cat"><a href="http://www.zuishare.top/?cat=2">电影推荐</a></span>
+		</figure>
+		<header class="entry-header">
+					<h2 class="entry-title"><a href="http://www.zuishare.top/?p=97" rel="bookmark">电影推荐:阿米尔.汗《摔跤吧！爸爸》，今年看过最好的电影，没有之一</a></h2>			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+					<div class="archive-content">
+				《摔跤吧！爸爸》阿米尔·汗领衔主演的印度片，上映8天，票房已过8亿，堪称本年度看过最好的电影，没有之一。 &nbsp; 阿米尔·汗作为印度国宝级的演员，被时代周刊称...			</div>
+			<span class="title-l"></span>
+													<span class="entry-meta">
+				<span class="date">2017年05月12日&nbsp;</span>
+				<span class="views">阅读 78 views</span>									<span class="comment"><a href="http://www.zuishare.top/?p=97#respond"><i class="fa fa-comment-o"></i> 发表评论</a></span>
+							</span>
+				<div class="clear"></div>
+	</div><!-- .entry-content -->
+
+					<span class="entry-more"><a href="http://www.zuishare.top/?p=97" rel="bookmark">阅读全文</a></span>
+			</article><!-- #post --></div>
+
+				
+							<div class="wow fadeInUp" data-wow-delay="0.3s"><article id="post-79" class="post-79 post type-post status-publish format-standard hentry category-xrtj tag-17 tag-18">
+			<figure class="thumbnail">
+			<a href="http://www.zuishare.top/?p=79"><img src="/images/image.jpg" alt="骨灰级教学：10分钟学会脱离单身视频教程"/></a>			<span class="cat"><a href="http://www.zuishare.top/?cat=4">推荐</a></span>
+		</figure>
+		<header class="entry-header">
+					<h2 class="entry-title"><a href="http://www.zuishare.top/?p=79" rel="bookmark">骨灰级教学：10分钟学会脱离单身视频教程</a></h2>			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+					<div class="archive-content">
+				看到这篇帖子的人，我想对你们说、你们非常幸运，可以脱单。 谈恋爱是需要技巧的，也就是所说的套路。 男生可套路，女生可以学习反套路，反正谈恋爱总有一个人先耍流氓，存下...			</div>
+			<span class="title-l"></span>
+													<span class="entry-meta">
+				<span class="date">2017年05月10日&nbsp;</span>
+				<span class="views">阅读 170 views</span>									<span class="comment"><a href="http://www.zuishare.top/?p=79#respond"><i class="fa fa-comment-o"></i> 发表评论</a></span>
+							</span>
+				<div class="clear"></div>
+	</div><!-- .entry-content -->
+
+					<span class="entry-more"><a href="http://www.zuishare.top/?p=79" rel="bookmark">阅读全文</a></span>
+			</article><!-- #post --></div>
+
+				
+							<div class="wow fadeInUp" data-wow-delay="0.3s"><article id="post-69" class="post-69 post type-post status-publish format-standard hentry category-xrtj tag-15 tag-16">
+			<figure class="thumbnail">
+			<a href="http://www.zuishare.top/?p=69"><img src="/images/image.jpg" alt="福利网站：在线249亿像素的全景图，有亮点"/></a>			<span class="cat"><a href="http://www.zuishare.top/?cat=4">推荐</a></span>
+		</figure>
+		<header class="entry-header">
+					<h2 class="entry-title"><a href="http://www.zuishare.top/?p=69" rel="bookmark">福利网站：在线249亿像素的全景图，有亮点</a></h2>			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+					<div class="archive-content">
+				&nbsp; 中国量子卫星，用量子技术249亿画素，拍摄出来的照片。世界顶级技术，值得一看！ 看的时候，可以把照片放大，放大，再放大，一直放大到满意为止……。 可以...			</div>
+			<span class="title-l"></span>
+													<span class="entry-meta">
+				<span class="date">2017年05月06日&nbsp;</span>
+				<span class="views">阅读 190 views</span>									<span class="comment"><a href="http://www.zuishare.top/?p=69#respond"><i class="fa fa-comment-o"></i> 发表评论</a></span>
+							</span>
+				<div class="clear"></div>
+	</div><!-- .entry-content -->
+
+					<span class="entry-more"><a href="http://www.zuishare.top/?p=69" rel="bookmark">阅读全文</a></span>
+			</article><!-- #post --></div>
+
+				
+							<div class="wow fadeInUp" data-wow-delay="0.3s"><article id="post-60" class="post-60 post type-post status-publish format-standard hentry category-xrtj tag-14">
+			<figure class="thumbnail">
+			<a href="http://www.zuishare.top/?p=60"><img src="/images/image.jpg" alt="有趣网站：黑科技，假装 Windows 升级界面"/></a>			<span class="cat"><a href="http://www.zuishare.top/?cat=4">推荐</a></span>
+		</figure>
+		<header class="entry-header">
+					<h2 class="entry-title"><a href="http://www.zuishare.top/?p=60" rel="bookmark">有趣网站：黑科技，假装 Windows 升级界面</a></h2>			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+					<div class="archive-content">
+				只是一个假的安装升级的网站，可以模仿各种电脑升级，包括Mac - Apple。 用假的 windows 升级界面骗你的同事和朋友吧！ [url href=http:...			</div>
+			<span class="title-l"></span>
+													<span class="entry-meta">
+				<span class="date">2017年05月04日&nbsp;</span>
+				<span class="views">阅读 70 views</span>									<span class="comment"><a href="http://www.zuishare.top/?p=60#respond"><i class="fa fa-comment-o"></i> 发表评论</a></span>
+							</span>
+				<div class="clear"></div>
+	</div><!-- .entry-content -->
+
+					<span class="entry-more"><a href="http://www.zuishare.top/?p=60" rel="bookmark">阅读全文</a></span>
+			</article><!-- #post --></div>
+
+				
+							<div class="wow fadeInUp" data-wow-delay="0.3s"><article id="post-41" class="post-41 post type-post status-publish format-standard hentry category-xzb tag-9 tag-10 tag-11">
+			<figure class="thumbnail">
+			<a href="http://www.zuishare.top/?p=41"><img src="/images/image.jpg" alt="百度网盘最新5.5.4，不限速 试用时间无限"/></a>			<span class="cat"><a href="http://www.zuishare.top/?cat=5">下载吧</a></span>
+		</figure>
+		<header class="entry-header">
+					<h2 class="entry-title"><a href="http://www.zuishare.top/?p=41" rel="bookmark">百度网盘最新5.5.4，不限速 试用时间无限</a></h2>			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+					<div class="archive-content">
+				随着百度网盘的更新，网上好多的破解版百度云盘失效，这个新的是利用试用时间破解，速度可以达到满速，亲测。 &nbsp; 到官网下载百度网盘最新版本（下方连接里有最新版...			</div>
+			<span class="title-l"></span>
+													<span class="entry-meta">
+				<span class="date">2017年05月03日&nbsp;</span>
+				<span class="views">阅读 123 views</span>									<span class="comment"><a href="http://www.zuishare.top/?p=41#respond"><i class="fa fa-comment-o"></i> 发表评论</a></span>
+							</span>
+				<div class="clear"></div>
+	</div><!-- .entry-content -->
+
+					<span class="entry-more"><a href="http://www.zuishare.top/?p=41" rel="bookmark">阅读全文</a></span>
+			</article><!-- #post --></div>
+		</main><!-- .site-main -->
+	</div><!-- .content-area -->
+<div id="sidebar" class="widget-area">
+			<div class="wow" data-wow-delay="0.5s">
+			<aside id="search-2" class="widget widget_search">
+				<div id="searchbar">
+					<form method="get" id="searchform" action="http://www.zuishare.top/">
+						<input type="text" value="" name="s" id="s" placeholder="输入搜索内容" required=""/>
+						<button type="submit" id="searchsubmit">搜索</button>
+					</form>
+				</div>
+				<div class="clear"></div>
+			</aside>
+				<aside id="text-5" class="widget widget_text">
+					<div class="textwidget"><a href="http://www.tttime.cn/" target="_blank"><img src="/images/default.jpg" alt="广告也精彩"/></a></div>
+		<div class="clear"></div></aside><aside id="hot_post-3" class="widget widget_hot_post">
+<div id="hot_post_widget">
+	<ul>
+	     
+	    <li>暂无文章</li>	    			</ul>
+</div>
+
+<div class="clear"></div></aside>
+				<aside id="cx_tag_cloud-3" class="widget widget_cx_tag_cloud">
+					<div id="tag_cloud_widget">
+	<a href="http://www.zuishare.top/?tag=%e6%9c%89%e8%b6%a3%e5%af%b9%e8%af%9d" class="tag-link-19 tag-link-position-1" title="1个话题" style="font-size: 14px; left: 118.899px; top: 13.2261px; z-index: 101; opacity: 0.102831; display: none;">有趣对话</a>
+<a href="http://www.zuishare.top/?tag=%e7%85%a7%e7%89%87" class="tag-link-15 tag-link-position-2" title="1个话题" style="font-size: 14px; left: 53.8347px; top: 19.8228px; z-index: 101; opacity: 0.101565; display: none;">照片</a>
+<a href="http://www.zuishare.top/?tag=%e7%94%b5%e5%bd%b1%e6%8e%a8%e8%8d%90" class="tag-link-21 tag-link-position-3" title="2个话题" style="font-size: 14px; left: 26.4888px; top: 28.3928px; z-index: 102; opacity: 0.108102; display: none;">电影推荐</a>
+<a href="http://www.zuishare.top/?tag=%e6%b3%a1%e5%a6%9e" class="tag-link-18 tag-link-position-4" title="1个话题" style="font-size: 14px; left: 122.201px; top: 10.281px; z-index: 102; opacity: 0.110388; display: none;">泡妞</a>
+<a href="http://www.zuishare.top/?tag=%e9%98%bf%e7%b1%b3%e5%b0%94-%e6%b1%97" class="tag-link-22 tag-link-position-5" title="1个话题" style="font-size: 14px; left: 174.945px; top: 64.3026px; z-index: 101; opacity: 0.10396; display: none;">阿米尔.汗</a>
+<a href="http://www.zuishare.top/?tag=%e7%bd%91%e7%9b%98" class="tag-link-10 tag-link-position-6" title="1个话题" style="font-size: 14px; left: 174.643px; top: 166.39px; z-index: 135; opacity: 0.830433;">网盘</a>
+<a href="http://www.zuishare.top/?tag=%e5%8d%95%e8%ba%ab%e6%95%99%e7%a8%8b" class="tag-link-17 tag-link-position-7" title="1个话题" style="font-size: 14px; left: 76.6379px; top: 178.72px; z-index: 170; opacity: 3.61753;">单身教程</a>
+<a href="http://www.zuishare.top/?tag=%e7%99%be%e5%ba%a6%e4%ba%91" class="tag-link-9 tag-link-position-8" title="1个话题" style="font-size: 14px; left: 7.3654px; top: 135.185px; z-index: 142; opacity: 1.1615;">百度云</a>
+<a href="http://www.zuishare.top/?tag=%e7%a6%8f%e5%88%a9%e7%bd%91%e7%ab%99" class="tag-link-16 tag-link-position-9" title="1个话题" style="font-size: 14px; left: -1.38925px; top: 61.2326px; z-index: 101; opacity: 0.100585; display: none;">福利网站</a>
+<a href="http://www.zuishare.top/?tag=%e7%be%8e%e5%89%a7" class="tag-link-25 tag-link-position-10" title="1个话题" style="font-size: 14px; left: 87.8381px; top: 8.88267px; z-index: 102; opacity: 0.114427; display: none;">美剧</a>
+<a href="http://www.zuishare.top/?tag=%e6%9d%83%e5%8a%9b%e7%9a%84%e6%b8%b8%e6%88%8f" class="tag-link-24 tag-link-position-11" title="1个话题" style="font-size: 14px; left: 148.323px; top: 34.991px; z-index: 102; opacity: 0.111001; display: none;">权力的游戏</a>
+<a href="http://www.zuishare.top/?tag=%e5%a5%97%e8%b7%af" class="tag-link-20 tag-link-position-12" title="1个话题" style="font-size: 14px; left: 168.355px; top: 83.6579px; z-index: 170; opacity: 3.59628;">套路</a>
+<a href="http://www.zuishare.top/?tag=%e8%bd%af%e4%bb%b6%e4%b8%8b%e8%bd%bd" class="tag-link-11 tag-link-position-13" title="1个话题" style="font-size: 14px; left: 69.3553px; top: 87.9348px; z-index: 197; opacity: 10.6878;">软件下载</a>
+<a href="http://www.zuishare.top/?tag=%e6%9c%89%e8%b6%a3%e7%bd%91%e7%ab%99" class="tag-link-14 tag-link-position-14" title="1个话题" style="font-size: 14px; left: 56.7883px; top: 23.932px; z-index: 145; opacity: 1.31984;">有趣网站</a>	<div class="clear"></div>
+	</div>
+
+<div class="clear"></div></aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title"><i class="fa fa-bars"></i>分类目录</h3>		<ul>
+	<li class="cat-item cat-item-5"><a href="http://www.zuishare.top/?cat=5">下载吧</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.zuishare.top/?cat=1">未分类</a>
+</li>
+	<li class="cat-item cat-item-2"><a href="http://www.zuishare.top/?cat=2">电影推荐</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://www.zuishare.top/?cat=3">购物网赚</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.zuishare.top/?cat=4">推荐</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="http://www.zuishare.top/?cat=23">时光</a>
+</li>
+		</ul>
+<div class="clear"></div></aside>		</div>
+		<div class="sidebar-roll">
+					</div>
+		<div class="wow fadeInUp" data-wow-delay="0.5s">
+					</div>
+	
+	
+	</div>
+
+<div class="clear"></div>	<div class="clear"></div>
+			<div class="wow fadeInUp" data-wow-delay="0.3s"><div id="links">
+	<ul>
+					</ul>
+	<div class="clear"></div>
+</div>
+</div>
+		</div><!-- .site-content -->
+			<div id="footer-widget-box">
+			<div class="footer-widget wow fadeInUp" data-wow-delay="0.5s">
+				<aside id="text-3" class="widget widget_text">			<div class="textwidget"></div>
+		<div class="clear"></div></aside>				<div class="clear"></div>
+			</div>
+		</div>
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+		<div class="site-info">
+			Copyright ©&nbsp;&nbsp;最分享&nbsp;&nbsp;版权所有.&nbsp;&nbsp;( 备案号：<a target="_blank" href="http://www.miitbeian.gov.cn/">粤ICP备17147867号-1</a> )
+		</div><!-- .site-info -->
+	</footer><!-- .site-footer -->
+<div id="login">
+			<div class="login-t">用户登录</div>
+		<form action="http://www.zuishare.top/login" method="post" id="loginform">
+			<input type="username" name="log" id="log" placeholder="名称" required=""/>
+			<input type="password" name="pwd" id="pwd" placeholder="密码" required=""/>
+			<input type="submit" id="submit" value="登录"/>
+			<input type="hidden" name="redirect_to" value=""/>
+			<label><input type="checkbox" name="rememberme" id="modlogn_remember" value="yes" checked="checked" alt="Remember Me"/>自动登录</label>
+			<a href="http://www.zuishare.top/lostpassword">&nbsp;&nbsp;忘记密码？</a>
+		</form>
+	<div class="login-b"></div>
+</div>
+<ul id="scroll">
+<div class="log log-no"><li><a class="log-button" title="文章目录">
+	<i class="fa fa-bars"></i></a></li><div class="log-prompt" style="display: none;">
+	<div class="log-arrow">文章目录</div></div></div>
+	<li><a class="scroll-h" title="返回顶部"><i class="fa fa-angle-up"></i></a></li>
+		<li><a class="scroll-b" title="转到底部"><i class="fa fa-angle-down"></i></a></li>
+	<li class="qqonline">
+	<div class="online"><a href="javascript:void(0)"><i class="fa fa-qq"></i></a></div>
+	<div class="qqonline-box" style="display: none;">
+	<div class="qqonline-main">
+				<div class="nline-qq">
+	</div></div></div></li>
+	</ul>
+<script type="text/javascript">
+    document.onkeydown = chang_page;function chang_page(e) {
+        var e = e || event,
+        keycode = e.which || e.keyCode;
+        if (keycode == 37) location = 'http://www.zuishare.top/';
+        if (keycode == 39) location = 'http://www.zuishare.top/?paged=2';
+    }
+</script>
+<script type="text/javascript" src="../static/js/superfish.js" th:src="@{js/superfish.js}"></script>
+<script type="text/javascript" src="../static/js/3dtag.js" th:src="@{js/3dtag.js}"></script>
+
+</div><div id="overlay"></div><div id="sidr-main" class="sidr left">
+	<div class="sidr-inner"><a href="http://www.zuishare.top/#sidr-close" class="sidr-class-toggle-sidr-close">×</a></div>
+	<div class="sidr-inner">
+		<a href="http://www.zuishare.top/#sidr-main" id="sidr-id-navigation-toggle" class="sidr-class-bars">
+			<i class="sidr-class-fa sidr-class-fa-bars"></i></a>
+		<div class="sidr-class-menu-%sidr-class-e4%sidr-class-b8%sidr-class-bb%sidr-class-e8%sidr-class-8f%sidr-class-9c%sidr-class-e5%sidr-class-8d%sidr-class-95-container">
+			<ul id="sidr-id-menu-%sidr-id-e4%sidr-id-b8%sidr-id-bb%sidr-id-e8%sidr-id-8f%sidr-id-9c%sidr-id-e5%sidr-id-8d%sidr-id-95" class="sidr-class-down-menu sidr-class-nav-menu sidr-class-sf-js-enabled sidr-class-sf-arrows">
+				<li id="sidr-id-menu-item-11" class="sidr-class-menu-item sidr-class-menu-item-type-custom sidr-class-menu-item-object-custom sidr-class-menu-item-11">
+					<a href="http://www.zuishare.top/">首页</a>
+				</li>
+				<li id="sidr-id-menu-item-10" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-10">
+					<a href="http://www.zuishare.top/?cat=4">推荐</a>
+				</li>
+				<li id="sidr-id-menu-item-7" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-7">
+					<a href="http://www.zuishare.top/?cat=5">下载吧</a>
+				</li>
+				<li id="sidr-id-menu-item-8" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-8">
+					<a href="http://www.zuishare.top/?cat=2">电影推荐</a>
+				</li>
+				<li id="sidr-id-menu-item-9" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-9">
+					<a href="http://www.zuishare.top/?cat=3">购物网赚</a>
+				</li>
+				<li id="sidr-id-menu-item-125" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-125">
+					<a href="http://www.zuishare.top/?cat=23">时光</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
 </body>
 </html>

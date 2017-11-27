@@ -39,6 +39,9 @@ spring:
     encoding: UTF-8
     content-type: text/html
     cache: false
+  mvc:
+    favicon:
+      enabled: false
 logging:
   config: classpath:log4j2.xml
 
