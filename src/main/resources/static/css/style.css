@@ -4778,8 +4778,6 @@ li.search-inf {
 	animation: blink 0.8s linear infinite;
 }
 
-.qqonline {}
-
 .online a {
 	width: 30px;
 	color: #fff;
@@ -4788,29 +4786,6 @@ li.search-inf {
 	display: block;
 	border-radius: 2px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-}
-
-.qqonline a:hover {
-	background: #666;
-	color: #fff;
-}
-
-.qqonline-box {
-	position: absolute;
-	bottom: -10px;
-	right: 30px;
-	display: none;
-	padding: 10px;
-	z-index: 5;
-}
-
-.qqonline-main {
-	background: #fff;
-	padding: 10px;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-	background: rgba(255, 255, 255, 0.9);
 }
 
 .nline-wiexin h4 {
