@@ -2,6 +2,8 @@ package top.zuishare.service.impl;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,8 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class ArticleCategoryServiceImpl implements ArticleCategoryService {
 
+    private static final Logger logger = LoggerFactory.getLogger(ArticleCategoryServiceImpl.class);
+
     @Autowired
     private ArticleCategoryDao articleCategoryDao;
     @Autowired
@@ -33,19 +37,25 @@ public class ArticleCategoryServiceImpl implements ArticleCategoryService {
     private Gson gson;
 
     public List<ArticleCategory> getList(){
-        //先从缓存中获取
-        String categoryStr = stringRedisTemplate.opsForValue().get(Constants.REDIS_ARTICLE_CATEGORY_KEY);
-        //json 反序列化
-        List<ArticleCategory> categories = gson.fromJson(categoryStr,
-               new TypeToken<ArrayList<ArticleCategory>>(){}.getType());
-        if(CollectionUtils.isEmpty(categories)){
-            categories =articleCategoryDao.getList();
-            // 设置过期时间30天
-            if(!CollectionUtils.isEmpty(categories)) {
-                stringRedisTemplate.opsForValue()
-                        .set(Constants.REDIS_ARTICLE_CATEGORY_KEY,
-                                gson.toJson(categories), 30, TimeUnit.DAYS);
+        List<ArticleCategory> categories = null;
+        try {
+            //先从缓存中获取
+            String categoryStr = stringRedisTemplate.opsForValue().get(Constants.REDIS_ARTICLE_CATEGORY_KEY);
+            //json 反序列化
+            categories = gson.fromJson(categoryStr,
+                    new TypeToken<ArrayList<ArticleCategory>>() {
+                    }.getType());
+            if (CollectionUtils.isEmpty(categories)) {
+                categories = articleCategoryDao.getList();
+                // 设置过期时间30天
+                if (!CollectionUtils.isEmpty(categories)) {
+                    stringRedisTemplate.opsForValue()
+                            .set(Constants.REDIS_ARTICLE_CATEGORY_KEY,
+                                    gson.toJson(categories), 30, TimeUnit.DAYS);
+                }
             }
+        }catch (Exception e){
+            logger.error("redis happend error.", e);
         }
         return categories;
     }

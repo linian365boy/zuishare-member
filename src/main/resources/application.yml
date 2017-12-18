@@ -1,9 +1,11 @@
 spring:
+  application:
+    name: zuishare-member
   datasource:
     druid:
-      url: @jdbc.url@
-      username: @jdbc.username@
-      password: @jdbc.password@
+      url: ${jdbc.url}
+      username: ${jdbc.username}
+      password: ${jdbc.password}
       driver-class-name: com.mysql.jdbc.Driver
       initial-size: 5
       max-active: 8
@@ -12,23 +14,8 @@ spring:
       validation-query: select 'x'
       validation-query-timeout: 5
       test-while-idle: true
-      filters: stat,wall
-      web-stat-filter:
-        enabled: true
-        urlPattern: "/*"
-        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
-      stat-view-servlet:
-        enabled: true
-        urlPattern: "/druid/*"
-        resetEnable: false
-        loginUsername: admin
-        loginPassword: 123456
-      aop-patterns: top.zuishare.service.*
-  aop:
-    proxy-target-class: true
   profiles:
-    active: @env@
-    include: @env@
+    active: win_local
   http:
     encoding:
       force: true
@@ -42,19 +29,45 @@ spring:
   mvc:
     favicon:
       enabled: false
-logging:
-  config: classpath:log4j2.xml
+# Redis数据库索引（默认为0）
+  redis:
+    database: 0
+# Redis服务器地址
+    host: localhost
+# Redis服务器连接端口
+    port: 6380
+# Redis服务器连接密码（默认为空）
+    password:
+# 连接池最大连接数（使用负值表示没有限制）
+    pool:
+      max-active: 15
+# 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-wait: -1
+# 连接池中的最大空闲连接
+      max-idle: 10
+# 连接池中的最小空闲连接
+      min-idle: 5
+# 连接超时时间（毫秒）
+    timeout: 1000
+
+mybatis:
+    type-aliases-package: top.zuishare.spi.model
+    mapper-locations: classpath:mybatis/*Mapper.xml
+    configuration:
+        map-underscore-to-camel-case: true
+        default-fetch-size: 100
+        default-statement-timeout: 30
 
 server:
   port: 8081
 ---
 spring:
-  profiles: win-local
+  profiles: win_local
 server:
   port: 8082
 ---
 spring:
-  profiles: mac-local
+  profiles: mac_local
 server:
   port: 8082
 ---
@@ -62,4 +75,3 @@ spring:
   profiles: prd
 server:
   port: 8080
-

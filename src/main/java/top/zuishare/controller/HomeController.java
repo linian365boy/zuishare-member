@@ -35,23 +35,22 @@ public class HomeController {
     private int pageSize = 10;
     private int hotLimit = 8;
 
-    @RequestMapping(value={"","/","/index","/home", "/article/{pageNo}"}, method = RequestMethod.GET)
-    public String home(@RequestParam(value="pageNo", required = false) Integer pageNo, ModelMap map){
+    @RequestMapping(value = {"", "/", "/index", "/home", "/article/{pageNo}"}, method = RequestMethod.GET)
+    public String home(@RequestParam(value = "pageNo", required = false) Integer pageNo, ModelMap map) {
         long start = System.currentTimeMillis();
         logger.info("enter index page, request param  => {}", pageNo);
-        if(pageNo == null || pageNo <= 0){
+        if (pageNo == null || pageNo <= 0) {
             pageNo = 1;
         }
-        List<Article> indexArticles = articleService.getListByPage(pageNo,pageSize);
+        List<Article> indexArticles = articleService.getListByPage(pageNo, pageSize);
         List<ArticleCategory> categories = articleCategoryService.getList();
         List<Article> hotArticles = articleService.getHotArticles(hotLimit);
         map.put("indexArticles", indexArticles);
         map.put("categories", categories);
         map.put("hotArticles", hotArticles);
-        logger.info("enter homt page cost {} ms", System.currentTimeMillis()-start);
+        logger.info("enter homt page cost {} ms", System.currentTimeMillis() - start);
         return "index";
     }
-
 
 
 }
