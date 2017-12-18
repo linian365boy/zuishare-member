@@ -103,13 +103,6 @@ $(".share-sd").mouseout(function() {
 	$(this).children("#share").hide();
 });
 
-$(".qqonline").mouseover(function() {
-	$(this).children(".qqonline-box").show();
-})
-$(".qqonline").mouseout(function() {
-	$(this).children(".qqonline-box").hide();
-});
-
 // 邀请码
 $('.to-code').click(function() {
 	$('.to-code-way').animate({

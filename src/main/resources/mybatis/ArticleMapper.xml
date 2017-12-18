@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="top.zuishare.dao.ArticleDao">
+
+    <sql id="articleInfo">
+        id,title,contentType,imgTitlePath,categoryId,categoryName,author,content,publishTime,viewNum
+    </sql>
+
+    <select id="getArticleByPage" resultType="top.zuishare.spi.model.Article">
+        select <include refid="articleInfo"/>
+        from tb_article where publishTime>0 and status=1
+        order by publishTime desc,id desc limit #{start},#{limit}
+    </select>
+
+    <select id="getHotArticles" resultType="top.zuishare.spi.model.Article">
+        select id,title from tb_article where publishTime>0 and status=1
+        order by viewNum desc limit #{limit}
+    </select>
+
+</mapper>
