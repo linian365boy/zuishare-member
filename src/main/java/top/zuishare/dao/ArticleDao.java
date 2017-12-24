@@ -19,4 +19,6 @@ public interface ArticleDao {
     List<Article> getArticleByPage(@Param("start") int start,@Param("limit") int limit);
 
     List<Article> getHotArticles(int limit);
+
+    long getArticleSize();
 }

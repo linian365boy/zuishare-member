@@ -1,5 +1,6 @@
 package top.zuishare.service;
 
+import top.zuishare.dto.PageDto;
 import top.zuishare.spi.model.Article;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  */
 public interface ArticleService {
 
-    List<Article> getListByPage(int pageNo, int pageSize);
+    PageDto<Article> getListByPage(int pageNo);
     List<Article> getHotArticles(int limit);
+    Article loadOne(long id);
 }

@@ -15,7 +15,7 @@ spring:
       validation-query-timeout: 5
       test-while-idle: true
   profiles:
-    active: win_local
+    active: mac_local
   http:
     encoding:
       force: true
@@ -51,12 +51,15 @@ spring:
     timeout: 1000
 
 mybatis:
-    type-aliases-package: top.zuishare.spi.model
-    mapper-locations: classpath:mybatis/*Mapper.xml
-    configuration:
-        map-underscore-to-camel-case: true
-        default-fetch-size: 100
-        default-statement-timeout: 30
+  type-aliases-package: top.zuishare.spi.model
+  mapper-locations: classpath:mybatis/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+
+zuishare:
+  picPath: ${pic.path}
 
 server:
   port: 8081

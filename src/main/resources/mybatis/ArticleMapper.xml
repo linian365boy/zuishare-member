@@ -4,7 +4,7 @@
 <mapper namespace="top.zuishare.dao.ArticleDao">
 
     <sql id="articleInfo">
-        id,title,contentType,imgTitlePath,categoryId,categoryName,author,content,publishTime,viewNum
+        id,title,contentType,imgTitlePath,categoryId,categoryName,author,introduce,publishTime,viewNum
     </sql>
 
     <select id="getArticleByPage" resultType="top.zuishare.spi.model.Article">
@@ -16,6 +16,10 @@
     <select id="getHotArticles" resultType="top.zuishare.spi.model.Article">
         select id,title from tb_article where publishTime>0 and status=1
         order by viewNum desc limit #{limit}
+    </select>
+    
+    <select id="getArticleSize" resultType="long">
+        select count(*) from tb_article where publishTime>0 and status=1
     </select>
 
 </mapper>

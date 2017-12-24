@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import top.zuishare.constants.Constants;
 import top.zuishare.dao.ArticleDao;
+import top.zuishare.dto.PageDto;
 import top.zuishare.service.ArticleService;
 import top.zuishare.spi.model.Article;
 
@@ -37,8 +38,12 @@ public class ArticleServiceImpl implements ArticleService {
     private Gson gson;
 
     @Override
-    public List<Article> getListByPage(int pageNo, int pageSize) {
+    public PageDto<Article> getListByPage(int pageNo) {
+        PageDto<Article> pageDto = new PageDto<Article>();
+        int pageSize = pageDto.getPageSize();
+        logger.info("get articles by page, pageNo => {}, pageSize => {}", pageNo, pageSize);
         List<Article> articles = null;
+        long totalNum = 0;
         //先从缓存中获取
         try {
             String articleJsonStr = stringRedisTemplate.opsForValue().get(Constants.REDIS_ARTICLES_KEY);
@@ -49,21 +54,30 @@ public class ArticleServiceImpl implements ArticleService {
             int start = (pageNo-1) * pageSize;
             if (CollectionUtils.isEmpty(articles)) {
                 articles = articleDao.getArticleByPage(start, pageSize);
+                totalNum = articleDao.getArticleSize();
                 if (!CollectionUtils.isEmpty(articles)) {
+                    //设置文章总数到redis
                     stringRedisTemplate.opsForValue()
-                            .set(Constants.REDIS_ARTICLES_KEY,
-                                    gson.toJson(articles), 30, TimeUnit.DAYS);
+                            .set(Constants.REDIS_ARTICLES_COUNT_KEY,
+                                    String.valueOf(totalNum), Constants.TIMEOUTDAYS , TimeUnit.DAYS);
                 }
             } else {
                 //假分页，后续优化//TODO
+                totalNum = Long.parseLong(stringRedisTemplate.opsForValue().get(Constants.REDIS_ARTICLES_COUNT_KEY));
                 if (articles.size() > pageSize) {
-                    articles = articles.subList(start, start + pageSize);
+                    int end = (start + pageSize) > articles.size() ? articles.size() : (start + pageSize);
+                    articles = articles.subList(start, end);
                 }
             }
         }catch(Exception e){
             logger.error("redis happend error.", e);
         }
-        return articles;
+        pageDto.setData(articles);
+        pageDto.setTotalNum(totalNum);
+        pageDto.setCurrentPageNo(pageNo);
+        logger.info("return pageDto articles size => {}, totalNum => {}",
+                CollectionUtils.isEmpty(articles)?0:articles.size(), totalNum);
+        return pageDto;
     }
 
     @Override
@@ -78,12 +92,26 @@ public class ArticleServiceImpl implements ArticleService {
                 if (!CollectionUtils.isEmpty(articles)) {
                     stringRedisTemplate.opsForValue()
                             .set(Constants.REDIS_HOT_ARTICLES_KEY,
-                                    gson.toJson(articles), 10, TimeUnit.MINUTES);
+                                    gson.toJson(articles), Constants.TIMEOUTMINUTES, TimeUnit.MINUTES);
                 }
             }
         }catch (Exception e){
             logger.error("redis happend error.", e);
         }
+        logger.info("get {} hot article => {}", limit, articles);
         return articles;
+    }
+
+    @Override
+    public Article loadOne(long id) {
+        Article article = null;
+        try{
+            String articleStr = stringRedisTemplate.opsForValue().get(Constants.REDIS_ARTICLE_PRE_KEY + id);
+            article = gson.fromJson(articleStr, Article.class);
+        }catch (Exception e){
+            logger.error("redis happend error.", e);
+        }
+        logger.info("get article => {} from redis", article==null?"null":article.getTitle());
+        return article;
     }
 }

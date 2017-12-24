@@ -51,12 +51,13 @@ public class ArticleCategoryServiceImpl implements ArticleCategoryService {
                 if (!CollectionUtils.isEmpty(categories)) {
                     stringRedisTemplate.opsForValue()
                             .set(Constants.REDIS_ARTICLE_CATEGORY_KEY,
-                                    gson.toJson(categories), 30, TimeUnit.DAYS);
+                                    gson.toJson(categories), Constants.TIMEOUTDAYS, TimeUnit.DAYS);
                 }
             }
         }catch (Exception e){
             logger.error("redis happend error.", e);
         }
+        logger.info("get all categories => {}", categories);
         return categories;
     }
 

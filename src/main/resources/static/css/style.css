@@ -1642,6 +1642,12 @@ img.alignleft {
 	border: 1px solid #2f889a;
 	transition: all 0.2s ease-in 0s;
 }
+
+.page-links span.current {
+	background: #dd3333;
+    border: 1px solid #dd3333;
+}
+
 /** 密码 **/
 .post-password-form {
 	margin: 15px 0;
@@ -8834,4 +8840,12 @@ li.search-inf {
 
 .fa-fonticons:before {
 	content: "\f280";
+}
+
+.kuaixun{
+    width: 50px;
+    height: 30px;
+}
+.kuaixunContent{
+    height: 80px;
 }
