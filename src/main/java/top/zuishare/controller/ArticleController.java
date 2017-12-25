@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import top.zuishare.dto.PageDto;
 import top.zuishare.service.ArticleCategoryService;
 import top.zuishare.service.ArticleService;
@@ -62,7 +63,21 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/article/category/{categoryId}", method = RequestMethod.GET)
-    public String categoryArticle(@PathVariable("categoryId") long categoryId){
+    public String categoryArticle(@PathVariable("categoryId") int categoryId,
+                                  @RequestParam(value="pageNo", required=false) Integer pageNo ,
+                                  ModelMap map){
+        logger.info("enter category article list page, categoryId => {}, pageNo => {}", categoryId, pageNo);
+        long start = System.currentTimeMillis();
+        if(pageNo == null || pageNo < 1){
+            pageNo = 1;
+        }
+        PageDto<Article> cateArticles = articleService.getPageListByCateId(categoryId, pageNo);
+        List<ArticleCategory> categories = articleCategoryService.getList();
+        List<Article> hotArticles = articleService.getHotArticles(hotLimit);
+        map.put("articlesPage", cateArticles);
+        map.put("categories", categories);
+        map.put("hotArticles", hotArticles);
+        logger.info("enter listByPage page cost {} ms", System.currentTimeMillis() - start);
         return "categoryArticles";
     }
 

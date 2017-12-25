@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -39,7 +40,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public PageDto<Article> getListByPage(int pageNo) {
-        PageDto<Article> pageDto = new PageDto<Article>();
+        PageDto<Article> pageDto = new PageDto<>();
         int pageSize = pageDto.getPageSize();
         logger.info("get articles by page, pageNo => {}, pageSize => {}", pageNo, pageSize);
         List<Article> articles = null;
@@ -114,4 +115,49 @@ public class ArticleServiceImpl implements ArticleService {
         logger.info("get article => {} from redis", article==null?"null":article.getTitle());
         return article;
     }
+
+    @Override
+    public PageDto<Article> getPageListByCateId(int categoryId, int pageNo){
+        PageDto<Article> pageDto = new PageDto<>();
+        int pageSize = pageDto.getPageSize();
+        logger.info("get articles by page, pageNo => {}, pageSize => {}", pageNo, pageSize);
+        List<Article> articles = null;
+        long totalNum = 0;
+        try{
+            String articleJsonStr = stringRedisTemplate.opsForValue()
+                    .get(Constants.REDIS_CATEGORY_ARTICLES_PRE_KEY+categoryId);
+            //json 反序列化
+            articles = gson.fromJson(articleJsonStr,
+                    new TypeToken<ArrayList<Article>>() {
+                    }.getType());
+            //从db获取
+            int start = (pageNo-1) * pageSize;
+            if (CollectionUtils.isEmpty(articles)) {
+                articles = articleDao.getPageListByCateId(categoryId, start, pageSize);
+                totalNum = articleDao.getArticleSizeByCateId(categoryId);
+                if (!CollectionUtils.isEmpty(articles)) {
+                    //设置文章总数到redis
+                    stringRedisTemplate.opsForValue()
+                            .set(Constants.REDIS_CATEGORY_ARTICLES_COUNT_KEY,
+                                    String.valueOf(totalNum), Constants.TIMEOUTDAYS , TimeUnit.DAYS);
+                }
+            }else{
+                //假分页，后续优化//TODO
+                totalNum = Long.parseLong(stringRedisTemplate.opsForValue().get(Constants.REDIS_CATEGORY_ARTICLES_COUNT_KEY));
+                if (articles.size() > pageSize) {
+                    int end = (start + pageSize) > articles.size() ? articles.size() : (start + pageSize);
+                    articles = articles.subList(start, end);
+                }
+            }
+        }catch (Exception e){
+            logger.error("get category articles from redis fail.", e);
+        }
+        pageDto.setData(articles);
+        pageDto.setTotalNum(totalNum);
+        pageDto.setCurrentPageNo(pageNo);
+        logger.info("return pageDto articles size => {}, totalNum => {}",
+                CollectionUtils.isEmpty(articles)?0:articles.size(), totalNum);
+        return pageDto;
+    }
+
 }

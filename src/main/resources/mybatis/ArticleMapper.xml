@@ -13,6 +13,16 @@
         order by publishTime desc,id desc limit #{start},#{limit}
     </select>
 
+    <select id="getPageListByCateId" resultType="top.zuishare.spi.model.Article">
+        select <include refid="articleInfo"/>
+        from tb_article where publishTime>0 and status=1 and categoryId=#{categoryId}
+        order by publishTime desc,id desc limit #{start},#{limit}
+    </select>
+
+    <select id="getArticleSizeByCateId" resultType="long" parameterType="int">
+        select count(*) from tb_article where publishTime>0 and status=1 and categoryId=#{categoryId}
+    </select>
+
     <select id="getHotArticles" resultType="top.zuishare.spi.model.Article">
         select id,title from tb_article where publishTime>0 and status=1
         order by viewNum desc limit #{limit}

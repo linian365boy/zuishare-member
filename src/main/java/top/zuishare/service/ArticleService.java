@@ -17,4 +17,5 @@ public interface ArticleService {
     PageDto<Article> getListByPage(int pageNo);
     List<Article> getHotArticles(int limit);
     Article loadOne(long id);
+    PageDto<Article> getPageListByCateId(int categoryId, int pageNo);
 }

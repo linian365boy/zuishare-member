@@ -35,6 +35,20 @@ public class Constants {
     public static final int TIMEOUTMINUTES = 10;
     /**
      * 发布的文章redis的key前缀
+     * eg:article_1、article_2
+     * 表示id为1的文章，id为2的文章
      */
     public static final String REDIS_ARTICLE_PRE_KEY = "article_";
+    /**
+     * 分类对应的文章列表，缓存redis的key前缀
+     * eg:category_articles_1、category_articles_2
+     * 表示id为1的分类下的文章列表，id为2的分类的文章列表
+     */
+    public static final String REDIS_CATEGORY_ARTICLES_PRE_KEY = "category_articles_";
+    /**
+     * 分类对应的文章列表数量，缓存redis的key前缀
+     * eg:categoryArticleCount_1
+     * 表示id为1的分类下的文章数量
+     */
+    public static final String REDIS_CATEGORY_ARTICLES_COUNT_KEY = "categoryArticleCount_";
 }
