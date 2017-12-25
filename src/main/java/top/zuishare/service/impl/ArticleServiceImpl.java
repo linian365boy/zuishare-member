@@ -120,7 +120,8 @@ public class ArticleServiceImpl implements ArticleService {
     public PageDto<Article> getPageListByCateId(int categoryId, int pageNo){
         PageDto<Article> pageDto = new PageDto<>();
         int pageSize = pageDto.getPageSize();
-        logger.info("get articles by page, pageNo => {}, pageSize => {}", pageNo, pageSize);
+        logger.info("get category articles by page, categoryId => {}, pageNo => {}, pageSize => {}",
+                categoryId, pageNo, pageSize);
         List<Article> articles = null;
         long totalNum = 0;
         try{
@@ -155,7 +156,7 @@ public class ArticleServiceImpl implements ArticleService {
         pageDto.setData(articles);
         pageDto.setTotalNum(totalNum);
         pageDto.setCurrentPageNo(pageNo);
-        logger.info("return pageDto articles size => {}, totalNum => {}",
+        logger.info("return category pageDto articles size => {}, totalNum => {}",
                 CollectionUtils.isEmpty(articles)?0:articles.size(), totalNum);
         return pageDto;
     }
