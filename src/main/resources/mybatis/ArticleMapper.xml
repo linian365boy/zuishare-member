@@ -27,7 +27,7 @@
         select id,title from tb_article where publishTime>0 and status=1
         order by viewNum desc limit #{limit}
     </select>
-    
+
     <select id="getArticleSize" resultType="long">
         select count(*) from tb_article where publishTime>0 and status=1
     </select>

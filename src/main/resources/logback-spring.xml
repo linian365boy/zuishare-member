@@ -19,7 +19,7 @@
         <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         	<file>${logbackBackFile}/${springAppName}/${springAppName}.log.tmp</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <fileNamePattern>/data/logs/${springAppName}/${springAppName}-%d{yyyy-MM-dd_HH}.%i.log</fileNamePattern>
+                <fileNamePattern>${logbackBackFile}/${springAppName}/${springAppName}-%d{yyyy-MM-dd_HH}.%i.log</fileNamePattern>
                 <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                     <maxFileSize>20MB</maxFileSize>
                 </timeBasedFileNamingAndTriggeringPolicy>

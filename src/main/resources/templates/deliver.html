@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragment :: headJsCss"></head>
+<body class="home blog" style="">
+<div id="page" class="hfeed site">
+
+    <div th:replace="fragments/fragment :: header"></div>
+    <div th:replace="fragments/fragment :: searchbar"></div>
+
+    <nav class="breadcrumb">
+        现在位置：&nbsp;<a href="/" title="首页">首页</a>
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+        <span>文章投递</span>
+    </nav>
+    <div id="content" class="site-content">
+        <div class="clear"></div>
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main" role="main">
+                <article class="entry-common post type-post status-publish format-standard hentry" itemtype="http://schema.org/Article" >
+                    <header class="entry-header">
+                        <h2 class="entry-name entry-title" itemprop="headline">文章投递</h2>
+                    </header>
+
+                    <div class="authorbio">
+      <span itemprop="datePublished">2018-01-06
+            </span> | 作者：<span itemprop="author">TANFAN</span>
+                    </div>
+                    <!--.postMeta-->
+                    <div class="entry-content single-content " itemprop="description">
+                        <p align="center"><img src="/images/aboutUs.jpg" title="最分享|诗与远方"/></p>
+                        <p>如果你有好的网站推荐、资源分享、独特见解，</p>
+                        <p>欢迎通过各种渠道向我们投稿及反馈，</p>
+                        <p>最好的分享传递：</p>
+                        <p>给资源审核员发邮件，邮件地址:<span style="color:red;">admin#zuishare.top，#替换成@即可。</span></p>
+                    </div>
+                </article>
+            </main><!-- .site-main -->
+        </div><!-- .content-area -->
+        <div id="sidebar" class="widget-area">
+            <div class="wow" data-wow-delay="0.5s">
+                <aside th:replace="fragments/fragment :: hotPost"></aside>
+            </div>
+            <div class="sidebar-roll">
+            </div>
+            <div class="wow fadeInUp" data-wow-delay="0.5s">
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="clear"></div>
+
+        <div class="wow fadeInUp" data-wow-delay="0.3s"><div id="links">
+            <ul></ul>
+            <div class="clear"></div>
+        </div>
+        </div>
+    </div><!-- .site-content -->
+    <div th:replace="fragments/fragment :: footer"></div>
+    <div th:replace="fragments/fragment :: login"></div>
+    <div th:replace="fragments/fragment :: scroll"></div>
+    <script type="text/javascript" src="../static/js/superfish.js" th:src="@{/js/superfish.js}"></script>
+</div>
+<div id="overlay"></div>
+<div th:replace="fragments/fragment :: sidrMain"></div>
+</body>
+</html>

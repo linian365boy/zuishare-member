@@ -1,100 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <meta http-equiv="Cache-Control" content="no-transform" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <title>最分享 | 分享身边最好的东西</title>
-    <meta name="description" content="最分享 | 分享身边最好的东西"/>
-    <meta name="keywords" content="最分享,分享最好的东西,最分享地址,福利,优惠,分享网站,zuishare,zuifenxiang"/>
-    <link rel="stylesheet" id="style-css" href="../static/css/style.css" th:href="@{/css/style.css}" type="text/css" media="all"/>
-    <script type="text/javascript" src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
-    <script type="text/javascript" src="../static/js/jquery-ias.js" th:src="@{/js/jquery-ias.js}"></script>
-    <script type="text/javascript" src="../static/js/jquery.lazyload.js" th:src="@{/js/jquery.lazyload.js}"></script>
-    <script type="text/javascript" src="../static/js/tipso.js" th:src="@{/js/tipso.js}"></script>
-    <script type="text/javascript" src="../static/js/script.js" th:src="@{/js/script.js}"></script>
-    <script type="text/javascript" src="../static/js/flexisel.js" th:src="@{/js/flexisel.js}"></script>
-    <style>
-a:hover,.top-menu a:hover,.show-more span,.cat-box .icon-cat,.single-content a,.single-content a:visited,#site-nav .down-menu > .current-menu-item > a,.entry-meta a,#site-nav .down-menu > .current-menu-item > a:hover,#site-nav .down-menu > li > a:hover,#site-nav .down-menu > li.sfHover > a, .cat-title .fa-bars,.widget-title .fa-bars,.at, .at a,#user-profile a:hover,#comments .fa-exclamation-circle, #comments .fa-check-square, #comments .fa-spinner, #comments .fa-pencil-square-o {color: #dd3333;}
-.sf-arrows > li > .sf-with-ul:focus:after,.sf-arrows > li:hover > .sf-with-ul:after,.sf-arrows > .sfHover > .sf-with-ul:after{border-top-color: #dd3333;}
-.thumbnail .cat,.format-cat,.format-img-cat {background: #dd3333;opacity: 0.8;}
-#login h1 a,.format-aside .post-format a,#searchform button,.li-icon-1,.li-icon-2,.li-icon-3,.new-icon, .title-l,.buttons a, .li-number, .post-format {background: #dd3333;}
-.entry-more a, #login input[type='submit'] {background: #dd3333;}
-.entry-more a {	right: -1px;}
-.entry-more a:hover {color: #fff;background: #595959;}
-.entry-direct a:hover {border: 1px solid #dd3333;}
-#down a,.page-links span,.reply a:hover,.widget_categories a:hover,.widget_links a:hover,#respond #submit:hover,.rslides_tabs .rslides_here a,#fontsize:hover,.single-meta .comment a:hover,.single-meta .edit-link a:hover,.r-hide a:hover,.meta-nav:hover,.nav-single i:hover, .widget_categories a:hover, .widget_links a:hover, .tagcloud a:hover, #sidebar .widget_nav_menu a:hover {background: #dd3333;border: 1px solid #dd3333;}
-.comment-tool a, .link-all a:hover, .link-f a:hover, .ias-trigger-next a:hover  {background: #dd3333;border: 1px solid #dd3333;}
-.login-t, .login-t a, .login-b, .social-main a, .at-top-ico, .at-top-header a {background: #dd3333;}
-.entry-header h1 {border-left: 5px solid #dd3333;border-right: 5px solid #dd3333;}
-.slider-caption, .grid,icon-zan, .grid-cat {background: #dd3333;opacity: 0.8;}
-@media screen and (min-width: 900px) {#scroll li a:hover {background: #dd3333;border: 1px solid #dd3333;}.nav-search,.custom-more a, .cat-more a {background: #dd3333;}}
-@media screen and (max-width: 900px) {#navigation-toggle:hover,.nav-search:hover,.mobile-login a:hover,.nav-mobile:hover, {color: #dd3333;}}
-@media screen and (min-width: 550px) {.pagination span.current, .pagination a:hover {background: #dd3333;border: 1px solid #dd3333;}}
-@media screen and (max-width: 550px) {.pagination .prev,.pagination .next {background: #dd3333;}}
-.single-content h3 {border-left: 5px solid #dd3333;}
-.page-links  a:hover span {background: #a3a3a3;border: 1px solid #a3a3a3;}
-.single-content a:hover {color: #555;}
-.format-aside .post-format a:hover,.cat-more a:hover,.custom-more a:hover {color: #fff;}
-.social-main a:hover {color: #fff;}
-</style>
-</head>
+<head th:replace="fragments/fragment :: headJsCss"></head>
 <body class="error404">
 <div id="page" class="hfeed site">
-    <header id="masthead" class="site-header">
+    <div th:replace="fragments/fragment :: header"></div>
+    <div th:replace="fragments/fragment :: searchbar"></div>
 
-        <nav id="top-header">
-            <div class="top-nav">
-                <div id="user-profile">
-                    欢迎光临！
-                    <span class="nav-set">
-				 	<span class="nav-login">
-				 						<a href="#login" class="flatbtn" id="login-main" >登录</a>
-										</span>
-				</span>
-                </div>
-                <div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="top-menu"><li id="menu-item-66" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-66">
-                    <a href="/about">关于</a></li>
-                </ul></div>		</div>
-        </nav><!-- #top-header -->
-
-        <div id="menu-box">
-            <div id="top-menu">
-                <span class="nav-search"><i class="fa fa-search"></i></span>
-                <span class="mobile-login"><a href="#login" id="login-mobile" ><i class="fa fa-sun-o"></i></a></span>						<hgroup class="logo-sites">
-                <p class="site-title"><a href="/" title="最分享" rel="home">最分享</a></p>
-                <p class="site-description">分享身边最好的东西</p>
-            </hgroup><!-- .logo-site -->
-
-                <div id="site-nav-wrap">
-                    <div id="sidr-close"><a href="#sidr-close" class="toggle-sidr-close">×</a></div>
-                    <nav id="site-nav" class="main-nav">
-                        <a href="#sidr-main" id="navigation-toggle" class="bars"><i class="fa fa-bars"></i></a>
-                        <div class="menu-%e4%b8%bb%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e4%b8%bb%e8%8f%9c%e5%8d%95" class="down-menu nav-menu"><li id="menu-item-11" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11"><a href="/">首页</a></li>
-                            <li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="http://www.zuishare.top/?cat=4">推荐</a></li>
-                            <li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a href="http://www.zuishare.top/?cat=5">下载吧</a></li>
-                            <li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="http://www.zuishare.top/?cat=2">电影推荐</a></li>
-                            <li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="http://www.zuishare.top/?cat=3">购物网赚</a></li>
-                            <li id="menu-item-125" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-125"><a href="http://www.zuishare.top/?cat=23">时光</a></li>
-                        </ul></div>				</nav><!-- #site-nav -->
-                </div><!-- #site-nav-wrap -->
-                <div class="clear"></div>
-            </div><!-- #top-menu -->
-        </div><!-- #menu-box -->
-    </header><!-- #masthead -->
-
-    <div id="search-main">
-        <div id="searchbar">
-            <form method="get" id="searchform" action="http://www.zuishare.top/">
-                <input type="text" value="" name="s" id="s" placeholder="输入搜索内容" required="required" />
-                <button type="submit" id="searchsubmit">搜索</button>
-            </form>
-        </div>		<div class="clear"></div>
-    </div>		<nav class="breadcrumb">
-    <a class="crumbs" title="返回首页" href="http://www.zuishare.top">首页</a><i class="fa fa-angle-right"></i>亲，你迷路了！	</nav>
+    <nav class="breadcrumb">
+    <a class="crumbs" title="返回首页" href="/">首页</a><i class="fa fa-angle-right"></i>亲，你迷路了！	</nav>
     <div id="content" class="site-content">
-
 
         <div class="clear"></div>
         <div id="primary" class="content-area">
@@ -109,9 +23,9 @@ a:hover,.top-menu a:hover,.show-more span,.cat-box .icon-cat,.single-content a,.
                         <p style="text-align: center;">亲，该网页可能搬家了！</p>
 
                         <div id="searchbar">
-                            <form method="get" id="searchform" action="http://www.zuishare.top/">
+                            <form method="get" id="searchform" action="/">
                                 <input type="text" value="" name="s" id="s" placeholder="输入搜索内容" required="required" />
-                                <button type="submit" id="searchsubmit">搜索</button>
+                                <button type="button" id="searchsubmit" onclick="alert('功能后续加入中...');">搜索</button>
                             </form>
                         </div>
                         <br /><br /><br /><br /><br />
@@ -122,8 +36,6 @@ a:hover,.top-menu a:hover,.show-more span,.cat-box .icon-cat,.single-content a,.
         </div><!-- .content-area -->
 
         <div id="sidebar" class="widget-area">
-
-
             <div class="wow fadeInUp" data-wow-delay="0.5s">
             </div>
             <div class="sidebar-roll">
@@ -135,31 +47,11 @@ a:hover,.top-menu a:hover,.show-more span,.cat-box .icon-cat,.single-content a,.
         <div class="clear"></div>	<div class="clear"></div>
         <div class="wow fadeInUp" data-wow-delay="0.3s"></div>
     </div><!-- .site-content -->
-    <footer id="colophon" class="site-footer" role="contentinfo">
 
-        <div class="site-info">
-            Copyright ©&nbsp;&nbsp;最分享&nbsp;&nbsp;版权所有.&nbsp;&nbsp;( 备案号：<a target="_blank" href="http://www.miitbeian.gov.cn/">粤ICP备17147867号-1</a> )
-        </div><!-- .site-info -->
-    </footer><!-- .site-footer -->
-    <div id="login">
-        <div class="login-t">用户登录</div>
-        <form action="/login" method="post" id="loginform">
-            <input name="username" type="text"  id="log" placeholder="名称" required="required"/>
-            <input type="password" name="pwd" id="pwd" placeholder="密码" required="required"/>
-            <input type="submit" id="submit" value="登录"/>
-            <input type="hidden" name="redirect_to" value="/?p=3453" />
-            <label><input type="checkbox" name="rememberme" id="modlogn_remember" value="yes"  checked="checked" alt="Remember Me" />自动登录</label>
-            <a href="/lostpassword">&nbsp;&nbsp;忘记密码？</a>
-        </form>
-        <div class="login-b"></div>
-    </div>
-    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <div th:replace="fragments/fragment :: footer"></div>
+    <div th:replace="fragments/fragment :: login"></div>
+    <div th:replace="fragments/fragment :: scroll"></div>
 
-    <ul id="scroll">
-        <div class="log log-no"><li><a class="log-button" title="文章目录"><i class="fa fa-bars"></i></a></li><div class="log-prompt"><div class="log-arrow">文章目录</div></div></div>
-        <li><a class="scroll-h" title="返回顶部"><i class="fa fa-angle-up"></i></a></li>
-        <li><a class="scroll-b" title="转到底部"><i class="fa fa-angle-down"></i></a></li>
-    </ul>
     <script type="text/javascript" src="../static/js/superfish.js" th:src="@{/js/superfish.js}"></script>
 </div>
 </body>

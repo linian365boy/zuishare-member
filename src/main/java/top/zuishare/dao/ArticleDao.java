@@ -25,4 +25,5 @@ public interface ArticleDao {
     List<Article> getPageListByCateId(@Param("categoryId") int categoryId, @Param("start") int start,@Param("limit") int pageSize);
 
     long getArticleSizeByCateId(int categoryId);
+
 }

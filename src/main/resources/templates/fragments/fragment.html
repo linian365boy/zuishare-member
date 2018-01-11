@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headJsCss">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <title>最分享 | 分享身边最好的东西</title>
+    <meta name="description" content="最分享 | 分享身边最好的东西"/>
+    <meta name="keywords" content="最分享,分享最好的东西,最分享地址,福利,优惠,分享网站,zuishare,zuifenxiang"/>
+    <link rel="stylesheet" id="style-css" href="../static/css/style.css" th:href="@{/css/style.css}" type="text/css" media="all"/>
+    <script type="text/javascript" src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" src="../static/js/jquery-ias.js" th:src="@{/js/jquery-ias.js}"></script>
+    <script type="text/javascript" src="../static/js/jquery.lazyload.js" th:src="@{/js/jquery.lazyload.js}"></script>
+    <script type="text/javascript" src="../static/js/tipso.js" th:src="@{/js/tipso.js}"></script>
+    <script type="text/javascript" src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+    <script type="text/javascript" src="../static/js/flexisel.js" th:src="@{/js/flexisel.js}"></script>
+    <style>
+        a:hover,.top-menu a:hover,.show-more span,.cat-box .icon-cat,.single-content a,
+        .single-content a:visited,#site-nav .down-menu > .current-menu-item > a,.entry-meta a,
+        #site-nav .down-menu > .current-menu-item > a:hover,
+        #site-nav .down-menu > li > a:hover,#site-nav .down-menu > li.sfHover > a, .cat-title .fa-bars,
+        .widget-title .fa-bars,.at, .at a,#user-profile a:hover,#comments .fa-exclamation-circle, #comments .fa-check-square, #comments .fa-spinner,
+         #comments .fa-pencil-square-o {color: #dd3333;}
+        .sf-arrows > li > .sf-with-ul:focus:after,.sf-arrows > li:hover > .sf-with-ul:after,.sf-arrows > .sfHover > .sf-with-ul:after{border-top-color: #dd3333;}
+        .thumbnail .cat,.format-cat,.format-img-cat {background: #dd3333;opacity: 0.8;}
+        #login h1 a,.format-aside .post-format a,#searchform button,.li-icon-1,.li-icon-2,.li-icon-3,.new-icon, .title-l,.buttons a, .li-number, .post-format {background: #dd3333;}
+        .entry-more a, #login input[type='submit'] {background: #dd3333;}
+        .entry-more a {	right: -1px;}
+        .entry-more a:hover {color: #fff;background: #595959;}
+        .entry-direct a:hover {border: 1px solid #dd3333;}
+        #down a,.page-links span,.reply a:hover,.widget_categories a:hover,.widget_links a:hover,
+        #respond #submit:hover,.rslides_tabs .rslides_here a,#fontsize:hover,
+        .single-meta .comment a:hover,.single-meta .edit-link a:hover,.r-hide a:hover,.meta-nav:hover,
+        .nav-single i:hover, .widget_categories a:hover, .widget_links a:hover, .tagcloud a:hover, #sidebar .widget_nav_menu a:hover {background: #dd3333;border: 1px solid #dd3333;}
+        .comment-tool a, .link-all a:hover, .link-f a:hover, .ias-trigger-next a:hover  {background: #dd3333;border: 1px solid #dd3333;}
+        .login-t, .login-t a, .login-b, .social-main a, .at-top-ico, .at-top-header a {background: #dd3333;}
+        .entry-header h1 {border-left: 5px solid #dd3333;border-right: 5px solid #dd3333;}
+        .slider-caption, .grid,icon-zan, .grid-cat {background: #dd3333;opacity: 0.8;}
+        @media screen and (min-width: 900px) {#scroll li a:hover {background: #dd3333;border: 1px solid #dd3333;}.nav-search,.custom-more a, .cat-more a {background: #dd3333;}}
+        @media screen and (max-width: 900px) {#navigation-toggle:hover,.nav-search:hover,.mobile-login a:hover,.nav-mobile:hover, {color: #dd3333;}}
+        @media screen and (min-width: 550px) {.pagination span.current, .pagination a:hover {background: #dd3333;border: 1px solid #dd3333;}}
+        @media screen and (max-width: 550px) {.pagination .prev,.pagination .next {background: #dd3333;}}
+        .single-content h3 {border-left: 5px solid #dd3333;}
+        .page-links  a:hover span {background: #a3a3a3;border: 1px solid #a3a3a3;}
+        .single-content a:hover {color: #555;}
+        .format-aside .post-format a:hover,.cat-more a:hover,.custom-more a:hover {color: #fff;}
+        .social-main a:hover {color: #fff;}
+    </style>
+    <script src="../static/js/share.js" th:src="@{/js/share.js}"></script>
+    <link rel="stylesheet" href="../static/css/share_style1_16.css" th:href="@{/css/share_style1_16.css}"/>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1d188d98f6a595d5573a5b70afab334f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+
+<header th:fragment="header" id="masthead" class="site-header">
+    <nav id="top-header">
+        <div class="top-nav">
+            <div id="user-profile">
+                欢迎光临！
+                <span class="nav-set">
+				 	<span class="nav-login">
+				 						<a href="javascript:void(0);" onclick="alert('功能后续加上...');" class="flatbtn" id="login-main">登录</a>
+										</span>
+				</span>
+            </div>
+            <div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container">
+                <ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="top-menu">
+                    <li id="menu-item-66" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-66">
+                        <a href="/aboutUs" target="_blank">关于</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav><!-- #top-header -->
+
+    <div id="menu-box">
+        <div id="top-menu">
+            <span class="nav-search"><i class="fa fa-search"></i></span>
+            <span class="mobile-login"><a href="http://www.zuishare.top/#login" id="login-mobile">
+				<i class="fa fa-sun-o"></i></a></span>
+            <hgroup class="logo-sites">
+                <h1 class="site-title"><a href="/" title="最分享" rel="home">最分享</a></h1>
+                <p class="site-description">分享身边最好的东西</p>
+            </hgroup><!-- .logo-site -->
+            <div id="site-nav-wrap">
+                <div id="sidr-close"><a href="/#sidr-close" class="toggle-sidr-close">×</a></div>
+                <nav id="site-nav" class="main-nav">
+                    <a href="/#sidr-main" id="navigation-toggle" class="bars"><i class="fa fa-bars"></i></a>
+                    <div class="menu-%e4%b8%bb%e8%8f%9c%e5%8d%95-container">
+                        <ul id="menu-%e4%b8%bb%e8%8f%9c%e5%8d%95" class="down-menu nav-menu sf-js-enabled sf-arrows">
+                            <li id="menu-item-11" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11">
+                                <a href="/">首页</a>
+                            </li>
+                            <li th:each="category:${categories}" th:id="'menu-item-'+${category.id}" class="menu-item menu-item-type-custom menu-item-object-custom">
+                                <a href="/" th:href="@{'/article/category/'+${category.id}}" th:text="${category.name}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav><!-- #site-nav -->
+            </div><!-- #site-nav-wrap -->
+            <div class="clear"></div>
+        </div><!-- #top-menu -->
+    </div><!-- #menu-box -->
+</header><!-- #masthead -->
+
+<div th:fragment="searchbar" id="search-main">
+    <div id="searchbar">
+        <form method="get" id="searchform" action="http://www.zuishare.top/">
+            <input type="text" value="" name="s" id="s" placeholder="输入搜索内容" required=""/>
+            <button type="button" id="searchsubmit" onclick="javascript:alert('功能后续加入...');">搜索</button>
+        </form>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+
+<footer th:fragment="footer" id="colophon" class="site-footer" role="contentinfo">
+    <div class="site-info">
+        <p>Copyright ©&nbsp;&nbsp;最分享&nbsp;&nbsp;版权所有.&nbsp;&nbsp;( 备案号：<a target="_blank" href="http://www.miitbeian.gov.cn/">粤ICP备17147867号-1</a> )</p>
+        <div class="footer-navi clearfix">
+            <div class="nav first">
+                <ul id="menu-ifanr-footer-1" class="menu">
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28">
+                        <a href="/aboutUs" target="_blank">
+                            关于我们
+                        </a>
+                    </li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29">
+                        <a href="mailto:admin@zuishare.top">
+                            联系我们
+                        </a>
+                    </li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29">
+                        <a href="/deliver" target="_blank">
+                            文章投递
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div><!-- .site-info -->
+</footer><!-- .site-footer -->
+
+<div th:fragment="sidrMain" id="sidr-main" class="sidr left">
+    <div class="sidr-inner"><a href="http://www.zuishare.top/#sidr-close" class="sidr-class-toggle-sidr-close">×</a></div>
+    <div class="sidr-inner">
+        <a href="http://www.zuishare.top/#sidr-main" id="sidr-id-navigation-toggle" class="sidr-class-bars">
+            <i class="sidr-class-fa sidr-class-fa-bars"></i></a>
+        <div class="sidr-class-menu-%sidr-class-e4%sidr-class-b8%sidr-class-bb%sidr-class-e8%sidr-class-8f%sidr-class-9c%sidr-class-e5%sidr-class-8d%sidr-class-95-container">
+            <ul id="sidr-id-menu-%sidr-id-e4%sidr-id-b8%sidr-id-bb%sidr-id-e8%sidr-id-8f%sidr-id-9c%sidr-id-e5%sidr-id-8d%sidr-id-95" class="sidr-class-down-menu sidr-class-nav-menu sidr-class-sf-js-enabled sidr-class-sf-arrows">
+                <li id="sidr-id-menu-item-11" class="sidr-class-menu-item sidr-class-menu-item-type-custom sidr-class-menu-item-object-custom sidr-class-menu-item-11">
+                    <a href="http://www.zuishare.top/">首页</a>
+                </li>
+                <li th:each="category:${categories}" th:id="'sidr-id-menu-item-'+${category.id}"
+                    th:class="'sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-'+${category.id}">
+                    <a href="/" th:href="@{'/article/category/'+${category.id}}" th:text="${category.name}"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<ul th:fragment="scroll" id="scroll">
+    <div class="log log-no"><li><a class="log-button" title="文章目录">
+        <i class="fa fa-bars"></i></a></li><div class="log-prompt" style="display: none;">
+        <div class="log-arrow">文章目录</div></div></div>
+    <li><a class="scroll-h" title="返回顶部"><i class="fa fa-angle-up"></i></a></li>
+    <li><a class="scroll-b" title="转到底部"><i class="fa fa-angle-down"></i></a></li>
+</ul>
+
+
+<div id="login" th:fragment="login">
+    <div class="login-t">用户登录</div>
+    <form action="/login" method="post" id="loginform">
+        <input type="username" name="log" id="log" placeholder="名称" required=""/>
+        <input type="password" name="pwd" id="pwd" placeholder="密码" required=""/>
+        <input type="submit" id="submit" value="登录"/>
+        <input type="hidden" name="redirect_to" value=""/>
+        <label><input type="checkbox" name="rememberme" id="modlogn_remember" value="yes" checked="checked" alt="Remember Me"/>自动登录</label>
+        <a href="/lostpassword">&nbsp;&nbsp;忘记密码？</a>
+    </form>
+    <div class="login-b"></div>
+</div>
+
+
+<aside id="hot_post-3" th:fragment="hotPost" class="widget widget_hot_post">
+    <h3 class="widget-title"><i class="fa fa-bars"></i>热门文章</h3>
+    <div id="hot_post_widget">
+        <ul>
+            <li th:each="hotArticle : ${hotArticles}">
+                <a th:text="${hotArticle.title}" target="_blank" th:href="@{'/article/'+${hotArticle.id}}" class="widget_links"></a>
+            </li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</aside>
+
+</html>

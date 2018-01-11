@@ -5,16 +5,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import top.zuishare.constants.BussinessConfig;
 import top.zuishare.dto.PageDto;
 import top.zuishare.service.ArticleCategoryService;
 import top.zuishare.service.ArticleService;
+import top.zuishare.service.RedisService;
 import top.zuishare.spi.model.Article;
 import top.zuishare.spi.model.ArticleCategory;
+import top.zuishare.util.IpUtil;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -33,7 +38,10 @@ public class ArticleController {
     private ArticleService articleService;
     @Autowired
     private ArticleCategoryService articleCategoryService;
-    private int hotLimit = 8;
+    @Autowired
+    private RedisService redisService;
+    @Autowired
+    private BussinessConfig bussinessConfig;
 
     @RequestMapping(value = "/articles/{pageNo}")
     public String listByPage(@PathVariable("pageNo") int pageNo, ModelMap map){
@@ -41,7 +49,7 @@ public class ArticleController {
         long start = System.currentTimeMillis();
         PageDto<Article> indexArticles = articleService.getListByPage(pageNo);
         List<ArticleCategory> categories = articleCategoryService.getList();
-        List<Article> hotArticles = articleService.getHotArticles(hotLimit);
+        List<Article> hotArticles = articleService.getHotArticles(bussinessConfig.getHotLimit());
         map.put("articlesPage", indexArticles);
         map.put("categories", categories);
         map.put("hotArticles", hotArticles);
@@ -50,11 +58,21 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
-    public String article(@PathVariable("id") long id, ModelMap map){
+    public String article(@PathVariable("id") long id, ModelMap map, HttpServletRequest request){
+        logger.info("get article request param => {}", id);
         long start = System.currentTimeMillis();
         Article article = articleService.loadOne(id);
+        if(article == null){
+            logger.warn("redis has no cache the article, request articleId => {}", id);
+            //跳转到404页面
+            return "redirect:/404";
+        }
+        //点击量新增
+        if(redisService.getDisLock(article.getId() +":"+ IpUtil.getIpAddr(request))) {
+            articleService.increaseViewNum(article);
+        }
         List<ArticleCategory> categories = articleCategoryService.getList();
-        List<Article> hotArticles = articleService.getHotArticles(hotLimit);
+        List<Article> hotArticles = articleService.getHotArticles(bussinessConfig.getHotLimit());
         map.put("categories", categories);
         map.put("hotArticles", hotArticles);
         map.put("model", article);
@@ -73,10 +91,18 @@ public class ArticleController {
         }
         PageDto<Article> cateArticles = articleService.getPageListByCateId(categoryId, pageNo);
         List<ArticleCategory> categories = articleCategoryService.getList();
-        List<Article> hotArticles = articleService.getHotArticles(hotLimit);
+        List<Article> hotArticles = articleService.getHotArticles(bussinessConfig.getHotLimit());
         map.put("articlesPage", cateArticles);
         map.put("categories", categories);
         map.put("hotArticles", hotArticles);
+        if(!CollectionUtils.isEmpty(categories)){
+            for(ArticleCategory category : categories){
+                if(category.getId() == categoryId){
+                    map.put("tempCate", category);
+                    break;
+                }
+            }
+        }
         logger.info("enter listByPage page cost {} ms", System.currentTimeMillis() - start);
         return "categoryArticles";
     }

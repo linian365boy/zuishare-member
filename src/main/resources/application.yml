@@ -60,6 +60,7 @@ mybatis:
 
 zuishare:
   picPath: ${pic.path}
+  hotLimit: ${hot.limit}
 
 server:
   port: 8081

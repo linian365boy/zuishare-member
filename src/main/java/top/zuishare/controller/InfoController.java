@@ -1,13 +1,12 @@
 package top.zuishare.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.GetMapping;
 import top.zuishare.constants.BussinessConfig;
 import top.zuishare.dto.PageDto;
 import top.zuishare.service.ArticleCategoryService;
@@ -19,34 +18,39 @@ import java.util.List;
 
 /**
  * @author niange
- * @ClassName: HomeController
+ * @ClassName: InfoController
  * @desp:
- * @date: 2017/11/22 下午10:03
+ * @date: 2018/1/6 下午3:35
  * @since JDK 1.7
  */
 @Controller
-public class HomeController {
-
-    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
+public class InfoController {
     @Autowired
     private ArticleService articleService;
     @Autowired
     private ArticleCategoryService articleCategoryService;
     @Autowired
     private BussinessConfig bussinessConfig;
+    private static final Logger logger = LoggerFactory.getLogger(InfoController.class);
 
-    @RequestMapping(value = {"", "/", "/index", "/home"}, method = RequestMethod.GET)
-    public String home( ModelMap map) {
-        long start = System.currentTimeMillis();
-        PageDto<Article> indexArticles = articleService.getListByPage(1);
+    @GetMapping("/aboutUs")
+    public String aboutUs(ModelMap map){
+        logger.info("get aboutUs page.");
         List<ArticleCategory> categories = articleCategoryService.getList();
         List<Article> hotArticles = articleService.getHotArticles(bussinessConfig.getHotLimit());
-        map.put("articlesPage", indexArticles);
         map.put("categories", categories);
         map.put("hotArticles", hotArticles);
-        logger.info("enter homt page cost {} ms", System.currentTimeMillis() - start);
-        return "index";
+        return "aboutUs";
+    }
+
+    @GetMapping("/deliver")
+    public String deliver(ModelMap map){
+        logger.info("get deliver page.");
+        List<ArticleCategory> categories = articleCategoryService.getList();
+        List<Article> hotArticles = articleService.getHotArticles(bussinessConfig.getHotLimit());
+        map.put("categories", categories);
+        map.put("hotArticles", hotArticles);
+        return "deliver";
     }
 
 }

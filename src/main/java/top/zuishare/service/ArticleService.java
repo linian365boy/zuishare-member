@@ -18,4 +18,5 @@ public interface ArticleService {
     List<Article> getHotArticles(int limit);
     Article loadOne(long id);
     PageDto<Article> getPageListByCateId(int categoryId, int pageNo);
+    void increaseViewNum(Article article);
 }

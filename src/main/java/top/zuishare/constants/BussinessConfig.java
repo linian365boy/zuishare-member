@@ -13,8 +13,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "zuishare")
 public class BussinessConfig {
-
+    /**
+     * 图片地址
+     */
     private String picPath;
+    /**
+     * 热门文章显示条数
+     */
+    private int hotLimit;
 
     public String getPicPath() {
         return picPath;
@@ -22,5 +28,13 @@ public class BussinessConfig {
 
     public void setPicPath(String picPath) {
         this.picPath = picPath;
+    }
+
+    public int getHotLimit() {
+        return hotLimit;
+    }
+
+    public void setHotLimit(int hotLimit) {
+        this.hotLimit = hotLimit;
     }
 }
