@@ -39,12 +39,12 @@ public class HomeController {
     @RequestMapping(value = {"", "/", "/index", "/home"}, method = RequestMethod.GET)
     public String home( ModelMap map) {
         long start = System.currentTimeMillis();
-        PageDto<Article> indexArticles = articleService.getListByPage(1);
+       /* PageDto<Article> indexArticles = articleService.getListByPage(1);
         List<ArticleCategory> categories = articleCategoryService.getList();
         List<Article> hotArticles = articleService.getHotArticles(bussinessConfig.getHotLimit());
         map.put("articlesPage", indexArticles);
         map.put("categories", categories);
-        map.put("hotArticles", hotArticles);
+        map.put("hotArticles", hotArticles);*/
         logger.info("enter homt page cost {} ms", System.currentTimeMillis() - start);
         return "index";
     }

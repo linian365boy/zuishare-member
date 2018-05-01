@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import top.zuishare.constants.BussinessConfig;
-import top.zuishare.dto.PageDto;
 import top.zuishare.service.ArticleCategoryService;
 import top.zuishare.service.ArticleService;
 import top.zuishare.spi.model.Article;
@@ -42,6 +41,27 @@ public class InfoController {
         map.put("hotArticles", hotArticles);
         return "aboutUs";
     }
+
+    @GetMapping("/products")
+    public String products(ModelMap map){
+        logger.info("get products page.");
+        return "products";
+    }
+
+
+    @GetMapping("contactUs")
+    public String contactUs(ModelMap map){
+        logger.info("get contactUs page.");
+        return "contactUs";
+    }
+
+
+    @GetMapping("/news")
+    public String news(ModelMap map){
+        logger.info("get news page.");
+        return "news";
+    }
+
 
     @GetMapping("/deliver")
     public String deliver(ModelMap map){
