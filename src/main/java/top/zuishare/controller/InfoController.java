@@ -1,6 +1,5 @@
 package top.zuishare.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +34,10 @@ public class InfoController {
     @GetMapping("/aboutUs")
     public String aboutUs(ModelMap map){
         logger.info("get aboutUs page.");
-        List<ArticleCategory> categories = articleCategoryService.getList();
+        /*List<ArticleCategory> categories = articleCategoryService.getList();
         List<Article> hotArticles = articleService.getHotArticles(bussinessConfig.getHotLimit());
         map.put("categories", categories);
-        map.put("hotArticles", hotArticles);
+        map.put("hotArticles", hotArticles);*/
         return "aboutUs";
     }
 

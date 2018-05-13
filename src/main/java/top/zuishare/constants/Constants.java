@@ -76,4 +76,21 @@ public class Constants {
      * 文章分类类型
      */
     public static final String ARTICLECATEGORYCLASS = "ArticleCategory";
+
+
+
+    ///////////////////////////////////////////////////////////////////
+    /**
+     *所有正常发布的ad
+     */
+    public static final String REDIS_AD_KEY = "list";
+
+    public static final String ADCLASS = "ad";
+
+    /**
+     * 所有正常发布的column
+     */
+    public static final String REDIS_COLUMN_KEY = "list";
+
+    public static final String COLUMNCLASS = "column";
 }

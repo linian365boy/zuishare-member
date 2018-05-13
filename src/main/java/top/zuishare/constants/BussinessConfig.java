@@ -21,6 +21,18 @@ public class BussinessConfig {
      * 热门文章显示条数
      */
     private int hotLimit;
+    /**
+     * 公司的配置文件路径
+     */
+    private String companyConfigPath;
+    /**
+     *网站的配置文件路径
+     */
+    private String webConfigPath;
+    /**
+     * 首页滚动图片显示数量
+     */
+    private int indexAds;
 
     public String getPicPath() {
         return picPath;
@@ -36,5 +48,29 @@ public class BussinessConfig {
 
     public void setHotLimit(int hotLimit) {
         this.hotLimit = hotLimit;
+    }
+
+    public String getCompanyConfigPath() {
+        return companyConfigPath;
+    }
+
+    public void setCompanyConfigPath(String companyConfigPath) {
+        this.companyConfigPath = companyConfigPath;
+    }
+
+    public String getWebConfigPath() {
+        return webConfigPath;
+    }
+
+    public void setWebConfigPath(String webConfigPath) {
+        this.webConfigPath = webConfigPath;
+    }
+
+    public int getIndexAds() {
+        return indexAds;
+    }
+
+    public void setIndexAds(int indexAds) {
+        this.indexAds = indexAds;
     }
 }

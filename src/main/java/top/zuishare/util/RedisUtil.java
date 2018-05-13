@@ -130,4 +130,21 @@ public class RedisUtil {
                 .toString();
     }
 
+
+    public static String getIndexColumnKey(){
+        return new StringBuilder()
+                .append(Constants.COLUMNCLASS)
+                .append(Constants.KEYDELIMITER)
+                .append(Constants.REDIS_COLUMN_KEY)
+                .toString();
+    }
+
+    public static String getIndexAdsKey(){
+        return new StringBuilder()
+                .append(Constants.ADCLASS)
+                .append(Constants.KEYDELIMITER)
+                .append(Constants.REDIS_AD_KEY)
+                .toString();
+    }
+
 }

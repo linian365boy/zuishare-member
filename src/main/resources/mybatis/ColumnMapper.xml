@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="top.zuishare.dao.ColumnDao">
+    <select id="getIndexColumn" resultType="top.zuishare.spi.model.Column">
+        select id,code,enName,url from tb_column where parentId is null order by priority desc,id desc
+    </select>
+</mapper>

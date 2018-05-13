@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import top.zuishare.constants.BussinessConfig;
 import top.zuishare.dto.PageDto;
-import top.zuishare.service.ArticleCategoryService;
-import top.zuishare.service.ArticleService;
-import top.zuishare.spi.model.Article;
-import top.zuishare.spi.model.ArticleCategory;
+import top.zuishare.service.*;
+import top.zuishare.spi.model.*;
 
 import java.util.List;
 
@@ -30,22 +28,34 @@ public class HomeController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
     @Autowired
-    private ArticleService articleService;
+    private AdService adService;
     @Autowired
-    private ArticleCategoryService articleCategoryService;
+    private ColumnService columnService;
+    @Autowired
+    private CompanyService companyService;
+    @Autowired
+    private WebConfigService webConfigService;
     @Autowired
     private BussinessConfig bussinessConfig;
 
     @RequestMapping(value = {"", "/", "/index", "/home"}, method = RequestMethod.GET)
     public String home( ModelMap map) {
         long start = System.currentTimeMillis();
-       /* PageDto<Article> indexArticles = articleService.getListByPage(1);
-        List<ArticleCategory> categories = articleCategoryService.getList();
-        List<Article> hotArticles = articleService.getHotArticles(bussinessConfig.getHotLimit());
-        map.put("articlesPage", indexArticles);
-        map.put("categories", categories);
-        map.put("hotArticles", hotArticles);*/
-        logger.info("enter homt page cost {} ms", System.currentTimeMillis() - start);
+        // 查滚动图片
+        List<Advertisement> ads = adService.queryIndexAd(bussinessConfig.getIndexAds());
+        // 查菜单
+        List<Column> columns = columnService.queryIndexColumn();
+        // 查公司信息
+        Company company = companyService.loadCompany(bussinessConfig.getCompanyConfigPath());
+        // 查网站信息
+        WebConfig config = webConfigService.loadWebConfig(bussinessConfig.getWebConfigPath());
+
+        map.put("ads", ads);
+        map.put("columns", columns);
+        map.put("company", company);
+        map.put("config", config);
+
+        logger.info("enter home page cost {} ms", System.currentTimeMillis() - start);
         return "index";
     }
 
