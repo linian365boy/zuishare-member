@@ -15,4 +15,5 @@ import java.util.List;
 @Mapper
 public interface ColumnDao {
     List<Column> getIndexColumn();
+    Column getColumnByCode(String code);
 }

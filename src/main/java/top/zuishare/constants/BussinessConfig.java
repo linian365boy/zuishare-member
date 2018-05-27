@@ -33,6 +33,10 @@ public class BussinessConfig {
      * 首页滚动图片显示数量
      */
     private int indexAds;
+    /**
+     * 首页展示的产品数量
+     */
+    private int indexProductsSize;
 
     public String getPicPath() {
         return picPath;
@@ -72,5 +76,13 @@ public class BussinessConfig {
 
     public void setIndexAds(int indexAds) {
         this.indexAds = indexAds;
+    }
+
+    public int getIndexProductsSize() {
+        return indexProductsSize;
+    }
+
+    public void setIndexProductsSize(int indexProductsSize) {
+        this.indexProductsSize = indexProductsSize;
     }
 }

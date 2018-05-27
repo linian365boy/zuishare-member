@@ -85,7 +85,11 @@ public class Constants {
      */
     public static final String REDIS_AD_KEY = "list";
 
+    public static final String REDIS_PRODUCT_KEY = "list";
+
     public static final String ADCLASS = "ad";
+
+    public static final String PRODUCTCLASS = "product";
 
     /**
      * 所有正常发布的column
@@ -93,4 +97,21 @@ public class Constants {
     public static final String REDIS_COLUMN_KEY = "list";
 
     public static final String COLUMNCLASS = "column";
+    /**
+     * 产品栏目的限定名称
+     */
+    public static final String PRODUCT_COLUMN_NAME = "products";
+    /**
+     * 新闻栏目的限定名称
+     */
+    public static final String NEWS_COLUMN_NAME = "news";
+
+    /**
+     * 每页产品展示数量
+     */
+    public static final Integer PRODUCT_PAGE_SIZE = 6;
+    /**
+     * 每页新闻展示数量
+     */
+    public static final Integer NEWS_PAGE_SIZE = 10;
 }

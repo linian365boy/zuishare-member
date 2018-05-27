@@ -64,6 +64,7 @@ zuishare:
   companyConfigPath: ${company.config.path}
   webConfigPath: ${web.config.path}
   indexAds: ${index.ad.limit}
+  indexProductsSize: ${index.products.limit}
 
 server:
   port: 8081

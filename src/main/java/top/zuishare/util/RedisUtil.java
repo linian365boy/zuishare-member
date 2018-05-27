@@ -147,4 +147,12 @@ public class RedisUtil {
                 .toString();
     }
 
+    public static String getIndexProductsKey(){
+        return new StringBuilder()
+                .append(Constants.PRODUCTCLASS)
+                .append(Constants.KEYDELIMITER)
+                .append(Constants.REDIS_PRODUCT_KEY)
+                .toString();
+    }
+
 }

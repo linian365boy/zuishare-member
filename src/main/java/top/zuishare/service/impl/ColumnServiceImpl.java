@@ -75,4 +75,8 @@ public class ColumnServiceImpl implements ColumnService {
         return columns;
     }
 
+    public Column getColumnByCode(String code){
+        return columnDao.getColumnByCode(code);
+    }
+
 }

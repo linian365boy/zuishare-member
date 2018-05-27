@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface ColumnService {
     List<Column> queryIndexColumn();
+    Column getColumnByCode(String code);
 }

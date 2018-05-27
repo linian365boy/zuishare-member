@@ -1,34 +1,32 @@
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="headJsCss" id="headJsCss">
-    <title>Alice - I Love You</title>
+    <title th:text="'Home - '+${company.name}+' - Welcome'">Home</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="Cache-Control" content="no-transform"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="format-detection" content="telephone=no,email=no,address=no"/>
     <meta name="renderer" content="webkit"/>
-    <meta property="og:url" content="http://fkjj21.faisco.cn/col.jsp?id=105"/>
-    <meta name="keywords" content="网站模板—家私家具"/>
-    <meta name="description" content="网站模板—家私家具"/>
-    <link rel="canonical" href="//fkjj21.faisco.cn/col.jsp?id=105"/>
-    <link type="text/css" href="//2.ss.faisys.com/css/base2.min.css?v=201710231308" rel="stylesheet"/>
-    <link type="text/css"
-          href="//1.jzs.faisys.com/1004/fkTheme.min.css?v=20171101001529&amp;isNavV2=true&amp;isBannerV2=true"
-          rel="stylesheet" id="jzThemeFrame"/>
-    <link type="text/css" href="//2.ss.faisys.com/css/newSearchBoxStyle.min.css?v=201710111604" rel="stylesheet"/>
-    <link type="text/css" href="//2.ss.faisys.com/css/edit.min.css?v=201710231308" rel="stylesheet"/>
-    <link type="text/css" href="//2.ss.faisys.com/css/comm/vcomponents.min.css?v=201710231308" rel="stylesheet"/>
-    <link type="text/css" href="//2.ss.faisys.com/css/comm/colorpicker/colorpicker.min.css?v=201710091556"
+    <meta property="og:url" th:content="${config.website}"/>
+    <meta name="keywords" th:content="${config.keyword}"/>
+    <meta name="description" th:content="${config.description}"/>
+    <link rel="canonical" th:href="${config.website}"/>
+    <link type="text/css" th:href="@{/css/base2.min.css}" rel="stylesheet"/>
+    <link type="text/css" th:href="@{/css/fkTheme.min.css}" rel="stylesheet" id="jzThemeFrame"/>
+    <link type="text/css" th:href="@{/css/newSearchBoxStyle.min.css}" rel="stylesheet"/>
+    <link type="text/css" th:href="@{/css/edit.min.css}" rel="stylesheet"/>
+    <link type="text/css" th:href="@{/css/vcomponents.min.css}" rel="stylesheet"/>
+    <link type="text/css" th:href="@{/css/colorpicker.min.css}"
           rel="stylesheet"/>
-    <link type="text/css" href="//2.ss.faisys.com/css/comm/fkeditor/fkeditor.min.css?v=201710231308" rel="stylesheet"/>
-    <link type="text/css" href="//2.ss.faisys.com/css/site/poshytipAndmCustomScrollbar.min.css?v=201707031157"
+    <link type="text/css" th:href="@{/css/fkeditor.min.css}" rel="stylesheet"/>
+    <link type="text/css" th:href="@{/css/poshytipAndmCustomScrollbar.min.css}"
           rel="stylesheet"/>
-    <link type="text/css" href="http://fkjj21.faisco.cn/jzcusstyle.jsp?colId=105&amp;extId=0&amp;_csw=0"
+    <link type="text/css" th:href="@{/css/jzcusstyle.css}"
           rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="//2.ss.faisys.com/css/comm/video.js/video-js.min.css?v=201707171209"/>
-    <link rel="stylesheet" type="text/css" href="//2.ss.faisys.com/css/video.min.css?v=201708031633"/>
-    <link rel="stylesheet" type="text/css" href="//2.ss.faisys.com/css/datepicker.min.css?v=201710111604"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/video-js.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/video.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/datepicker.min.css}"/>
     <style type="text/css" id="styleWebSite">
         #bannerV2 .fk-inBannerListZone{width:1200px;}
         #bannerV2 .fk-inBannerListZone{margin-left:-600px;}
@@ -53,15 +51,14 @@
 
 
 <footer th:fragment="footerCssJs" id="footerCssJs">
-    <!--<script type="text/javascript" src="http://1.ss.faisys.com/js/comm/jquery/jquery-core.min.js?v=201707211543"></script>-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-1.9.1.min.js}"></script>
     <script type="text/javascript"
-            src="http://1.ss.faisys.com/js/comm/jquery/jquery-mousewheel.min.js?v=201408111734"></script>
-    <script type="text/javascript" src="http://1.ss.faisys.com/js/comm/fai.min.js?v=201707241717"></script>
+            th:src="@{/js/jquery-mousewheel.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/fai.min.js}"></script>
     <script type="text/javascript"
-            src="http://1.ss.faisys.com/js/comm/jquery/jquery-ui-core.min.js?v=201706191740"></script>
-    <script type="text/javascript" src="http://1.ss.faisys.com/js/locale/2052.min.js?v=201706121743"></script>
-    <link type='text/css' href='http://2.ss.faisys.com/css/fontsIco.min.css?v=201707171209' rel='stylesheet'/>
+            th:src="@{/js/jquery-ui-core.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/2052.min.js}"></script>
+    <link type='text/css' th:href='@{/css/fontsIco.min.css}' rel='stylesheet'/>
 </footer>
 
 
@@ -72,12 +69,9 @@
                 <div id="webTop" class="webTop">
                     <div id='corpTitle' class='corpTitle corpTitle2' fontPatternTitle='false' style=';'
                          _linkType='0' onpaste="Fai.top.Site.corpTitleFormatPasteDatacorpTitle();">
-                        <div style="" class="newPrimaryTitle"><b
-                                style="color: rgb(0, 0, 0); font-family: 微软雅黑, &quot;microsoft yahei&quot;;">
-                            <font color="#ffffff" style="color: rgb(255, 255, 255);"><font color="#ffc001">
-                                <font style="color: rgb(74, 179, 68);" color="#4ab344">Furniture</font></font>&nbsp;
-                                <font color="#cccccc"
-                                      style="color: rgb(204, 204, 204);">Design</font></font></b><br/></div>
+                        <div style="" class="newPrimaryTitle">
+                            <img th:src="@{'/'+${company.logo}}" width="253px" height="45px" th:title="${company.name}" th:alt="${company.name}"/>
+                        </div>
                     </div>
 
                 </div>
@@ -105,7 +99,7 @@
                                     <div class='itemPrev' style="display: none;"></div>
                                     <div class='itemContainer'>
                                         <div title="" id="nav2"
-                                             class="item itemCol2 itemIndex1 itemSelected itemSelectedIndex1"
+                                             th:class="${currentColumn.id}?'item':'itemSelected item'"
                                              colid="2">
                                             <div class="itemCenter"><a hidefocus="true" style="outline:none;"
                                                                        href="/"><span
@@ -113,20 +107,18 @@
                                         </div>
                                         <div class='itemSep'></div>
                                         <div th:each="column:${columns}">
-                                            <div th:id="'nav'+${column.id}" th:class="'item itemCol'+${column.id}+' itemIndex2'">
+                                            <div th:id="'nav'+${column.id}" th:class="${currentColumn.id==column.id}?'itemSelected item':'item'">
                                                 <div class="itemCenter"><a hidefocus="true" style="outline:none;"
-                                                                           th:href="@{'/'+${column.code}+'.html'}" href="/"><span
+                                                                           th:href="@{'/column/'+${column.code}+'.html'}" href="/"><span
                                                         class="itemName0" th:text="${column.enName}"></span></a></div>
                                             </div>
                                             <div class='itemSep'></div>
                                         </div>
                                     </div>
-                                    <div class='itemNext' style="display:none;"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <a href='/col.jsp?id=109' style='display:none;'>联系我们</a>
                 </div>
             </td>
         </tr>
@@ -236,7 +228,7 @@
                                 <td class='middleCenter' align='center'>
                                     <div class='footerContent'>
                                         <div class='footerInfo'>
-                                            <p><font face="Arial">©</font>2017 网站模板-家私家具 版权所有</p>
+                                            <p><font face="Arial">©</font>&nbsp;<span th:text="${company.name}"></span>&nbsp;All Rights Reserved.</p>
                                         </div>
                                     </div>
                                 </td>
@@ -260,35 +252,5 @@
     </table>
     <div class="clearfloat"></div>
 </div>
-
-
-<footer th:fragment="footer" id="colophon" class="site-footer" role="contentinfo">
-    <div class="site-info">
-        <p>Copyright ©&nbsp;&nbsp;最分享&nbsp;&nbsp;版权所有.&nbsp;&nbsp;( 备案号：<a target="_blank" href="http://www.miitbeian.gov.cn/">粤ICP备17147867号-1</a> )</p>
-        <div class="footer-navi clearfix">
-            <div class="nav first">
-                <ul id="menu-ifanr-footer-1" class="menu">
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28">
-                        <a href="/aboutUs" target="_blank">
-                            关于我们
-                        </a>
-                    </li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29">
-                        <a href="mailto:admin@zuishare.top">
-                            联系我们
-                        </a>
-                    </li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29">
-                        <a href="/deliver" target="_blank">
-                            文章投递
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </div><!-- .site-info -->
-</footer><!-- .site-footer -->
-
 
 </html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="top.zuishare.dao.ProductDao">
+
+    <select id="getIndexProducts" resultType="top.zuishare.spi.model.Product">
+        select id,enName,hot,picUrl from tb_product where status=1 and publish is true order by priority desc,id desc limit #{limit}
+    </select>
+    
+    <select id="getIndexProductsList" resultType="top.zuishare.spi.model.Product">
+        select id,enName,hot,picUrl from tb_product where status=1 and hot is true and publish is true order by priority desc,id desc limit #{limit}
+    </select>
+
+</mapper>

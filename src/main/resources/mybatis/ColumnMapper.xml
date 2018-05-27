@@ -5,4 +5,8 @@
     <select id="getIndexColumn" resultType="top.zuishare.spi.model.Column">
         select id,code,enName,url from tb_column where parentId is null order by priority desc,id desc
     </select>
+
+    <select id="getColumnByCode" resultType="top.zuishare.spi.model.Column">
+        select id,code,enName,url from tb_column where code=#{code} limit 1
+    </select>
 </mapper>
