@@ -27,5 +27,8 @@ public class NewsServiceImpl implements NewsService {
         return newsDao.getIndexNews(limit);
     }
 
-
+    @Override
+    public News loadNews(int newsId) {
+        return newsDao.loadNews(newsId);
+    }
 }

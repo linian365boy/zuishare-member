@@ -20,4 +20,6 @@ public interface ProductDao {
 
     List<Product> getIndexProductsList(int limit);
 
+    Product loadProduct(int productId);
+
 }

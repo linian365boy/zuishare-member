@@ -114,4 +114,11 @@ public class Constants {
      * 每页新闻展示数量
      */
     public static final Integer NEWS_PAGE_SIZE = 10;
+
+
+    public static final Integer CODE_202 = 202;
+
+    public static final Integer SUCCESS_CODE = 0;
+
+    public static final Integer ERROR_CODE = 500;
 }

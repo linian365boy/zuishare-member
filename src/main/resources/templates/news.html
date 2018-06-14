@@ -559,89 +559,28 @@
                                                                                                                                  _showsetting="0"
                                                                                                                                  newslisttype="0"
                                                                                                                                  scroll="0">
-                                                                                                                                <div topclassname="top1"
-                                                                                                                                     topswitch="on"
-                                                                                                                                     newsid="8"
-                                                                                                                                     newsname="别致风情走廊 引领柳暗花明又一村"
-                                                                                                                                     class="J_newsListLine line g_item   fk-newsLineHeight   ">
-                                                                                                                                    <table id="lineBody8"
-                                                                                                                                           class="J_lineBody lineBody"
-                                                                                                                                           cellpadding="0"
-                                                                                                                                           cellspacing="0">
-                                                                                                                                        <tbody>
-                                                                                                                                        <tr id="module375tr8">
-                                                                                                                                            <td class="contentLineIcon "></td>
-                                                                                                                                            <td class="J_newsTitle newsTitle"
-                                                                                                                                                valign="top"
-                                                                                                                                                style="width: 100%;">
-                                                                                                                                                <div class="J_newsListTopFlag "></div>
-                                                                                                                                                <a class="fk-newsListTitle"
-                                                                                                                                                   hidefocus="true"
-                                                                                                                                                   href="nd.jsp?id=8#_np=107_375"
-                                                                                                                                                   target="_blank"
-                                                                                                                                                   title="别致风情走廊 引领柳暗花明又一村">别致风情走廊
-                                                                                                                                                    引领柳暗花明又一村</a>
-                                                                                                                                            </td>
-                                                                                                                                        </tr>
-                                                                                                                                        </tbody>
-                                                                                                                                    </table>
+                                                                                                                                <div th:each="news:${newsList}">
+                                                                                                                                    <div topclassname="top1" class="J_newsListLine line g_item   fk-newsLineHeight   ">
+                                                                                                                                        <table id='lineBody8' class='J_lineBody lineBody'  cellpadding='0' cellspacing='0'>
+                                                                                                                                            <tbody>
+                                                                                                                                            <tr id="module375tr8">
+                                                                                                                                                <td class="contentLineIcon "></td>
+                                                                                                                                                <td class="J_newsTitle newsTitle"
+                                                                                                                                                    valign="top"
+                                                                                                                                                    style="width: 100%;">
+                                                                                                                                                    <div class="J_newsListTopFlag "></div>
+                                                                                                                                                    <a class="fk-newsListTitle"
+                                                                                                                                                       hidefocus="true"
+                                                                                                                                                       th:href="@{'/news/'+${news.id}}"
+                                                                                                                                                       target="_blank"
+                                                                                                                                                       th:title="${news.title}" th:text="${news.title}"></a>
+                                                                                                                                                </td>
+                                                                                                                                            </tr>
+                                                                                                                                            </tbody>
+                                                                                                                                        </table>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="J_separatorLine separatorLine g_separator "></div>
                                                                                                                                 </div>
-                                                                                                                                <div class="J_separatorLine separatorLine g_separator "></div>
-                                                                                                                                <div topclassname="top1"
-                                                                                                                                     topswitch="on"
-                                                                                                                                     newsid="7"
-                                                                                                                                     newsname="白色安静森活森系北欧风清新家"
-                                                                                                                                     class="J_newsListLine line g_item   fk-newsLineHeight   ">
-                                                                                                                                    <table id="lineBody7"
-                                                                                                                                           class="J_lineBody lineBody"
-                                                                                                                                           cellpadding="0"
-                                                                                                                                           cellspacing="0">
-                                                                                                                                        <tbody>
-                                                                                                                                        <tr id="module375tr7">
-                                                                                                                                            <td class="contentLineIcon "></td>
-                                                                                                                                            <td class="J_newsTitle newsTitle"
-                                                                                                                                                valign="top"
-                                                                                                                                                style="width: 100%;">
-                                                                                                                                                <div class="J_newsListTopFlag "></div>
-                                                                                                                                                <a class="fk-newsListTitle"
-                                                                                                                                                   hidefocus="true"
-                                                                                                                                                   href="nd.jsp?id=7#_np=107_375"
-                                                                                                                                                   target="_blank"
-                                                                                                                                                   title="白色安静森活森系北欧风清新家">白色安静森活森系北欧风清新家</a>
-                                                                                                                                            </td>
-                                                                                                                                        </tr>
-                                                                                                                                        </tbody>
-                                                                                                                                    </table>
-                                                                                                                                </div>
-                                                                                                                                <div class="J_separatorLine separatorLine g_separator "></div>
-                                                                                                                                <div topclassname="top1"
-                                                                                                                                     topswitch="on"
-                                                                                                                                     newsid="6"
-                                                                                                                                     newsname="北京院子工业风和简约风"
-                                                                                                                                     class="J_newsListLine line g_item   fk-newsLineHeight   ">
-                                                                                                                                    <table id="lineBody6"
-                                                                                                                                           class="J_lineBody lineBody"
-                                                                                                                                           cellpadding="0"
-                                                                                                                                           cellspacing="0">
-                                                                                                                                        <tbody>
-                                                                                                                                        <tr id="module375tr6">
-                                                                                                                                            <td class="contentLineIcon "></td>
-                                                                                                                                            <td class="J_newsTitle newsTitle"
-                                                                                                                                                valign="top"
-                                                                                                                                                style="width: 100%;">
-                                                                                                                                                <div class="J_newsListTopFlag "></div>
-                                                                                                                                                <a class="fk-newsListTitle"
-                                                                                                                                                   hidefocus="true"
-                                                                                                                                                   href="nd.jsp?id=6#_np=107_375"
-                                                                                                                                                   target="_blank"
-                                                                                                                                                   title="北京院子工业风和简约风">北京院子工业风和简约风</a>
-                                                                                                                                            </td>
-                                                                                                                                        </tr>
-                                                                                                                                        </tbody>
-                                                                                                                                    </table>
-                                                                                                                                </div>
-                                                                                                                                <div class="J_separatorLine separatorLine g_separator  newsListSeparatorLine "></div>
-                                                                                                                                <div class="clearfloat"></div>
                                                                                                                             </div>
                                                                                                                         </div>
                                                                                                                     </div>

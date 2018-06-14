@@ -13,8 +13,10 @@ import java.util.List;
  */
 public interface ProductService {
 
-    public List<Product> listProducts(int limit);
+    List<Product> listProducts(int limit);
 
-    public List<Product> queryIndexProduct(int limit);
+    List<Product> queryIndexProduct(int limit);
+
+    Product loadProduct(int productId);
 
 }

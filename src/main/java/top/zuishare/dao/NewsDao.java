@@ -18,4 +18,6 @@ public interface NewsDao {
 
     List<News> getIndexNews(int limit);
 
+    News loadNews(int newsId);
+
 }

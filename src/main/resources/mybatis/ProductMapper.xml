@@ -10,5 +10,9 @@
     <select id="getIndexProductsList" resultType="top.zuishare.spi.model.Product">
         select id,enName,hot,picUrl from tb_product where status=1 and hot is true and publish is true order by priority desc,id desc limit #{limit}
     </select>
+    
+    <select id="loadProduct" resultType="top.zuishare.spi.model.Product" parameterType="int">
+        select id,enName,hot,picUrl from tb_product where id=#{productId} and status=1 and publish is true limit 1
+    </select>
 
 </mapper>

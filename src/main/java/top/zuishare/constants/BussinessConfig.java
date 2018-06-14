@@ -37,6 +37,10 @@ public class BussinessConfig {
      * 首页展示的产品数量
      */
     private int indexProductsSize;
+    /**
+     * 邮件收件人，可以包含多个
+     */
+    private String emailToUsers;
 
     public String getPicPath() {
         return picPath;
@@ -84,5 +88,13 @@ public class BussinessConfig {
 
     public void setIndexProductsSize(int indexProductsSize) {
         this.indexProductsSize = indexProductsSize;
+    }
+
+    public String getEmailToUsers() {
+        return emailToUsers;
+    }
+
+    public void setEmailToUsers(String emailToUsers) {
+        this.emailToUsers = emailToUsers;
     }
 }

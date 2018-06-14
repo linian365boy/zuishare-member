@@ -68,6 +68,10 @@ public class ProductServiceImpl implements ProductService {
         return products;
     }
 
+    @Override
+    public Product loadProduct(int productId) {
+        return productDao.loadProduct(productId);
+    }
 
     private List<Product> getIndexProductsList(int limit){
         List<Product> products = productDao.getIndexProductsList(limit);

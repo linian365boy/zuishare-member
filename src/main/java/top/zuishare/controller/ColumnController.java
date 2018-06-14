@@ -41,23 +41,10 @@ public class ColumnController {
     @Autowired
     private NewsService newsService;
 
-    @RequestMapping("/column/{code}")
+    /*@RequestMapping("/column/{code}")
     public String toColumn(@PathVariable("code") String code, ModelMap map){
         long start = System.currentTimeMillis();
-        // 查菜单
-        List<Column> columns = columnService.queryIndexColumn();
-        // 查公司信息
-        Company company = companyService.loadCompany(bussinessConfig.getCompanyConfigPath());
-        // 查网站信息
-        WebConfig config = webConfigService.loadWebConfig(bussinessConfig.getWebConfigPath());
-
-        Column column = columnService.getColumnByCode(code);
-
-        map.put("currentColumn", column);
-        map.put("columns", columns);
-        map.put("company", company);
-        map.put("config", config);
-
+        common(code, map);
         if(code.equalsIgnoreCase(Constants.PRODUCT_COLUMN_NAME)){
             logger.info("enter column page cost {} ms", System.currentTimeMillis() - start);
             return products(map);
@@ -71,6 +58,47 @@ public class ColumnController {
             logger.info("enter column page cost {} ms", System.currentTimeMillis() - start);
             return "column";
         }
+    }*/
+
+    @RequestMapping("/column/{code}")
+    public String toColumn(@PathVariable("code") String code, ModelMap map){
+        long start = System.currentTimeMillis();
+        common(code, map);
+        switch (code){
+            case Constants.PRODUCT_COLUMN_NAME:
+                logger.info("enter column page cost {} ms", System.currentTimeMillis() - start);
+                return products(map);
+            case Constants.NEWS_COLUMN_NAME:
+                logger.info("enter column page cost {} ms", System.currentTimeMillis() - start);
+                return news(map);
+            case "aboutUs":
+                return code;
+            case "contactUs":
+                return code;
+            default:
+                // 查滚动图片
+                List<Advertisement> ads = adService.queryIndexAd(bussinessConfig.getIndexAds());
+                map.put("ads", ads);
+                logger.info("enter column page cost {} ms", System.currentTimeMillis() - start);
+                return "column";
+        }
+    }
+
+
+    public void common(String code, ModelMap map){
+        // 查菜单
+        List<Column> columns = columnService.queryIndexColumn();
+        // 查公司信息
+        Company company = companyService.loadCompany(bussinessConfig.getCompanyConfigPath());
+        // 查网站信息
+        WebConfig config = webConfigService.loadWebConfig(bussinessConfig.getWebConfigPath());
+
+        Column column = columnService.getColumnByCode(code);
+
+        map.put("currentColumn", column);
+        map.put("columns", columns);
+        map.put("company", company);
+        map.put("config", config);
     }
 
 
@@ -83,8 +111,17 @@ public class ColumnController {
 
     public String news(ModelMap map){
         List<News> news = newsService.listNews(Constants.NEWS_PAGE_SIZE);
-        map.put("news", news);
+        logger.info("list news {}", news);
+        map.put("newsList", news);
         return Constants.NEWS_COLUMN_NAME;
+    }
+
+    public String aboutUs(ModelMap map){
+        return "aboutUs";
+    }
+
+    public String contactUs(ModelMap map){
+        return "contactUs";
     }
 
 }

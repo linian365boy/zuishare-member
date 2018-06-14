@@ -37,9 +37,8 @@
                                             <!-- Wrapper for slides -->
                                             <div class="carousel-inner" role="listbox">
                                                 <div th:each="ad,iterStat:${ads}" th:class="${iterStat.first}?'item active':'item'">
-                                                    <img th:src="@{'/'+${ad.picUrl}}" th:alt="${ad.name}"/>
-                                                    <div class="carousel-caption" th:if="${ad.comment}">
-                                                        ${ad.comment}
+                                                    <a th:href="@{${ad.url}}" target="_blank"><img th:src="@{'/'+${ad.picUrl}}" th:alt="${ad.name}"/></a>
+                                                    <div class="carousel-caption" th:utext="${ad.comment}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -663,8 +662,8 @@
                                                         <table cellpadding="0" cellspacing="0">
                                                             <tbody><tr th:id="'module395product'+${prod.id}">
                                                                 <td>
-                                                                    <a hidefocus="true" href="javascript:;">
-                                                                        <img th:alt="${prod.enName}" th:src="@{'/'+${prod.picUrl}}" title="" style="width: 320px; height: 320px; margin-left: 0px;"/>
+                                                                    <a hidefocus="true" th:href="@{'/product/'+${prod.id}}" href="/" target="_blank">
+                                                                        <img th:alt="${prod.enName}" th:src="@{'/'+${prod.picUrl}}" title="${prod.enName}" style="width: 320px; height: 320px; margin-left: 0px;"/>
                                                                     </a>
                                                                 </td>
                                                             </tr>

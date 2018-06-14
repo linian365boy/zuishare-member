@@ -14,37 +14,6 @@
 
         <div th:replace="fragments/fragment :: menu"></div>
 
-        <!--<table class="webHeaderTable J_webHeaderTable" cellpadding="0" cellspacing="0" id="webHeaderTable">
-            <tbody>
-            <tr>
-                <td align="center" class="J_webHeaderTable webHeaderTd fk-moduleZoneWrap">
-
-                    <div id="fk-webHeaderZone"
-                         class="elemZone elemZoneModule J_moduleZone fk-webHeaderZone fk-moduleZone forms sideForms">
-                        <div class="fk-moduleZoneBg fk-elemZoneBg J_zoneContentBg elemZoneBg"></div>
-
-                    </div>
-
-                    <div id="webHeader" class="webHeader">
-                        <table class="headerTable" cellpadding="0" cellspacing="0">
-                            <tbody>
-                            <tr>
-                                <td class="headerCusLeft"></td>
-                                <td class="headerCusMiddle" align="center" valign="top">
-                                    <div class="headerNav headerNavDefault">
-
-                                    </div>
-                                </td>
-                                <td class="headerCusRight"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>-->
-
         <table class="webBannerTable J_webBannerTable" cellpadding="0" cellspacing="0">
             <tbody>
             <tr>
@@ -280,23 +249,6 @@
             </tbody>
         </table>
 
-        <!--<table class="absMiddleTable" cellpadding="0" cellspacing="0">
-            <tbody>
-            <tr>
-                <td align="center">
-                    <div id="absForms" class="forms sideForms absForms">
-
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <div id="fullmeasureTopForms"
-             class="fullmeasureContainer forms fk-fullmeasureForms fullmeasureForms fullmeasureTopForms"
-             style="display:none">
-
-            <wbr style="display:none;"/>
-        </div>-->
         <div th:replace="fragments/fragment :: absTableAndFullTopForms"></div>
 
         <table id="webContainerTable" class="webContainerTable" cellpadding="0" cellspacing="0">
@@ -518,7 +470,7 @@
                                                                                                                             <td class="titleCenter titleCenter378"
                                                                                                                                 valign="top">
                                                                                                                                 <div class="titleText titleText378">
-                                                                                                                                    <span class="bannerNormalTitle fk_mainTitle mainTitle mainTitle378">留言板</span>
+                                                                                                                                    <span class="bannerNormalTitle fk_mainTitle mainTitle mainTitle378">Message Board</span>
                                                                                                                                 </div>
                                                                                                                             </td>
                                                                                                                             <td class="titleRight titleRight378"
@@ -563,7 +515,7 @@
                                                                                                                                                         <tr>
                                                                                                                                                             <td width="100%"
                                                                                                                                                                 class="siteFormItemTd3">
-                                                                                                                                                                姓名
+                                                                                                                                                                Name
                                                                                                                                                             </td>
                                                                                                                                                         </tr>
                                                                                                                                                         </tbody>
@@ -574,8 +526,8 @@
                                                                                                                                                            _id="0"
                                                                                                                                                            class="g_itext resize"
                                                                                                                                                            type="text"
-                                                                                                                                                           name="M378F1siteFormInput0"
-                                                                                                                                                           id="M378F1siteFormInput0"
+                                                                                                                                                           name="nameText"
+                                                                                                                                                           id="nameText"
                                                                                                                                                            maxlength="100"
                                                                                                                                                            _placeholder=""
                                                                                                                                                            placeholder=""/>
@@ -606,7 +558,7 @@
                                                                                                                                                         <tr>
                                                                                                                                                             <td width="100%"
                                                                                                                                                                 class="siteFormItemTd3">
-                                                                                                                                                                电话
+                                                                                                                                                                Email
                                                                                                                                                             </td>
                                                                                                                                                         </tr>
                                                                                                                                                         </tbody>
@@ -617,14 +569,11 @@
                                                                                                                                                            _id="1"
                                                                                                                                                            class="g_itext resize"
                                                                                                                                                            type="text"
-                                                                                                                                                           name="M378F1siteFormInput1"
-                                                                                                                                                           id="M378F1siteFormInput1"
+                                                                                                                                                           name="emailText"
+                                                                                                                                                           id="emailText"
                                                                                                                                                            maxlength="100"
                                                                                                                                                            _placeholder=""
                                                                                                                                                            placeholder=""/>
-                                                                                                                                                    <div class="star siteFormSingleLine">
-                                                                                                                                                        *
-                                                                                                                                                    </div>
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                         </div>
@@ -649,7 +598,7 @@
                                                                                                                                                         <tr>
                                                                                                                                                             <td width="100%"
                                                                                                                                                                 class="siteFormItemTd3">
-                                                                                                                                                                邮箱
+                                                                                                                                                                Telephone
                                                                                                                                                             </td>
                                                                                                                                                         </tr>
                                                                                                                                                         </tbody>
@@ -660,14 +609,11 @@
                                                                                                                                                            _id="2"
                                                                                                                                                            class="g_itext resize"
                                                                                                                                                            type="text"
-                                                                                                                                                           name="M378F1siteFormInput2"
-                                                                                                                                                           id="M378F1siteFormInput2"
+                                                                                                                                                           name="telephoneText"
+                                                                                                                                                           id="telephoneText"
                                                                                                                                                            maxlength="100"
                                                                                                                                                            _placeholder=""
                                                                                                                                                            placeholder=""/>
-                                                                                                                                                    <div class="star siteFormSingleLine">
-                                                                                                                                                        *
-                                                                                                                                                    </div>
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                         </div>
@@ -692,7 +638,7 @@
                                                                                                                                                         <tr>
                                                                                                                                                             <td width="100%"
                                                                                                                                                                 class="siteFormItemTd3">
-                                                                                                                                                                内容
+                                                                                                                                                                Message
                                                                                                                                                             </td>
                                                                                                                                                         </tr>
                                                                                                                                                         </tbody>
@@ -703,7 +649,7 @@
                                                                                                                                                             _show="0"
                                                                                                                                                             _id="3"
                                                                                                                                                             class="g_textarea resize"
-                                                                                                                                                            id="M378F1siteFormTextArea3"
+                                                                                                                                                            id="messageText"
                                                                                                                                                             cols="50"
                                                                                                                                                             rows="3"
                                                                                                                                                             maxlength="1000"
@@ -756,12 +702,10 @@
                                                                                                                                                 <div id="buttonStyle"
                                                                                                                                                      class="addButtonshowTypeFalse">
                                                                                                                                                     <div class="s_ibutton s_ibutton8">
-                                                                                                                                                        <div class="siteFormCursorPointer"
-                                                                                                                                                             onclick="Site.siteFormAdd(378, 1, F1siteFormItemList, false, true,&quot;&quot;,0)">
+                                                                                                                                                        <div class="siteFormCursorPointer">
                                                                                                                                                             <div class="left"></div>
-                                                                                                                                                            <div id="M378F1siteFormAddButton"
-                                                                                                                                                                 class="middle siteFormMinWidth124">
-                                                                                                                                                                提交
+                                                                                                                                                            <div id="feedbackButtonDiv" onclick="addFeedback();" class="middle siteFormMinWidth124">
+                                                                                                                                                                Send
                                                                                                                                                             </div>
                                                                                                                                                             <div class="right"></div>
                                                                                                                                                         </div>
@@ -914,8 +858,7 @@
         <div id="popupLevelForms" class="forms sideForms popupLevelForms"></div>
     </div>
 </div>
-
 <footer th:replace="fragments/fragment :: footerCssJs"></footer>
-
 </body>
+<script type="text/javascript" src="/js/tools.js"></script>
 </html>

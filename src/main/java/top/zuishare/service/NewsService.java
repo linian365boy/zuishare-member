@@ -12,5 +12,9 @@ import java.util.List;
  * @since JDK 1.7
  */
 public interface NewsService {
+
     List<News> listNews(int limit);
+
+    News loadNews(int newsId);
+
 }
