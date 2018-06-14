@@ -38,8 +38,8 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private Gson gson;
 
-    public List<Product> listProducts(int limit){
-        return productDao.getIndexProducts(limit);
+    public List<Product> listProducts(int colId, int limit){
+        return productDao.getIndexProducts(colId, limit);
     }
 
     @Override

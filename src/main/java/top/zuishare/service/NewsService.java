@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface NewsService {
 
-    List<News> listNews(int limit);
+    List<News> listNews(int colId, int limit);
 
     News loadNews(int newsId);
 

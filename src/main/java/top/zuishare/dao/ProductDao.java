@@ -1,6 +1,7 @@
 package top.zuishare.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import top.zuishare.spi.model.Product;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 @Mapper
 public interface ProductDao {
 
-    List<Product> getIndexProducts(int limit);
+    List<Product> getIndexProducts(@Param("colId") int colId,@Param("limit") int limit);
 
     List<Product> getIndexProductsList(int limit);
 

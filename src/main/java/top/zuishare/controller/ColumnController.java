@@ -103,15 +103,25 @@ public class ColumnController {
 
 
     public String products(ModelMap map){
-        List<Product> products = productService.listProducts(Constants.PRODUCT_PAGE_SIZE);
+        Column col = (Column) map.get("currentColumn");
+        int colId = 0;
+        if(col != null) {
+            colId = col.getId();
+        }
+        List<Product> products = productService.listProducts(colId, Constants.PRODUCT_PAGE_SIZE);
         map.put("products", products);
         return Constants.PRODUCT_COLUMN_NAME;
     }
 
 
     public String news(ModelMap map){
-        List<News> news = newsService.listNews(Constants.NEWS_PAGE_SIZE);
-        logger.info("list news {}", news);
+        Column col = (Column) map.get("currentColumn");
+        int colId = 0;
+        if(col != null) {
+            colId = col.getId();
+        }
+        List<News> news = newsService.listNews(colId, Constants.NEWS_PAGE_SIZE);
+        logger.info("list news size={}", news!=null?news.size():0);
         map.put("newsList", news);
         return Constants.NEWS_COLUMN_NAME;
     }

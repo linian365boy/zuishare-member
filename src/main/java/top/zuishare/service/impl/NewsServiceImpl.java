@@ -23,8 +23,8 @@ public class NewsServiceImpl implements NewsService {
     private NewsDao newsDao;
 
     @Override
-    public List<News> listNews(int limit) {
-        return newsDao.getIndexNews(limit);
+    public List<News> listNews(int colId, int limit) {
+        return newsDao.getIndexNews(colId, limit);
     }
 
     @Override

@@ -221,9 +221,9 @@
                                         <div class="switchGroup switchGroup_bannerV2 "
                                              style="width: 100%; position: relative; height: 400px; overflow: hidden; margin: 0px auto;">
                                             <div class="J_billboardItem numImg" id="numImg0"
-                                                 style="position: absolute; width: 1440px;">
+                                                 style="position: absolute; width: 100%;">
                                                 <div class="J_bannerItem f-bannerItem" title=""
-                                                     style="width: 1440px; height: 400px; cursor: default; background-position: 50% 50%; background-repeat: no-repeat; overflow: hidden; display: block; outline: none; margin: 0px auto; position: relative; z-index: 1; background-size: cover; background-image: url(&quot;http://10532151.s61i.faiusr.com/2/AD0It_qCBRACGAAg1YWawgUo1IbN2wQwgA84kAM.jpg&quot;);">
+                                                     style="width: 100%; height: 400px; cursor: default; background-position: 50% 50%; background-repeat: no-repeat; overflow: hidden; display: block; outline: none; margin: 0px auto; position: relative; z-index: 1; background-size: cover; background-image: url(&quot;http://10532151.s61i.faiusr.com/2/AD0It_qCBRACGAAg1YWawgUo1IbN2wQwgA84kAM.jpg&quot;);">
                                                     <div id="fk-inBannerListZone-0" _sys="1"
                                                          _banid="AD0It_qCBRACGAAg1YWawgUo1IbN2wQwgA84kAM"
                                                          style="text-align: left;"
@@ -542,53 +542,6 @@
                                                                                                             </tr>
                                                                                                             </tbody>
                                                                                                         </table>
-                                                                                                        <table class=" formMiddle formMiddle375"
-                                                                                                               style=""
-                                                                                                               cellpadding="0"
-                                                                                                               cellspacing="0">
-                                                                                                            <tbody>
-                                                                                                            <tr>
-                                                                                                                <td class="formMiddleLeft formMiddleLeft375"></td>
-                                                                                                                <td class="formMiddleCenter formMiddleCenter375 "
-                                                                                                                    valign="top">
-                                                                                                                    <div class="formMiddleContent formMiddleContent375 fk-formContentOtherPadding"
-                                                                                                                         tabstyle="0">
-                                                                                                                        <div>
-                                                                                                                            <div class="newsList J_newsList  useOldStyleForHeight"
-                                                                                                                                 id="newsList375"
-                                                                                                                                 _showsetting="0"
-                                                                                                                                 newslisttype="0"
-                                                                                                                                 scroll="0">
-                                                                                                                                <div th:each="news:${newsList}">
-                                                                                                                                    <div topclassname="top1" class="J_newsListLine line g_item   fk-newsLineHeight   ">
-                                                                                                                                        <table id='lineBody8' class='J_lineBody lineBody'  cellpadding='0' cellspacing='0'>
-                                                                                                                                            <tbody>
-                                                                                                                                            <tr id="module375tr8">
-                                                                                                                                                <td class="contentLineIcon "></td>
-                                                                                                                                                <td class="J_newsTitle newsTitle"
-                                                                                                                                                    valign="top"
-                                                                                                                                                    style="width: 100%;">
-                                                                                                                                                    <div class="J_newsListTopFlag "></div>
-                                                                                                                                                    <a class="fk-newsListTitle"
-                                                                                                                                                       hidefocus="true"
-                                                                                                                                                       th:href="@{'/news/'+${news.id}}"
-                                                                                                                                                       target="_blank"
-                                                                                                                                                       th:title="${news.title}" th:text="${news.title}"></a>
-                                                                                                                                                </td>
-                                                                                                                                            </tr>
-                                                                                                                                            </tbody>
-                                                                                                                                        </table>
-                                                                                                                                    </div>
-                                                                                                                                    <div class="J_separatorLine separatorLine g_separator "></div>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </td>
-                                                                                                                <td class="formMiddleRight formMiddleRight375"></td>
-                                                                                                            </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
                                                                                                         <table class="formBottom formBottom375"
                                                                                                                cellpadding="0"
                                                                                                                cellspacing="0">
@@ -739,6 +692,35 @@
                                                 <div>
                                                     <div class="newsList J_newsList  newsNewModuleStyle_one  useOldStyleForHeight"
                                                          id="newsList377" _showsetting="0" newslisttype="3" scroll="0">
+
+                                                        <div th:each="news:${newsList}">
+                                                            <div topswitch="on" class="J_newsListLine line noHover g_item  fk-newsLineHeight">
+                                                                <div th:id="'lineBody'+${news.id}"
+                                                                     class="J_lineBody lineBody newsListLineBody1">
+                                                                    <div class="J_titleLine fk-titleLine">
+                                                                        <div class="J_newsTitle newsTitle J_noChangeStyle newsListNewsTitle3"
+                                                                             style="width: 75%;">
+                                                                            <div class="J_newsListTopFlag "></div>
+                                                                            <a class="fk-newsListTitle" hidefocus="true"
+                                                                               th:href="@{'/news/'+${news.id}}"
+                                                                               target="_blank" th:title="${news.title}" th:text="${news.title}"></a>
+                                                                        </div>
+                                                                        <div class="J_newsCalendar newsCalendar J_noChangeStyle newsListCalendar1"
+                                                                             style="width: 23.5%;">
+                                                                            <a class="fk-newsListDate" hidefocus="true"
+                                                                               th:href="@{'/news/'+${news.id}}"
+                                                                               target="_blank" th:text="${#dates.format(news.publishDate,'yyyy-MM-dd')}"></a>
+                                                                        </div>
+                                                                        <div class="clearfloat"></div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p class="pic-mixNewsStyleSummary fk-newsListSummary" th:text="${news.title}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="J_separatorLine separatorLine g_separator "></div>
+                                                        </div>
+                                                        <!--
                                                         <div topclassname="top1" topswitch="on" newsid="9"
                                                              newsname="远离家装污染 环保产品造健康家居"
                                                              class="J_newsListLine line noHover g_item   fk-newsLineHeight   ">
@@ -768,6 +750,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="J_separatorLine separatorLine g_separator "></div>
+
                                                         <div topclassname="top1" topswitch="on" newsid="10"
                                                              newsname="见缝插针 1平米角落设置多功能书桌"
                                                              class="J_newsListLine line noHover g_item   fk-newsLineHeight   ">
@@ -797,6 +780,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="J_separatorLine separatorLine g_separator "></div>
+
                                                         <div topclassname="top1" topswitch="on" newsid="11"
                                                              newsname="简洁不平凡 简约风家具凸显家居个性"
                                                              class="J_newsListLine line noHover g_item   fk-newsLineHeight   ">
@@ -826,6 +810,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="J_separatorLine separatorLine g_separator  newsListSeparatorLine "></div>
+                                                        -->
                                                         <div class="clearfloat"></div>
                                                     </div>
                                                 </div>
