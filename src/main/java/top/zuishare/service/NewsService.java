@@ -13,8 +13,10 @@ import java.util.List;
  */
 public interface NewsService {
 
-    List<News> listNews(int colId, int limit);
+    List<News> listNews(int pageNo, int limit);
 
     News loadNews(int newsId);
+
+    long countNews();
 
 }

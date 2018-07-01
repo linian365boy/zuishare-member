@@ -4,11 +4,15 @@
 <mapper namespace="top.zuishare.dao.NewsDao">
 
     <select id="getIndexNews" resultType="top.zuishare.spi.model.News">
-        select id,clicks,title,publishDate,keyWords from tb_news where publishDate is not null and columnId=#{colId} order by publishDate desc,id desc limit #{limit}
+        select id,clicks,title,publishDate,keyWords from tb_news where publishDate is not null order by publishDate desc,id desc limit #{start},#{limit}
     </select>
     
     <select id="loadNews" resultType="top.zuishare.spi.model.News" parameterType="int">
-        select id,clicks,title,publishDate,keyWords from tb_news where id=#{newsId} and publishDate is not null limit 1
+        select id,clicks,title,publishDate,keyWords,content from tb_news where id=#{newsId} and publishDate is not null limit 1
+    </select>
+
+    <select id="countNews" resultType="long">
+        select count(1) from tb_news where publishDate is not null limit 1
     </select>
 
 </mapper>

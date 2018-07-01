@@ -10,19 +10,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.zuishare.constants.BussinessConfig;
 import top.zuishare.constants.Constants;
 import top.zuishare.dto.ResultDto;
-import top.zuishare.service.FeedbackService;
-import top.zuishare.service.MailService;
-import top.zuishare.service.NewsService;
-import top.zuishare.service.ProductService;
-import top.zuishare.spi.model.Feedback;
-import top.zuishare.spi.model.News;
-import top.zuishare.spi.model.Product;
+import top.zuishare.service.*;
+import top.zuishare.spi.model.*;
 import top.zuishare.spi.util.Tools;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,6 +41,18 @@ public class ViewController {
     private ProductService productService;
     @Autowired
     private NewsService newsService;
+    @Autowired
+    private CompanyService companyService;
+    @Autowired
+    private BussinessConfig bussinessConfig;
+    @Autowired
+    private AdService adService;
+    @Autowired
+    private WebConfigService webConfigService;
+    @Autowired
+    private ColumnService columnService;
+    @Autowired
+    private CategoryService categoryService;
 
     private static final Logger logger = LoggerFactory.getLogger(ViewController.class);
 
@@ -109,7 +118,19 @@ public class ViewController {
         Product product = productService.loadProduct(productId);
         if (product == null)
             return "redirect:errors/404";
+        // 查公司信息
+        Company company = companyService.loadCompany(bussinessConfig.getCompanyConfigPath());
+        // 查网站信息
+        WebConfig config = webConfigService.loadWebConfig(bussinessConfig.getWebConfigPath());
+        // 查菜单
+        List<Column> columns = columnService.queryIndexColumn();
+        List<Category> categories = categoryService.queryCategory();
+        map.put("config", config);
+        map.put("columns", columns);
         map.put("product", product);
+        map.put("company", company);
+        map.put("currentColumn", columnService.getColumnByCode("products"));
+        map.put("categories", categories);
         return "product_detail";
     }
 
@@ -117,9 +138,25 @@ public class ViewController {
     @RequestMapping("/news/{newsId}")
     public String newsDetail(@PathVariable("newsId") int newsId, ModelMap map){
         News news = newsService.loadNews(newsId);
-        if (news == null)
+        if (news == null) {
             return "redirect:errors/404";
+        }
+        // 查公司信息
+        Company company = companyService.loadCompany(bussinessConfig.getCompanyConfigPath());
+        // 查滚动图片
+        List<Advertisement> ads = adService.queryIndexAd(bussinessConfig.getIndexAds());
+        // 查网站信息
+        WebConfig config = webConfigService.loadWebConfig(bussinessConfig.getWebConfigPath());
+        // 查菜单
+        List<Column> columns = columnService.queryIndexColumn();
+        List<Category> categories = categoryService.queryCategory();
+        map.put("columns", columns);
+        map.put("config", config);
+        map.put("ads", ads);
         map.put("news", news);
+        map.put("company", company);
+        map.put("currentColumn", columnService.getColumnByCode("news"));
+        map.put("categories", categories);
         return "news_detail";
     }
 

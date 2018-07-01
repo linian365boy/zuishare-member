@@ -17,10 +17,15 @@ import java.util.List;
 @Mapper
 public interface ProductDao {
 
-    List<Product> getIndexProducts(@Param("colId") int colId,@Param("limit") int limit);
+    List<Product> getProducts(@Param("limit") int limit, @Param("start") int start);
+
+    long countProducts();
 
     List<Product> getIndexProductsList(int limit);
 
     Product loadProduct(int productId);
 
+    List<Product> queryProductsByCateId(@Param("cateId") int cateId,@Param("limit") int limit,@Param("start") int start);
+
+    long countProductsByCateId(int cateId);
 }

@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <head th:replace="fragments/fragment :: headJsCss"></head>
-    <link type='text/css' href='//jzs.faisys.com/2/1_1/fkModule.min.css?v=20180428104223' rel='stylesheet' id='jzModule2_1_1'/>
-    <link type="text/css" href="http://fkjj21.faisco.cn/jzcusstyle.jsp?colId=2&amp;extId=0&amp;_csw=0" rel="stylesheet" />
+    <link type='text/css' th:href='@{/css/fkModule.min.css}' rel='stylesheet' id='jzModule2_1_1'/>
+    <link type="text/css" th:href="@{/css/jzcusstyle.css}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body class="g_body g_locale2052 g_cusSiteWidth">
@@ -2354,6 +2354,5 @@
 
 <footer th:replace="fragments/fragment :: footerCssJs"></footer>
 <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/tools.js"></script>
 </body>
 </html>

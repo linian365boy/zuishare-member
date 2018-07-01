@@ -109,7 +109,7 @@ public class Constants {
     /**
      * 每页产品展示数量
      */
-    public static final Integer PRODUCT_PAGE_SIZE = 6;
+    public static final Integer PRODUCT_PAGE_SIZE = 9;
     /**
      * 每页新闻展示数量
      */

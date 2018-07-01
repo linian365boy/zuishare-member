@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"/>
     <head th:replace="fragments/fragment :: headJsCss"></head>
     <link rel="stylesheet" type="text/css" href="//2.ss.faisys.com/css/productSlide.min.css?v=201710111604"/>
 </head>
@@ -13,6 +14,7 @@
 
         <div th:replace="fragments/fragment :: menu"></div>
 
+        <ul th:replace="fragments/fragment :: diceMenu"></ul>
 
         <table class="webBannerTable J_webBannerTable" cellpadding="0" cellspacing="0">
             <tbody>
@@ -249,23 +251,6 @@
             </tbody>
         </table>
 
-        <!--<table class="absMiddleTable" cellpadding="0" cellspacing="0">
-            <tbody>
-            <tr>
-                <td align="center">
-                    <div id="absForms" class="forms sideForms absForms">
-
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <div id="fullmeasureTopForms"
-             class="fullmeasureContainer forms fk-fullmeasureForms fullmeasureForms fullmeasureTopForms"
-             style="display:none">
-
-            <wbr style="display:none;"/>
-        </div>-->
         <div th:replace="fragments/fragment :: absTableAndFullTopForms"></div>
 
         <table id="webContainerTable" class="webContainerTable" cellpadding="0" cellspacing="0">
@@ -288,8 +273,6 @@
                                 <tbody>
                                 <tr valign="top">
                                     <td id="containerMiddleLeft" class="containerMiddleLeft">
-
-
                                     </td>
 
                                     <td class="containerMiddleCenter">
@@ -656,42 +639,6 @@
                                     </tr>
                                     </tbody>
                                 </table>
-                                <table class=" formMiddle formMiddle322" style="" cellpadding="0" cellspacing="0">
-                                    <tbody>
-                                    <tr>
-                                        <td class="formMiddleLeft formMiddleLeft322"></td>
-                                        <td class="formMiddleCenter formMiddleCenter322 " valign="top">
-                                            <div class="formMiddleContent formMiddleContent322 fk-formContentOtherPadding"
-                                                 tabstyle="0">
-                                                <div class="richModuleSlaveImgContainer richTextImg textImg3"><img
-                                                        imgid="AD0It_qCBRAEGAAg0oWawgUoysmD_gQwRDhE" imgurl=""
-                                                        imglinktype="1" imgcolid="2"
-                                                        imgpath="http://10532151.s61i.faiusr.com/4/AD0It_qCBRAEGAAg0oWawgUoysmD_gQwRDhE.png"
-                                                        class="richModuleSlaveImg richImg richImg3" alt="" title=""
-                                                        src="http://10532151.s61i.faiusr.com/4/AD0It_qCBRAEGAAg0oWawgUoysmD_gQwRDhE.png"/>
-                                                </div>
-                                                <div class="richContent richContent3"><p
-                                                        style="text-align:center;margin-top:20px;"><span
-                                                        style="font-family:微软雅黑;font-size:16px;color:#444444;">绿色思考 &nbsp;绿色行动 &nbsp;绿色设计 &nbsp;温馨世界</span>
-                                                </p>
-                                                    <p style="text-align:center;margin-top:20px;"><span
-                                                            style="line-height:1.8;font-family:Arial;font-size:14px;color:#CCCCCC;">GREEN THINKING GREEN ATYION GREEN DESIGN WARM WORLD</span><br/>
-                                                    </p>
-                                                    <p style="text-align:center;margin-top:20px;"><span
-                                                            style="color:#CCCCCC;font-family:Arial;"><span
-                                                            style="line-height:25.2px;font-family:微软雅黑;font-size:18px;color:#2B2B2B;">最新产品</span></span>
-                                                    </p>
-                                                    <p style="text-align:center;margin-top:20px;"><span
-                                                            style="color:#CCCCCC;font-family:Arial;"><span
-                                                            style="line-height:25.2px;font-family:微软雅黑;font-size:18px;color:#2B2B2B;"><img
-                                                            src="http://10532151.s61i.faiusr.com/4/AD0It_qCBRAEGAAg0oWawgUo1ruakwIwIjgQ.png?v=1"
-                                                            width="34" height="16" alt=" "/></span></span></p></div>
-                                            </div>
-                                        </td>
-                                        <td class="formMiddleRight formMiddleRight322"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
                                 <table class="formBottom formBottom322" cellpadding="0" cellspacing="0">
                                     <tbody>
                                     <tr>
@@ -711,139 +658,32 @@
                                     <td class="formMiddleCenter formMiddleCenter395 " valign="top">
                                         <div class="formMiddleContent formMiddleContent395 fk-formContentOtherPadding" tabstyle="0">
                                             <div id="productList395" class="fk-productTitleList productList " picwidth="320" picheight="320" _bordertype="0" _bgtype="1" _borderwidth="1">
-                                                <div topclassname="productListTopIcon" topswitch="on" productid="7" productname="〝回归〞一种竹传统" class="productTileForm fk-productListTilePaddingClass3" style="width: 320px; margin: 25px 23px 25px 22px; height: 363px;" faiwidth="320" faiheight="320" faiwidthor="320" faiheightor="320">
+                                                <div th:each="prod:${list}" class="productTileForm fk-productListTilePaddingClass3" style="width: 320px; margin: 25px 23px 25px 22px; height: 363px;" >
                                                     <div id="productTileForm7" class="topFlagImgDiv imgDiv " style="width:320px;height:320px;">
                                                         <table cellpadding="0" cellspacing="0">
                                                             <tbody><tr id="module395product7">
                                                                 <td>
-                                                                    <a hidefocus="true" href="javascript:;" onclick="jzUtils.run({'name':'productSlide.init', 'prompt':'true'}, '?id=7&amp;_pp=0_395');">
-                                                                        <img alt="〝回归〞一种竹传统" src="//10532151.s61i.faiusr.com/4/AD0It_qCBRAEGAAg0oWawgUoiIbggAMwwAI4wAI.png" title="" style="width: 320px; height: 320px; margin-left: 0px;"/>
+                                                                    <a hidefocus="true" th:href="@{'/product/'+${prod.id}+'.html'}" target="_blank">
+                                                                        <img th:alt="${prod.enName}" th:src="@{'/'+${prod.picUrl}}" th:title="${prod.enName}" style="width: 320px; height: 320px; margin-left: 0px;"/>
                                                                     </a>
                                                                 </td>
                                                             </tr>
                                                             </tbody></table>
                                                     </div>
                                                     <div class="propList  " style="text-align:center">
-                                                        <table class="fk-productName propDiv productName      " cellpadding="0" cellspacing="0">
+                                                        <table class="fk-productName propDiv productName" cellpadding="0" cellspacing="0">
                                                             <tbody><tr>
                                                                 <td>
-                                                                    <a class="fk-productName" hidefocus="true" href="javascript:;" onclick="jzUtils.run({'name':'productSlide.init', 'prompt':'true'}, '?id=7&amp;_pp=0_395');" title="〝回归〞一种竹传统">〝回归〞一种竹传统</a>
-                                                                </td>
-                                                            </tr>
-                                                            </tbody></table>
-                                                    </div>
-                                                </div>
-                                                <div topclassname="productListTopIcon" topswitch="on" productid="5" productname="复古风格的茶桌" class="productTileForm fk-productListTilePaddingClass3" style="width: 320px; margin: 25px 23px 25px 22px; height: 363px;" faiwidth="320" faiheight="320" faiwidthor="320" faiheightor="320">
-                                                    <div id="productTileForm5" class="topFlagImgDiv imgDiv " style="width:320px;height:320px;">
-                                                        <table cellpadding="0" cellspacing="0">
-                                                            <tbody><tr id="module395product5">
-                                                                <td>
-                                                                    <a hidefocus="true" href="javascript:;" onclick="jzUtils.run({'name':'productSlide.init', 'prompt':'true'}, '?id=5&amp;_pp=0_395');">
-                                                                        <img alt="复古风格的茶桌" src="//10532151.s61i.faiusr.com/4/AD0It_qCBRAEGAAg1YWawgUo1-ePnAEwwAI4wAI.png" title="" style="width: 320px; height: 320px; margin-left: 0px;"/>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            </tbody></table>
-                                                    </div>
-                                                    <div class="propList  " style="text-align:center">
-                                                        <table class="fk-productName propDiv productName      " cellpadding="0" cellspacing="0">
-                                                            <tbody><tr>
-                                                                <td>
-                                                                    <a class="fk-productName" hidefocus="true" href="javascript:;" onclick="jzUtils.run({'name':'productSlide.init', 'prompt':'true'}, '?id=5&amp;_pp=0_395');" title="复古风格的茶桌">复古风格的茶桌</a>
-                                                                </td>
-                                                            </tr>
-                                                            </tbody></table>
-                                                    </div>
-                                                </div>
-                                                <div topclassname="productListTopIcon" topswitch="on" productid="3" productname="欧式宜家单人餐椅休闲椅" class="productTileForm fk-productListTilePaddingClass3" style="width: 320px; margin: 25px 23px 25px 22px; height: 363px;" faiwidth="320" faiheight="320" faiwidthor="320" faiheightor="320">
-                                                    <div id="productTileForm3" class="topFlagImgDiv imgDiv " style="width:320px;height:320px;">
-                                                        <table cellpadding="0" cellspacing="0">
-                                                            <tbody><tr id="module395product3">
-                                                                <td>
-                                                                    <a hidefocus="true" href="javascript:;" onclick="jzUtils.run({'name':'productSlide.init', 'prompt':'true'}, '?id=3&amp;_pp=0_395');">
-                                                                        <img alt="欧式宜家单人餐椅休闲椅" src="//10532151.s61i.faiusr.com/4/AD0It_qCBRAEGAAg1IWawgUo9JybHzDAAjjAAg.png" title="" style="width: 320px; height: 320px; margin-left: 0px;"/>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            </tbody></table>
-                                                    </div>
-                                                    <div class="propList  " style="text-align:center">
-                                                        <table class="fk-productName propDiv productName      " cellpadding="0" cellspacing="0">
-                                                            <tbody><tr>
-                                                                <td>
-                                                                    <a class="fk-productName" hidefocus="true" href="javascript:;" onclick="jzUtils.run({'name':'productSlide.init', 'prompt':'true'}, '?id=3&amp;_pp=0_395');" title="欧式宜家单人餐椅休闲椅">欧式宜家单人餐椅休闲椅</a>
-                                                                </td>
-                                                            </tr>
-                                                            </tbody></table>
-                                                    </div>
-                                                </div>
-                                                <div topclassname="productListTopIcon" topswitch="on" productid="2" productname="碰撞的牛奶休闲椅" class="productTileForm fk-productListTilePaddingClass3" style="width: 320px; margin: 25px 23px 25px 22px; height: 363px;" faiwidth="320" faiheight="320" faiwidthor="320" faiheightor="320">
-                                                    <div id="productTileForm2" class="topFlagImgDiv imgDiv " style="width:320px;height:320px;">
-                                                        <table cellpadding="0" cellspacing="0">
-                                                            <tbody><tr id="module395product2">
-                                                                <td>
-                                                                    <a hidefocus="true" href="javascript:;" onclick="jzUtils.run({'name':'productSlide.init', 'prompt':'true'}, '?id=2&amp;_pp=0_395');">
-                                                                        <img alt="碰撞的牛奶休闲椅" src="//10532151.s61i.faiusr.com/4/AD0It_qCBRAEGAAg1YWawgUou5uLiAYwwAI4wAI.png" title="" style="width: 320px; height: 320px; margin-left: 0px;"/>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            </tbody></table>
-                                                    </div>
-                                                    <div class="propList  " style="text-align:center">
-                                                        <table class="fk-productName propDiv productName      " cellpadding="0" cellspacing="0">
-                                                            <tbody><tr>
-                                                                <td>
-                                                                    <a class="fk-productName" hidefocus="true" href="javascript:;" onclick="jzUtils.run({'name':'productSlide.init', 'prompt':'true'}, '?id=2&amp;_pp=0_395');" title="碰撞的牛奶休闲椅">碰撞的牛奶休闲椅</a>
-                                                                </td>
-                                                            </tr>
-                                                            </tbody></table>
-                                                    </div>
-                                                </div>
-                                                <div topclassname="productListTopIcon" topswitch="on" productid="6" productname="时尚休闲木脚书房沙发椅" class="productTileForm fk-productListTilePaddingClass3" style="width: 320px; margin: 25px 23px 25px 22px; height: 363px;" faiwidth="320" faiheight="320" faiwidthor="320" faiheightor="320">
-                                                    <div id="productTileForm6" class="topFlagImgDiv imgDiv " style="width:320px;height:320px;">
-                                                        <table cellpadding="0" cellspacing="0">
-                                                            <tbody><tr id="module395product6">
-                                                                <td>
-                                                                    <a hidefocus="true" href="javascript:;" onclick="jzUtils.run({'name':'productSlide.init', 'prompt':'true'}, '?id=6&amp;_pp=0_395');">
-                                                                        <img alt="时尚休闲木脚书房沙发椅" src="//10532151.s61i.faiusr.com/4/AD0It_qCBRAEGAAg0oWawgUowKuGzwYwwAI4wAI.png" title="" style="width: 320px; height: 320px; margin-left: 0px;"/>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            </tbody></table>
-                                                    </div>
-                                                    <div class="propList  " style="text-align:center">
-                                                        <table class="fk-productName propDiv productName      " cellpadding="0" cellspacing="0">
-                                                            <tbody><tr>
-                                                                <td>
-                                                                    <a class="fk-productName" hidefocus="true" href="javascript:;" onclick="jzUtils.run({'name':'productSlide.init', 'prompt':'true'}, '?id=6&amp;_pp=0_395');" title="时尚休闲木脚书房沙发椅">时尚休闲木脚书房沙发椅</a>
-                                                                </td>
-                                                            </tr>
-                                                            </tbody></table>
-                                                    </div>
-                                                </div>
-                                                <div topclassname="productListTopIcon" topswitch="on" productid="4" productname="坐一张老爷椅" class="productTileForm fk-productListTilePaddingClass3" style="width: 320px; margin: 25px 23px 25px 22px; height: 363px;" faiwidth="320" faiheight="320" faiwidthor="320" faiheightor="320">
-                                                    <div id="productTileForm4" class="topFlagImgDiv imgDiv " style="width:320px;height:320px;">
-                                                        <table cellpadding="0" cellspacing="0">
-                                                            <tbody><tr id="module395product4">
-                                                                <td>
-                                                                    <a hidefocus="true" href="javascript:;" onclick="jzUtils.run({'name':'productSlide.init', 'prompt':'true'}, '?id=4&amp;_pp=0_395');">
-                                                                        <img alt="坐一张老爷椅" src="//10532151.s61i.faiusr.com/4/AD0It_qCBRAEGAAg0YWawgUonu2PlQQwwAI4wAI.png" title="" style="width: 320px; height: 320px; margin-left: 0px;"/>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            </tbody></table>
-                                                    </div>
-                                                    <div class="propList  " style="text-align:center">
-                                                        <table class="fk-productName propDiv productName      " cellpadding="0" cellspacing="0">
-                                                            <tbody><tr>
-                                                                <td>
-                                                                    <a class="fk-productName" hidefocus="true" href="javascript:;" onclick="jzUtils.run({'name':'productSlide.init', 'prompt':'true'}, '?id=4&amp;_pp=0_395');" title="坐一张老爷椅">坐一张老爷椅</a>
+                                                                    <a class="fk-productName" hidefocus="true" th:href="@{'/product/'+${prod.id}+'.html'}" th:title="${prod.enName}" th:text="${prod.enName}"></a>
                                                                 </td>
                                                             </tr>
                                                             </tbody></table>
                                                     </div>
                                                 </div>
                                                 <div class="clearfloat"></div>
+
+                                                <nav th:replace="fragments/fragment :: pagination"></nav>
+
                                             </div>
                                         </div>
                                     </td>
@@ -881,5 +721,6 @@
 </div>
 
 <footer th:replace="fragments/fragment :: footerCssJs"></footer>
+
 </body>
 </html>

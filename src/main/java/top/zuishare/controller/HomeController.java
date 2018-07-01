@@ -39,6 +39,8 @@ public class HomeController {
     private BussinessConfig bussinessConfig;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping(value = {"", "/", "/index", "/home"}, method = RequestMethod.GET)
     public String home( ModelMap map) {
@@ -54,12 +56,15 @@ public class HomeController {
         // 首页展示的产品
         List<Product> indexProducts = productService.queryIndexProduct(bussinessConfig.getIndexProductsSize());
 
+        List<Category> categories = categoryService.queryCategory();
+
         map.put("currentColumn", new Column());
         map.put("ads", ads);
         map.put("columns", columns);
         map.put("company", company);
         map.put("config", config);
         map.put("indexProducts", indexProducts);
+        map.put("categories", categories);
 
         logger.info("enter home page cost {} ms", System.currentTimeMillis() - start);
         return "index";

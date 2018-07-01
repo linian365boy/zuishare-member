@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <head th:replace="fragments/fragment :: headJsCss"></head>
-    <link type='text/css' href='//jzs.faisys.com/2/1_1/fkModule.min.css?v=20180428104223' rel='stylesheet' id='jzModule2_1_1'/>
-    <link type="text/css" href="http://fkjj21.faisco.cn/jzcusstyle.jsp?colId=108&amp;extId=0&amp;_csw=0" rel="stylesheet" />
+    <link type='text/css' th:href='@{/css/fkModule.min.css}' rel='stylesheet' id='jzModule2_1_1'/>
+    <link type="text/css" th:href="@{/css/jzcusstyle.css}" rel="stylesheet" />
 </head>
 <body class="g_body g_locale2052 g_cusSiteWidth fk-baseEditToolV2 ">
 <script type="text/javascript" src="//1.ss.faisys.com/js/jzUtils.min.js?v=201710091348"></script>
@@ -301,67 +301,6 @@
 
         <div id="fullmeasureBottomForms"
              class="fullmeasureContainer forms fk-fullmeasureForms fullmeasureForms fullmeasureBottomForms">
-            <div id="module382" _indexclass="formIndex1" _moduletype="1" _modulestyle="80" _moduleid="382"
-                 class="form form382 formIndex1 formStyle80 fk-formFullmeasure " title="" _sys="0" _banid="" style=""
-                 _side="0" _intab="0" _inmulmcol="0" _infullmeasure="0" _inpack="0" _inpopupzone="0" _autoheight="1"
-                 _global="false" _independent="false" fmslidestyle="0" fmpage="1" iscarousel="0" displaytime="4"
-                 carouselspeed="1">
-                <div class="fillContentRelative"
-                     style="position: relative; z-index: -1; height: 400px; width: 100%; display: none;"></div>
-                <div style="position: static;"
-                     class="fullmeasureOuterContentPage fullmeasureOuterContentPage1 J_fullmeasurePageShow" page="1">
-                    <div class="fullmeasureOuterContentBg fullmeasureOuterContentBg382 fullmeasureStyle0"></div>
-                    <div class="fullmeasureOuterContent fullmeasureOuterContent382">
-                        <div class="fullmeasureContent fullmeasureContent382" id="fullmeasureContent382_1"
-                             moduleid="382">
-                            <div class="fullmeasureContentBg fullmeasureContentBg382"></div>
-                            <div id="module384" _indexclass="formIndex1" _moduletype="1" _modulestyle="1"
-                                 _moduleid="384" class="form form384 formStyle1 formIndex1" title="" _sys="0" _banid=""
-                                 style="height: 400px;" _side="0" _intab="0" _inmulmcol="0" _infullmeasure="382"
-                                 _inpack="0" _inpopupzone="0" _autoheight="0" _global="false" _independent="false">
-                                <table class="formTop formTop384" cellpadding="0" cellspacing="0">
-                                    <tbody>
-                                    <tr>
-                                        <td class="left"></td>
-                                        <td class="center"></td>
-                                        <td class="right"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <table class=" formMiddle formMiddle384" style="height:400px; " cellpadding="0"
-                                       cellspacing="0">
-                                    <tbody>
-                                    <tr>
-                                        <td class="formMiddleLeft formMiddleLeft384"></td>
-                                        <td class="formMiddleCenter formMiddleCenter384 " valign="top">
-                                            <div class="formMiddleContent formMiddleContent384 fk-formContentOtherPadding"
-                                                 tabstyle="0" style="height: 280px; overflow-y: hidden;">
-                                                <div class="richContent richContent0"><p style="line-height:4em;"><span
-                                                        style="font-family:微软雅黑;font-size:16px;color:#FFFFFF;">“现代的人们将大部分时间花在工作应酬，他们将大部分时间分给了家庭成员以外的人，而与家人共处的时间相对少的可怜”HAO Design（好室设计）的设计师讲到：“我们的业主在装修他们的新居时，最期望的是创造一个开敞的空间，能够让家人更多的时间待在一起。同时要有趣，能够让孩子们置身其中时激发他们行动的灵感”</span>
-                                                </p></div>
-                                            </div>
-                                        </td>
-                                        <td class="formMiddleRight formMiddleRight384"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <table class="formBottom formBottom384" cellpadding="0" cellspacing="0">
-                                    <tbody>
-                                    <tr>
-                                        <td class="left left384"></td>
-                                        <td class="center center384"></td>
-                                        <td class="right right384"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <div class="clearfloat clearfloat384"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clearfloat clearfloat382"></div>
-                </div>
-            </div>
-
             <div id="module383" _indexclass="formIndex2" _moduletype="1" _modulestyle="80" _moduleid="383"
                  class="form form383 formIndex2 formStyle80 fk-formFullmeasure " title="" _sys="0" _banid="" style=""
                  _side="0" _intab="0" _inmulmcol="0" _infullmeasure="0" _inpack="0" _inpopupzone="0" _autoheight="1"
@@ -800,7 +739,5 @@
 </div>
 
 <footer th:replace="fragments/fragment :: footerCssJs"></footer>
-
-<div class="navSubMenu" id="g_menunav108SubMenuContainer"></div>
 </body>
 </html>

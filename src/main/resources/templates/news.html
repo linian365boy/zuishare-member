@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"/>
     <head th:replace="fragments/fragment :: headJsCss"></head>
 </head>
 <body class="g_body g_locale2052 g_cusSiteWidth fk-baseEditToolV2 ">
@@ -246,23 +247,6 @@
             </tbody>
         </table>
 
-        <!--<table class="absMiddleTable" cellpadding="0" cellspacing="0">
-            <tbody>
-            <tr>
-                <td align="center">
-                    <div id="absForms" class="forms sideForms absForms">
-
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <div id="fullmeasureTopForms"
-             class="fullmeasureContainer forms fk-fullmeasureForms fullmeasureForms fullmeasureTopForms"
-             style="display:none">
-
-            <wbr style="display:none;"/>
-        </div>-->
         <div th:replace="fragments/fragment :: absTableAndFullTopForms"></div>
 
         <table id="webContainerTable" class="webContainerTable" cellpadding="0" cellspacing="0">
@@ -693,7 +677,7 @@
                                                     <div class="newsList J_newsList  newsNewModuleStyle_one  useOldStyleForHeight"
                                                          id="newsList377" _showsetting="0" newslisttype="3" scroll="0">
 
-                                                        <div th:each="news:${newsList}">
+                                                        <div th:each="news:${list}">
                                                             <div topswitch="on" class="J_newsListLine line noHover g_item  fk-newsLineHeight">
                                                                 <div th:id="'lineBody'+${news.id}"
                                                                      class="J_lineBody lineBody newsListLineBody1">
@@ -702,13 +686,13 @@
                                                                              style="width: 75%;">
                                                                             <div class="J_newsListTopFlag "></div>
                                                                             <a class="fk-newsListTitle" hidefocus="true"
-                                                                               th:href="@{'/news/'+${news.id}}"
+                                                                               th:href="@{'/news/'+${news.id}+'.html'}"
                                                                                target="_blank" th:title="${news.title}" th:text="${news.title}"></a>
                                                                         </div>
                                                                         <div class="J_newsCalendar newsCalendar J_noChangeStyle newsListCalendar1"
                                                                              style="width: 23.5%;">
                                                                             <a class="fk-newsListDate" hidefocus="true"
-                                                                               th:href="@{'/news/'+${news.id}}"
+                                                                               th:href="@{'/news/'+${news.id}+'.html'}"
                                                                                target="_blank" th:text="${#dates.format(news.publishDate,'yyyy-MM-dd')}"></a>
                                                                         </div>
                                                                         <div class="clearfloat"></div>
@@ -720,97 +704,7 @@
                                                             </div>
                                                             <div class="J_separatorLine separatorLine g_separator "></div>
                                                         </div>
-                                                        <!--
-                                                        <div topclassname="top1" topswitch="on" newsid="9"
-                                                             newsname="远离家装污染 环保产品造健康家居"
-                                                             class="J_newsListLine line noHover g_item   fk-newsLineHeight   ">
-                                                            <div id="lineBody9"
-                                                                 class="J_lineBody lineBody newsListLineBody1">
-                                                                <div class="J_titleLine fk-titleLine">
-                                                                    <div class="J_newsTitle newsTitle J_noChangeStyle newsListNewsTitle3"
-                                                                         style="width: 75%;">
-                                                                        <div class="J_newsListTopFlag "></div>
-                                                                        <a class="fk-newsListTitle" hidefocus="true"
-                                                                           href="nd.jsp?id=9#_np=107_377"
-                                                                           target="_blank" title="远离家装污染 环保产品造健康家居">远离家装污染
-                                                                            环保产品造健康家居</a>
-                                                                    </div>
-                                                                    <div class="J_newsCalendar newsCalendar J_noChangeStyle newsListCalendar1"
-                                                                         style="width: 23.5%;">
-                                                                        <a class="fk-newsListDate" hidefocus="true"
-                                                                           href="nd.jsp?id=9#_np=107_377"
-                                                                           target="_blank">2017-05-02</a>
-                                                                    </div>
-                                                                    <div class="clearfloat"></div>
-                                                                </div>
-                                                                <div>
-                                                                    <p class="pic-mixNewsStyleSummary fk-newsListSummary">
-                                                                        装修污染会对人体的免疫系统造成伤害，而大多数的装修污染就来自...</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="J_separatorLine separatorLine g_separator "></div>
-
-                                                        <div topclassname="top1" topswitch="on" newsid="10"
-                                                             newsname="见缝插针 1平米角落设置多功能书桌"
-                                                             class="J_newsListLine line noHover g_item   fk-newsLineHeight   ">
-                                                            <div id="lineBody10"
-                                                                 class="J_lineBody lineBody newsListLineBody1">
-                                                                <div class="J_titleLine fk-titleLine">
-                                                                    <div class="J_newsTitle newsTitle J_noChangeStyle newsListNewsTitle3"
-                                                                         style="width: 75%;">
-                                                                        <div class="J_newsListTopFlag "></div>
-                                                                        <a class="fk-newsListTitle" hidefocus="true"
-                                                                           href="nd.jsp?id=10#_np=107_377"
-                                                                           target="_blank" title="见缝插针 1平米角落设置多功能书桌">见缝插针
-                                                                            1平米角落设置多功能书桌</a>
-                                                                    </div>
-                                                                    <div class="J_newsCalendar newsCalendar J_noChangeStyle newsListCalendar1"
-                                                                         style="width: 23.5%;">
-                                                                        <a class="fk-newsListDate" hidefocus="true"
-                                                                           href="nd.jsp?id=10#_np=107_377"
-                                                                           target="_blank">2017-05-02</a>
-                                                                    </div>
-                                                                    <div class="clearfloat"></div>
-                                                                </div>
-                                                                <div>
-                                                                    <p class="pic-mixNewsStyleSummary fk-newsListSummary">
-                                                                        房价居高不下，不少人的家里面能划出2房1厅已经不容易，想在设置一个…</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="J_separatorLine separatorLine g_separator "></div>
-
-                                                        <div topclassname="top1" topswitch="on" newsid="11"
-                                                             newsname="简洁不平凡 简约风家具凸显家居个性"
-                                                             class="J_newsListLine line noHover g_item   fk-newsLineHeight   ">
-                                                            <div id="lineBody11"
-                                                                 class="J_lineBody lineBody newsListLineBody1">
-                                                                <div class="J_titleLine fk-titleLine">
-                                                                    <div class="J_newsTitle newsTitle J_noChangeStyle newsListNewsTitle3"
-                                                                         style="width: 75%;">
-                                                                        <div class="J_newsListTopFlag "></div>
-                                                                        <a class="fk-newsListTitle" hidefocus="true"
-                                                                           href="nd.jsp?id=11#_np=107_377"
-                                                                           target="_blank" title="简洁不平凡 简约风家具凸显家居个性">简洁不平凡
-                                                                            简约风家具凸显家居个性</a>
-                                                                    </div>
-                                                                    <div class="J_newsCalendar newsCalendar J_noChangeStyle newsListCalendar1"
-                                                                         style="width: 23.5%;">
-                                                                        <a class="fk-newsListDate" hidefocus="true"
-                                                                           href="nd.jsp?id=11#_np=107_377"
-                                                                           target="_blank">2017-05-02</a>
-                                                                    </div>
-                                                                    <div class="clearfloat"></div>
-                                                                </div>
-                                                                <div>
-                                                                    <p class="pic-mixNewsStyleSummary fk-newsListSummary">
-                                                                        简洁不代表没有个性，简洁也不代表随意，简约风的家具除了从色调…</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="J_separatorLine separatorLine g_separator  newsListSeparatorLine "></div>
-                                                        -->
+                                                        <nav th:replace="fragments/fragment :: pagination"></nav>
                                                         <div class="clearfloat"></div>
                                                     </div>
                                                 </div>

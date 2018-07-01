@@ -17,8 +17,10 @@ import java.util.List;
 @Mapper
 public interface NewsDao {
 
-    List<News> getIndexNews(@Param("colId") int colId, @Param("limit") int limit);
+    List<News> getIndexNews(@Param("limit") int limit, @Param("start") int start);
 
     News loadNews(int newsId);
+
+    long countNews();
 
 }

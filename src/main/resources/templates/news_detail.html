@@ -3,45 +3,17 @@
 <html xlang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title th:text="${news.title}"></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="Cache-Control" content="no-transform"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="format-detection" content="telephone=no,email=no,address=no"/>
-    <meta name="renderer" content="webkit"/>
-    <meta property="og:url" content="http://fkjj21.faisco.cn/nd.jsp?id=11"/>
-    <meta name="mobile-agent" content="format=html5;url=http://m.fkjj21.icoc.me/nd.jsp?id=11"/>
-    <meta name="description" itemprop="description" content="网站模板—家私家具"/>
-    <meta itemprop="name" content="简洁不平凡 简约风家具凸显家居个性 - 网站模板—家私家具"/>
-    <meta name="keywords" content="网站模板—家私家具,简洁不平凡 简约风家具凸显家居个性"/>
-    <link rel='canonical' href='//fkjj21.faisco.cn/nd.jsp?id=11'/>
-    <link type="text/css" href="//2.ss.faisys.com/css/base2.min.css?v=201806071107" rel="stylesheet"/>
-    <link type="text/css" href="//jzs.faisys.com/1004/fkTheme.min.css?v=20180523162544&amp;isNavV2=true&amp;isBannerV2=true"
-          rel="stylesheet" id="jzThemeFrame"/>
-    <link type='text/css' href='//2.ss.faisys.com/css/detail2.min.css?v=201806071107' rel='stylesheet'/>
-    <link type='text/css' href='//2.ss.faisys.com/css/newSearchBoxStyle.min.css?v=201806041903' rel='stylesheet'/>
-    <link type="text/css" href="//2.ss.faisys.com/css/edit.min.css?v=201806111113" rel="stylesheet"/>
-    <link type="text/css" href="//2.ss.faisys.com/css/comm/vcomponents.min.css?v=201806041139" rel="stylesheet"/>
-    <link type="text/css" href="//2.ss.faisys.com/css/comm/colorpicker/colorpicker.min.css?v=201710091556"
-          rel="stylesheet"/>
-    <link type="text/css" href="//2.ss.faisys.com/css/comm/fkeditor/fkeditor.min.css?v=201806051041" rel="stylesheet"/>
-    <link type="text/css" href="//2.ss.faisys.com/css/site/poshytipAndmCustomScrollbar.min.css?v=201707031157"
-          rel="stylesheet"/>
-    <link type="text/css" href="jzcusstyle.jsp?colId=7&amp;extId=0&amp;_csw=0" rel="stylesheet"/>
-    <script type="text/javascript" src="//1.ss.faisys.com/js/comm/jquery/jquery-core.min.js?v=201805071201"></script>
-    <script type="text/javascript"
-            src="//1.ss.faisys.com/js/comm/jquery/jquery-mousewheel.min.js?v=201408111734"></script>
-    <script type="text/javascript" src="//1.ss.faisys.com/js/comm/fai.min.js?v=201806041139"></script>
-    <script type="text/javascript" src="//1.ss.faisys.com/js/comm/jquery/jquery-ui-core.min.js?v=201805071201"></script>
-    <script type="text/javascript" src="//1.ss.faisys.com/js/site.min.js?v=201806111403"></script>
-    <script type="text/javascript" src="//1.ss.faisys.com/js/locale/2052.min.js?v=201806051006"></script>
-
+    <title th:text="${news.title}+'-'+${company.name}"></title>
+    <meta name="description" itemprop="description" th:content="${news.title}"/>
+    <meta itemprop="name" th:content="${news.title}"/>
+    <meta name="keywords" th:content="${news.title}+'-'+${company.name}"/>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"/>
+    <head th:replace="fragments/fragment :: headJsCss"></head>
+    <link type='text/css' th:href='@{/css/detail2.min.css}' rel='stylesheet'/>
+    <link type="text/css" th:href="@{/css/jzcusstyle.css}" rel="stylesheet" />
 </head>
 
 <body class="g_body g_locale2052 g_cusSiteWidth  ">
-
-<script type="text/javascript" src="//1.ss.faisys.com/js/jzUtils.min.js?v=201801151214"></script>
-
 <div id='sitetips' class='sitetips sitetips_new' style='display:none;'>
     <div class='keepcenter_tipbar'>
         <div class='tiptext'></div>
@@ -53,336 +25,12 @@
 </div>
 
 
-<div id="g_main" class='g_main g_col7  forMacAndChrome' style='top:45px'>
+<div id="g_main" class='g_main g_col7  forMacAndChrome'>
     <div id="web" class="g_web ">
-        <table class="webTopTable" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="center">
-                    <div id="webTop" class="webTop">
-                        <div id='corpTitle' class='corpTitle corpTitle2' fontPatternTitle='false' style=';'
-                             _linkType='0'>
-                            <div style="" class="newPrimaryTitle"><b
-                                    style="color: rgb(0, 0, 0); font-family: 微软雅黑, &quot;microsoft yahei&quot;;"><font
-                                    color="#ffffff" style="color: rgb(255, 255, 255);"><font color="#ffc001"><font
-                                    style="color: rgb(74, 179, 68);" color="#4ab344">Furniture</font></font> <font
-                                    color="#cccccc" style="color: rgb(204, 204, 204);">Design</font></font></b><br/>
-                            </div>
-                        </div>
 
-                    </div>
-                </td>
-            </tr>
-        </table>
+        <div th:replace="fragments/fragment :: menu"></div>
 
-        <table class="absTopTable" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="center">
-                    <div id="absTopForms" class="forms sideForms absForms">
-                        <div style="position:absolute;"></div><!-- for ie6 -->
-
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="webNavTable" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="center">
-                    <div id="webNav" class="webNav webNavDefault">
-                        <div id='navV2Wrap'>
-                            <div id='navV2' class='nav navV2'>
-                                <div class='navMainContent'>
-                                    <div class='navContent'>
-                                        <div id='navCenterContent' class='navCenterContent'>
-                                            <div id='navCenter' class='navCenter'>
-                                                <div class='itemPrev'></div>
-                                                <div class='itemContainer'>
-                                                    <div title='' id='nav2' class='item itemCol2 itemIndex1' colId='2'
-                                                         onclick='window.open("/", "_self")'
-                                                         _jump='window.open("/", "_self")'>
-                                                        <div class='itemCenter'><a hidefocus='true'
-                                                                                   style='outline:none;' href='/'
-                                                                                   onclick="return false;"><span
-                                                                class='itemName0'>首页</span></a></div>
-                                                    </div>
-                                                    <div class='itemSep'></div>
-                                                    <div title='' id='nav105' class='item itemCol105 itemIndex2'
-                                                         colId='105' onclick='window.open("/col.jsp?id=105", "_self")'
-                                                         _jump='window.open("/col.jsp?id=105", "_self")'>
-                                                        <div class='itemCenter'><a hidefocus='true'
-                                                                                   style='outline:none;'
-                                                                                   href='/col.jsp?id=105'
-                                                                                   onclick="return false;"><span
-                                                                class='itemName0'>产品中心</span></a></div>
-                                                    </div>
-                                                    <div class='itemSep'></div>
-                                                    <div title='' id='nav106' class='item itemCol106 itemIndex3'
-                                                         colId='106' onclick='window.open("/col.jsp?id=106", "_self")'
-                                                         _jump='window.open("/col.jsp?id=106", "_self")'>
-                                                        <div class='itemCenter'><a hidefocus='true'
-                                                                                   style='outline:none;'
-                                                                                   href='/col.jsp?id=106'
-                                                                                   onclick="return false;"><span
-                                                                class='itemName0'>案例中心</span></a></div>
-                                                    </div>
-                                                    <div class='itemSep'></div>
-                                                    <div title='' id='nav107' class='item itemCol107 itemIndex4'
-                                                         colId='107' onclick='window.open("/col.jsp?id=107", "_self")'
-                                                         _jump='window.open("/col.jsp?id=107", "_self")'>
-                                                        <div class='itemCenter'><a hidefocus='true'
-                                                                                   style='outline:none;'
-                                                                                   href='/col.jsp?id=107'
-                                                                                   onclick="return false;"><span
-                                                                class='itemName0'>新闻中心</span></a></div>
-                                                    </div>
-                                                    <div class='itemSep'></div>
-                                                    <div title='' id='nav108' class='item itemCol108 itemIndex5'
-                                                         colId='108' onclick='window.open("/col.jsp?id=108", "_self")'
-                                                         _jump='window.open("/col.jsp?id=108", "_self")'>
-                                                        <div class='itemCenter'><a hidefocus='true'
-                                                                                   style='outline:none;'
-                                                                                   href='/col.jsp?id=108'
-                                                                                   onclick="return false;"><span
-                                                                class='itemName0'>关于我们</span></a></div>
-                                                    </div>
-                                                </div>
-                                                <div class='itemNext'></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href='/col.jsp?id=109' style='display:none;'>联系我们</a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-
-        <table class="webHeaderTable J_webHeaderTable" cellpadding="0" cellspacing="0" id="webHeaderTable">
-            <tr>
-                <td align="center" class="J_webHeaderTable webHeaderTd fk-moduleZoneWrap">
-
-                    <div id="fk-webHeaderZone"
-                         class="elemZone elemZoneModule J_moduleZone fk-webHeaderZone fk-moduleZone forms sideForms">
-                        <div class="fk-moduleZoneBg fk-elemZoneBg J_zoneContentBg elemZoneBg"></div>
-
-                    </div>
-
-                    <div id="webHeader" class="webHeader">
-                        <table class='headerTable' cellpadding='0' cellspacing='0'>
-                            <tr>
-                                <td class='headerCusLeft'></td>
-                                <td class='headerCusMiddle' align='center' valign='top'>
-                                    <div class='headerNav headerNavDefault'>
-
-                                    </div>
-                                </td>
-                                <td class='headerCusRight'></td>
-                            </tr>
-                        </table>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="webBannerTable J_webBannerTable" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="center" class="fk-moduleZoneWrap">
-
-
-                    <div id="webBanner" class="webBanner">
-                        <table class="bannerTable" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <td class="bannerLeft"></td>
-                                <td class="bannerCenter" align='center' valign='top'>
-
-                                    <div style="visibility:hidden;" class="fk-inBannerListZone-tmp forms">
-
-                                        <div id='module386' bannerTitle='图片' _indexClass='formIndex1' _moduleType='1'
-                                             _modulestyle='79' _moduleid='386'
-                                             class='form form386 formIndex1 formStyle79 formInZone ' title='' _sys='1'
-                                             _banId='AD0It_qCBRACGAAgivy1ywUoxMLAmwYwgA84oAY'
-                                             style='position:absolute;top:237px;left:312px;width:556px;' _side='0'
-                                             _inTab='0' _inMulMCol='0' _inFullmeasure='0' _inpack='0' _inpopupzone='0'
-                                             _autoHeight='0' _global='false' _independent='false'>
-                                            <div class='lightModuleOuterContent lightModuleOuterContent386'>
-                                                <div class='floatImg floatImg_J floatImg_J_special'><a hidefocus='true'
-                                                                                                       class='J_floatImg_jump f_floatImg_jump '>
-                                                    <div class='floatImgWrap'>
-                                                        <div class='forMargin'><img id='float_img_386'
-                                                                                    class='float_in_img J_defImage '
-                                                                                    src='//10532151.s61i.faiusr.com/4/AD0It_qCBRAEGAAgkPy1ywUovMqy-wMwrAQ4kgI.png'
-                                                                                    alt='AD0It_qCBRAEGAAgkPy1ywUovMqy-wMwrAQ4kgI'/>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div id='module387' bannerTitle='图片' _indexClass='formIndex2' _moduleType='1'
-                                             _modulestyle='79' _moduleid='387'
-                                             class='form form387 formIndex2 formStyle79 formInZone ' title='' _sys='1'
-                                             _banId='AD0It_qCBRACGAAgivy1ywUoxMLAmwYwgA84oAY'
-                                             style='position:absolute;top:459px;left:386px;width:408px;' _side='0'
-                                             _inTab='0' _inMulMCol='0' _inFullmeasure='0' _inpack='0' _inpopupzone='0'
-                                             _autoHeight='0' _global='false' _independent='false'>
-                                            <div class='lightModuleOuterContent lightModuleOuterContent387'>
-                                                <div class='floatImg floatImg_J floatImg_J_special'><a hidefocus='true'
-                                                                                                       class='J_floatImg_jump f_floatImg_jump '>
-                                                    <div class='floatImgWrap'>
-                                                        <div class='forMargin'><img id='float_img_387'
-                                                                                    class='float_in_img J_defImage '
-                                                                                    src='//10532151.s61i.faiusr.com/4/AD0It_qCBRAEGAAgkvy1ywUo8qDKoAIwmAM4GQ.png'
-                                                                                    alt='AD0It_qCBRAEGAAgkvy1ywUo8qDKoAIwmAM4GQ'/>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div id='module388' bannerTitle='文本' _indexClass='formIndex3' _moduleType='1'
-                                             _modulestyle='86' _moduleid='388'
-                                             class='form form388 formIndex3 formStyle86 formInZone  siteEditor '
-                                             title='' _sys='1' _banId='AD0It_qCBRACGAAgivy1ywUoxMLAmwYwgA84oAY'
-                                             style='position:absolute;top:320px;left:380px;width:440px;' _side='0'
-                                             _inTab='0' _inMulMCol='0' _inFullmeasure='0' _inpack='0' _inpopupzone='0'
-                                             _autoHeight='0' _global='false' _independent='false'>
-                                            <div class='lightModuleOuterContent lightModuleOuterContent388'>
-                                                <div class='fk-editor simpleText fk-editor-break-word  '><font
-                                                        face="SimSun" style="font-size: 60px;"><b><font
-                                                        style="color: rgb(28, 36, 70);"
-                                                        color="#1c2446">高雅的生活品质</font></b></font>
-                                                    <div><font face="SimSun" style="font-size: 60px;"><b><font
-                                                            style="color: rgb(28, 36, 70);" color="#1c2446"><br/></font></b></font>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div id='module389' bannerTitle='文本' _indexClass='formIndex4' _moduleType='1'
-                                             _modulestyle='86' _moduleid='389'
-                                             class='form form389 formIndex4 formStyle86 formInZone  siteEditor '
-                                             title='' _sys='1' _banId='AD0It_qCBRACGAAgivy1ywUoxMLAmwYwgA84oAY'
-                                             style='position:absolute;top:392px;left:450px;width:300px;' _side='0'
-                                             _inTab='0' _inMulMCol='0' _inFullmeasure='0' _inpack='0' _inpopupzone='0'
-                                             _autoHeight='0' _global='false' _independent='false'>
-                                            <div class='lightModuleOuterContent lightModuleOuterContent389'>
-                                                <div class='fk-editor simpleText fk-editor-break-word  '><span
-                                                        style="font-size: 36px; color: rgb(83, 52, 17);"
-                                                        color="#533411">舒适 / 舒心 / 惬意</span>
-                                                    <div><span style="font-size: 36px; color: rgb(83, 52, 17);"
-                                                               color="#533411"><br/></span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div id='module390' bannerTitle='文本' _indexClass='formIndex5' _moduleType='1'
-                                             _modulestyle='86' _moduleid='390'
-                                             class='form form390 formIndex5 formStyle86 formInZone  siteEditor '
-                                             title='' _sys='1' _banId='AD0It_qCBRACGAAgivy1ywUoxMLAmwYwgA84oAY'
-                                             style='position:absolute;top:271px;left:471px;width:237px;' _side='0'
-                                             _inTab='0' _inMulMCol='0' _inFullmeasure='0' _inpack='0' _inpopupzone='0'
-                                             _autoHeight='0' _global='false' _independent='false'>
-                                            <div class='lightModuleOuterContent lightModuleOuterContent390'>
-                                                <div class='fk-editor simpleText fk-editor-break-word  '><font
-                                                        color="#583d04" style="color: rgb(88, 61, 4); font-size: 24px;">[
-                                                    精选主材 &nbsp;时尚简约 ]</font></div>
-                                            </div>
-                                        </div>
-
-                                        <div id='module391' bannerTitle='图片' _indexClass='formIndex6' _moduleType='1'
-                                             _modulestyle='79' _moduleid='391'
-                                             class='form form391 formIndex6 formStyle79 formInZone ' title='' _sys='1'
-                                             _banId='AD0It_qCBRACGAAgiPy1ywUouIaTjgEwgA84oAY'
-                                             style='position:absolute;top:143px;left:524px;width:273px;' _side='0'
-                                             _inTab='0' _inMulMCol='0' _inFullmeasure='0' _inpack='0' _inpopupzone='0'
-                                             _autoHeight='0' _global='false' _independent='false'>
-                                            <div class='lightModuleOuterContent lightModuleOuterContent391'>
-                                                <div class='floatImg floatImg_J floatImg_J_special'><a hidefocus='true'
-                                                                                                       class='J_floatImg_jump f_floatImg_jump '>
-                                                    <div class='floatImgWrap'>
-                                                        <div class='forMargin'><img id='float_img_391'
-                                                                                    class='float_in_img J_defImage '
-                                                                                    src='//10532151.s61i.faiusr.com/4/AD0It_qCBRAEGAAgj-y1ywUoivCYkAYwkQI4jwM.png'
-                                                                                    alt='AD0It_qCBRAEGAAgj-y1ywUoivCYkAYwkQI4jwM'/>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div id='module392' bannerTitle='图片' _indexClass='formIndex7' _moduleType='1'
-                                             _modulestyle='79' _moduleid='392'
-                                             class='form form392 formIndex7 formStyle79 formInZone ' title='' _sys='1'
-                                             _banId='AD0It_qCBRACGAAgiPy1ywUouIaTjgEwgA84oAY'
-                                             style='position:absolute;top:30px;left:1000px;width:235px;' _side='0'
-                                             _inTab='0' _inMulMCol='0' _inFullmeasure='0' _inpack='0' _inpopupzone='0'
-                                             _autoHeight='0' _global='false' _independent='false'>
-                                            <div class='lightModuleOuterContent lightModuleOuterContent392'>
-                                                <div class='floatImg floatImg_J floatImg_J_special'><a hidefocus='true'
-                                                                                                       class='J_floatImg_jump f_floatImg_jump '>
-                                                    <div class='floatImgWrap'>
-                                                        <div class='forMargin'><img id='float_img_392'
-                                                                                    class='float_in_img J_defImage '
-                                                                                    src='//10532151.s61i.faiusr.com/4/AD0It_qCBRAEGAAgjfy1ywUo_9jB1Qcw6wE40wI.png'
-                                                                                    alt='AD0It_qCBRAEGAAgjfy1ywUo_9jB1Qcw6wE40wI'/>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div id='module393' bannerTitle='文本' _indexClass='formIndex8' _moduleType='1'
-                                             _modulestyle='86' _moduleid='393'
-                                             class='form form393 formIndex8 formStyle86 formInZone  siteEditor '
-                                             title='' _sys='1' _banId='AD0It_qCBRACGAAgiPy1ywUouIaTjgEwgA84oAY'
-                                             style='position:absolute;top:212px;left:626px;width:586px;' _side='0'
-                                             _inTab='0' _inMulMCol='0' _inFullmeasure='0' _inpack='0' _inpopupzone='0'
-                                             _autoHeight='0' _global='false' _independent='false'>
-                                            <div class='lightModuleOuterContent lightModuleOuterContent393'>
-                                                <div class='fk-editor simpleText fk-editor-break-word  '><font style=""
-                                                                                                               color="rgba(102,102,102,1)"><font
-                                                        style="color: rgb(74, 179, 69);" color="#4ab345"
-                                                        face="SimSun"><b><span style="font-size: 56px;">时尚简约·年轻自然</span></b></font></font>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div id='module394' bannerTitle='文本' _indexClass='formIndex9' _moduleType='1'
-                                             _modulestyle='86' _moduleid='394'
-                                             class='form form394 formIndex9 formStyle86 formInZone  siteEditor '
-                                             title='' _sys='1' _banId='AD0It_qCBRACGAAgiPy1ywUouIaTjgEwgA84oAY'
-                                             style='position:absolute;top:286px;left:633px;width:474px;' _side='0'
-                                             _inTab='0' _inMulMCol='0' _inFullmeasure='0' _inpack='0' _inpopupzone='0'
-                                             _autoHeight='0' _global='false' _independent='false'>
-                                            <div class='lightModuleOuterContent lightModuleOuterContent394'>
-                                                <div class='fk-editor simpleText fk-editor-break-word  '><font
-                                                        face="SimSun"><font
-                                                        style="color: rgb(74, 179, 69); font-size: 34px;"
-                                                        color="rgba(74,179,69,1)">时尚简约布局还你想象力空间</font></font></div>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                    <div class='bannerTop'></div>
-                                    <div id='bannerV2' class='banner extBanner' fbHeight='800' defaultwidth='0'
-                                         style=' height: 800px; background: none;'>
-                                        <div class='banner defaultBannerMain J_bannerItem'
-                                             style='background:url(//10532151.s61i.faiusr.com/2/AD0It_qCBRACGAAgivy1ywUoxMLAmwYwgA84oAY.jpg) 50% 50% no-repeat;background-size: cover;height:800px;'></div>
-                                    </div>
-
-                                </td>
-                                <td class="bannerRight"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </td>
-            </tr>
-        </table>
+        <div th:replace="fragments/fragment :: indexAds"></div>
 
         <table class="absMiddleTable" cellpadding="0" cellspacing="0">
             <tr>
@@ -477,21 +125,15 @@
                                                                                  tabStyle='0'>
                                                                                 <div class='newsDetail newsDetailV2'
                                                                                      newsid='11'>
-                                                                                    <div class='title'>简洁不平凡
-                                                                                        简约风家具凸显家居个性
+                                                                                    <div class='title' th:text="${news.title}">
                                                                                     </div>
                                                                                     <div class='newsInfoWrap'>
                                                                                         <div class='rightInfo'></div>
                                                                                         <div class='leftInfo'></div>
                                                                                     </div>
                                                                                     <div class='line1'></div>
-                                                                                    <div class='richContent  richContent0'>
-                                                                                        <p><span
-                                                                                                style="font-family:微软雅黑;font-size:16px;color:#666666;">简洁不代表没有个性，简洁也不代表随意，简约风的家具除了从色调和造型上凸显它的简洁外，其实这样的家具内在蕴含这一股不平凡，简约家具也能很有个性，一起看看你家适合什么样的简约家具吧。</span>
-                                                                                        </p>
-                                                                                        <p><span
-                                                                                                style="font-family:微软雅黑;font-size:16px;color:#666666;">简欧风格将欧式风格装修进行了简化，简欧风格的家具与装修是相称的，暗红色、白色或者带有西方复古图案、线条的造型，桌椅都带有精致的曲线和图案，但是与欧式风格相比，这些图案更显细腻，而并没有太过夸张。</span>
-                                                                                        </p></div>
+                                                                                    <div class='richContent  richContent0' th:utext="${news.content}">
+                                                                                    </div>
                                                                                     <div class='line2'></div>
                                                                                     <div class='middlePanel'>
                                                                                         <div id='prevAndNextDivV2'>
@@ -639,110 +281,17 @@
             <wbr style='display:none;'/>
         </div>
 
-        <table class="absBottomTable" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="center">
-                    <div id="absBottomForms" class="forms sideForms absForms">
-                        <div style="position:absolute;"></div><!-- for ie6 -->
+        <div th:replace="fragments/fragment :: webFooterTable"></div>
 
-                    </div>
-                </td>
-            </tr>
-        </table>
-
-        <table id="webFooterTable" class="webFooterTable J_webFooterTable" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="center" valign="top" class="fk-moduleZoneWrap">
-
-                    <div id="fk-webFooterZone"
-                         class="elemZone elemZoneModule J_moduleZone fk-webFooterZone fk-moduleZone forms sideForms">
-                        <div class="fk-moduleZoneBg fk-elemZoneBg J_zoneContentBg elemZoneBg"></div>
-
-                    </div>
-
-
-                    <div id="webFooter" class="webFooter">
-                        <div id='footer' class='footer'>
-                            <table class='footerTop' cellpadding='0' cellspacing='0'>
-                                <tr valign='top'>
-                                    <td class='topLeft'></td>
-                                    <td class='topCenter'></td>
-                                    <td class='topRight'></td>
-                                </tr>
-                            </table>
-                            <table class='footerMiddle' cellpadding='0' cellspacing='0'>
-                                <tr valign='top'>
-                                    <td class='middleLeft'></td>
-                                    <td class='middleCenter' align='center'>
-                                        <div class='footerContent'>
-                                            <div class='footerInfo footerInfoV2 J_footerInfo'>©2018 网站样板-家私家具 版权所有</div>
-                                            <div class='footerSupport' id='footerSupport'><span
-                                                    class='footerMobile J_supportItem'><a hidefocus='true'
-                                                                                          href='http://m.fkjj21.icoc.me'
-                                                                                          target='_blank'>手机版</a></span>
-                                                <span class='footerSep J_footerSep'>|</span><span
-                                                        class='footerFaisco J_supportItem'>本站使用<a class='J_supportLink'
-                                                                                                  hidefocus='true'
-                                                                                                  href='http://jz.faisco.com/proFree.html?_ta=10'
-                                                                                                  onclick='Site.logDog(100065, 1);'
-                                                                                                  target='_blank'><span
-                                                        class='faisco-icons-logo' id='faisco-icons-logo'
-                                                        style='padding-left:2px;padding-right:2px;position:relative;top:2px;'></span>凡科建站</a><span
-                                                        style='padding-left:8px;'>搭建</span></span> <span
-                                                        class='footerSep J_footerSep'>|</span> <span id='footerLogin'
-                                                                                                     class='footerLogin J_supportItem'><a
-                                                        name='popupLogin' hidefocus='true'
-                                                        href='http://www.faisco.cn?cacct=fkjj21'
-                                                        onclick='Fai.closeTip("#footerLogin");'>管理登录</a></span> <span
-                                                        class='bgplayerButton' id='bgplayerButton'
-                                                        style='display:none;'></span></div>
-                                        </div>
-                                    </td>
-                                    <td class='middleRight'></td>
-                                </tr>
-                            </table>
-                            <table class='footerBottom' cellpadding='0' cellspacing='0'>
-                                <tr valign='top'>
-                                    <td class='bottomLeft'></td>
-                                    <td class='bottomCenter'></td>
-                                    <td class='bottomRight'></td>
-                                </tr>
-                            </table>
-                        </div>
-
-                    </div>
-
-
-                </td>
-            </tr>
-        </table>
-        <div class="clearfloat"></div>
     </div>
 
 
 </div>
 
 
-<div class="floatLeftTop manageTranTop" style='top:45px'>
-    <div id="floatLeftTopForms" class="forms sideForms floatForms">
+<footer th:replace="fragments/fragment :: floatDiv"></footer>
 
-    </div>
-</div>
-<div class="floatRightTop manageTranTop" style='top:45px'>
-    <div id="floatRightTopForms" class="forms sideForms floatForms">
 
-    </div>
-</div>
-<div class="floatLeftBottom">
-    <div id="floatLeftBottomForms" class="forms sideForms floatForms">
-
-    </div>
-</div>
-<div class="floatRightBottom">
-    <div id="floatRightBottomForms" class="forms sideForms floatForms">
-
-    </div>
-</div>
 <div id="popupLevel" class="popupLevel">
     <div id="popupLevelWrap" class='popupLevelWrap'>
         <div id="popupLevelEditToolArea" class="popupLevelEditToolArea">
@@ -754,7 +303,6 @@
 </div>
 
 
-<!-- 样式面板 -->
 <div class="fk-funPanelStyleArea" id="fk-funPanelStyleArea">
     <div class="fk-funPanelStyle fk-funPanel" id="fk-funPanelStyle">
         <transition name="component-fade" mode="out-in">
@@ -770,7 +318,8 @@
 </div>
 
 <link type='text/css' href='//2.ss.faisys.com/css/fontsIco.min.css?v=201806111403' rel='stylesheet'/>
-
+<footer th:replace="fragments/fragment :: footerCssJs"></footer>
+<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
 

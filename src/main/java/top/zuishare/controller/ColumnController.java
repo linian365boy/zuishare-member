@@ -12,6 +12,7 @@ import top.zuishare.constants.Constants;
 import top.zuishare.service.*;
 import top.zuishare.spi.model.*;
 
+import java.lang.reflect.MalformedParameterizedTypeException;
 import java.util.List;
 
 /**
@@ -40,6 +41,8 @@ public class ColumnController {
     private ProductService productService;
     @Autowired
     private NewsService newsService;
+    @Autowired
+    private CategoryService categoryService;
 
     /*@RequestMapping("/column/{code}")
     public String toColumn(@PathVariable("code") String code, ModelMap map){
@@ -67,10 +70,10 @@ public class ColumnController {
         switch (code){
             case Constants.PRODUCT_COLUMN_NAME:
                 logger.info("enter column page cost {} ms", System.currentTimeMillis() - start);
-                return products(map);
+                return products(map, 1, "/column/"+Constants.PRODUCT_COLUMN_NAME+"/");
             case Constants.NEWS_COLUMN_NAME:
                 logger.info("enter column page cost {} ms", System.currentTimeMillis() - start);
-                return news(map);
+                return news(map, 1, "/column/"+Constants.NEWS_COLUMN_NAME+"/");
             case "aboutUs":
                 return code;
             case "contactUs":
@@ -95,34 +98,49 @@ public class ColumnController {
 
         Column column = columnService.getColumnByCode(code);
 
+        List<Category> categories = categoryService.queryCategory();
+
+        logger.info("query category size => {}", categories == null ? 0 : categories.size());
+
         map.put("currentColumn", column);
         map.put("columns", columns);
         map.put("company", company);
         map.put("config", config);
+        map.put("categories", categories);
     }
 
 
-    public String products(ModelMap map){
-        Column col = (Column) map.get("currentColumn");
-        int colId = 0;
-        if(col != null) {
-            colId = col.getId();
+    public String products(ModelMap map, int pageNo, String urlPrefix){
+        long count = productService.countProducts();
+        long totalPage = count%Constants.PRODUCT_PAGE_SIZE == 0 ?
+                count/Constants.PRODUCT_PAGE_SIZE : (count/Constants.PRODUCT_PAGE_SIZE)+1;
+        map.put("totalPage", totalPage);
+        List<Product> products = null;
+        if (pageNo > totalPage) {
+            pageNo = 1;
         }
-        List<Product> products = productService.listProducts(colId, Constants.PRODUCT_PAGE_SIZE);
-        map.put("products", products);
+        products = productService.listProducts(Constants.PRODUCT_PAGE_SIZE, pageNo);
+        map.put("list", products);
+        map.put("currentPageNo", pageNo);
+        map.put("urlPrefix", urlPrefix);
+        logger.info("products page totalPage=>{}, totalNum=>{}", totalPage, count);
         return Constants.PRODUCT_COLUMN_NAME;
     }
 
 
-    public String news(ModelMap map){
-        Column col = (Column) map.get("currentColumn");
-        int colId = 0;
-        if(col != null) {
-            colId = col.getId();
+    public String news(ModelMap map, int pageNo, String urlPrefix){
+        long count = newsService.countNews();
+        long totalPage = count%Constants.NEWS_PAGE_SIZE == 0 ?
+                count/Constants.NEWS_PAGE_SIZE : (count/Constants.NEWS_PAGE_SIZE)+1;
+        if (pageNo > totalPage) {
+            pageNo = 1;
         }
-        List<News> news = newsService.listNews(colId, Constants.NEWS_PAGE_SIZE);
-        logger.info("list news size={}", news!=null?news.size():0);
-        map.put("newsList", news);
+        List<News> news = newsService.listNews(Constants.NEWS_PAGE_SIZE, pageNo);
+        map.put("list", news);
+        map.put("totalPage", totalPage);
+        map.put("currentPageNo", pageNo);
+        map.put("urlPrefix", urlPrefix);
+        logger.info("list news totalPage={}, pageNo=>{}", totalPage, pageNo);
         return Constants.NEWS_COLUMN_NAME;
     }
 
@@ -132,6 +150,48 @@ public class ColumnController {
 
     public String contactUs(ModelMap map){
         return "contactUs";
+    }
+
+
+    @RequestMapping("/column/products/{pageNo}")
+    public String productsByPage(@PathVariable("pageNo") int pageNo, ModelMap map){
+        common("products", map);
+        return products(map, pageNo, "/column/products/");
+    }
+
+    @RequestMapping("/column/news/{pageNo}")
+    public String newsByPage(@PathVariable("pageNo") int pageNo, ModelMap map){
+        common("news", map);
+        return news(map, pageNo, "/column/news/");
+    }
+
+    @RequestMapping("/product/cate/{cateId}/{pageNo}")
+    public String productsByCatePage(@PathVariable("cateId") int cateId,
+                                     @PathVariable("pageNo") int pageNo,
+                                     ModelMap map){
+        return productsByCateId(cateId, pageNo, "/product/cate/"+cateId+"/",map);
+    }
+
+    @RequestMapping("/product/cate/{cateId}")
+    public String productsByCate(@PathVariable("cateId") int cateId, ModelMap map){
+        return productsByCateId(cateId, 1, "/product/cate/"+cateId+"/", map);
+    }
+
+    private String productsByCateId(int cateId, int pageNo, String urlPrefix, ModelMap map){
+        common("products", map);
+        long count = productService.countProductsByCateId(cateId);
+        long totalPage = count%Constants.PRODUCT_PAGE_SIZE == 0 ?
+                count/Constants.PRODUCT_PAGE_SIZE : (count/Constants.PRODUCT_PAGE_SIZE)+1;
+        if(pageNo > totalPage){
+            pageNo = 1;
+        }
+        List<Product> cateProducts = productService.queryProductsByCateId(cateId, Constants.PRODUCT_PAGE_SIZE, pageNo);
+        map.put("list", cateProducts);
+        map.put("totalPage", totalPage);
+        map.put("currentPageNo", pageNo);
+        map.put("urlPrefix", urlPrefix);
+        logger.info("get category products totalPage=>{}, totalNum=>{}", totalPage, count);
+        return "products";
     }
 
 }

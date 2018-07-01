@@ -47,7 +47,60 @@
         .fk_siteBackToTop{margin:1px;}
         .fk_siteBackToTop{background-image:url(//0.ss.faisys.com/image/backToTop/secondStyle/03.png?v=201505251717);}
     </style>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.min.css}"/>
 </head>
+
+
+<table th:fragment="indexAds" id="indexAds" class="webBannerTable J_webBannerTable" cellpadding="0" cellspacing="0">
+    <tr>
+        <td align="center" class="fk-moduleZoneWrap">
+            <div id="webBanner" class="webBanner">
+                <table class="bannerTable" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="bannerLeft"></td>
+                        <td class="bannerCenter" align='center' valign='top'>
+                            <div class='bannerTop'></div>
+                            <div id='bannerV2' class='banner extBanner' defaultwidth='0'
+                                 style='height:auto; background: none; overflow: hidden;'>
+                                <div class="imageSwitchShowName"><span
+                                        class="spanHiddenName spanShowName"></span><span
+                                        class="spanHiddenName"></span></div>
+                                <div id="carousel-generic" class="carousel slide" data-ride="carousel">
+                                    <!-- Indicators -->
+                                    <ol class="carousel-indicators">
+                                        <li th:each="ad,iterStat:${ads}" data-target="#carousel-generic" th:attr="data-slide-to=${iterStat.index}" th:class="${iterStat.first}?'active'"></li>
+                                    </ol>
+
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner" role="listbox">
+                                        <div th:each="ad,iterStat:${ads}" th:class="${iterStat.first}?'item active':'item'">
+                                            <a th:href="@{${ad.url}}" target="_blank"><img th:src="@{'/'+${ad.picUrl}}" th:alt="${ad.name}"/></a>
+                                            <div class="carousel-caption" th:utext="${ad.comment}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Controls -->
+                                    <a class="left carousel-control" href="#carousel-generic" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-generic" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </td>
+                        <td class="bannerRight"></td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
 
 
 <footer th:fragment="footerCssJs" id="footerCssJs">
@@ -59,93 +112,39 @@
             th:src="@{/js/jquery-ui-core.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/2052.min.js}"></script>
     <link type='text/css' th:href='@{/css/fontsIco.min.css}' rel='stylesheet'/>
+    <script type="text/javascript" th:src="@{/js/waypoints.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/tools.js}"></script>
 </footer>
 
 
-<div th:fragment="menu" id="menu">
-    <table class="webTopTable" cellpadding="0" cellspacing="0">
-        <tr>
-            <td align="center">
-                <div id="webTop" class="webTop">
-                    <div id='corpTitle' class='corpTitle corpTitle2' fontPatternTitle='false' style=';'
-                         _linkType='0' onpaste="Fai.top.Site.corpTitleFormatPasteDatacorpTitle();">
-                        <div style="" class="newPrimaryTitle">
-                            <img th:src="@{'/'+${company.logo}}" width="253px" height="45px" th:title="${company.name}" th:alt="${company.name}"/>
-                        </div>
+<div th:fragment="menu" id="menu" class="headerwrap" style="height: auto;">
+    <header id="masthead" class="site-header" role="banner" style="top: 0px;">
+        <div class="headerinnerwrap">
+            <a class="home-link" href="/" th:title="${company.name}" rel="home">
+                <span><img th:src="@{'/'+${company.logo}}" th:alt="${company.name}" width="285px" height="82px"/></span>
+            </a>
+            <div id="navbar" class="navbar">
+                <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+                    <div class="nav-container">
+                        <ul id="menu-ul" class="nav-menu">
+                            <li id="menu-item-0" th:class="${currentColumn.id}?'menu-item':'menu-item current-menu-item current_page_item'">
+                                <a href="/">Home</a>
+                            </li>
+                            <li th:id="'menu-item-'+${column.id}" th:each="column:${columns}" th:class="${currentColumn.id==column.id}?'menu-item current-menu-item current_page_item':'menu-item'">
+                                <a th:href="@{'/column/'+${column.code}+'.html'}" th:utext="${column.enName}"></a>
+                                <ul class="sub-menu" style="display: none;" th:if="${not #lists.isEmpty(categories) and column.code=='products'}">
+                                    <li th:each="cate:${categories}" th:id="'menu-item-'+${cate.id}" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat">
+                                        <a th:href="@{'/product/cate/'+${cate.id}+'.html#fullmeasureBottomForms'}" th:text="${cate.enName}"></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
-
-                </div>
-            </td>
-        </tr>
-    </table>
-    <table class="absTopTable" cellpadding="0" cellspacing="0">
-        <tr>
-            <td align="center">
-                <div id="absTopForms" class="forms sideForms absForms">
-                    <div style="position:absolute;"></div><!-- for ie6 -->
-
-                </div>
-            </td>
-        </tr>
-    </table>
-    <table class="webNavTable" cellpadding="0" cellspacing="0">
-        <tr>
-            <td align="center">
-                <div id="webNav" class="webNav webNavDefault">
-                    <div id='navV2' class='nav navV2'>
-                        <div class='navMainContent'>
-                            <div class='navContent'>
-                                <div id='navCenter' class='navCenter' style='width:568px;'>
-                                    <div class='itemPrev' style="display: none;"></div>
-                                    <div class='itemContainer'>
-                                        <div title="" id="nav2"
-                                             th:class="${currentColumn.id}?'item':'itemSelected item'"
-                                             colid="2">
-                                            <div class="itemCenter"><a hidefocus="true" style="outline:none;"
-                                                                       href="/"><span
-                                                    class="itemName0">Home</span></a></div>
-                                        </div>
-                                        <div class='itemSep'></div>
-                                        <div th:each="column:${columns}">
-                                            <div th:id="'nav'+${column.id}" th:class="${currentColumn.id==column.id}?'itemSelected item':'item'">
-                                                <div class="itemCenter"><a hidefocus="true" style="outline:none;"
-                                                                           th:href="@{'/column/'+${column.code}+'.html'}" href="/"><span
-                                                        class="itemName0" th:text="${column.enName}"></span></a></div>
-                                            </div>
-                                            <div class='itemSep'></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <table class="webHeaderTable" cellpadding="0" cellspacing="0" id="webHeaderTable">
-        <tr>
-            <td align="center" class="webHeaderTd fk-moduleZoneWrap">
-                <div id="fk-webHeaderZone" class="J_moduleZone fk-webHeaderZone fk-moduleZone forms sideForms">
-                    <div class="fk-moduleZoneBg"></div>
-
-                </div>
-                <div id="webHeader" class="webHeader">
-                    <table class='headerTable' cellpadding='0' cellspacing='0'>
-                        <tr>
-                            <td class='headerCusLeft'></td>
-                            <td class='headerCusMiddle' align='center' valign='top'>
-                                <div class='headerNav'>
-
-                                </div>
-                            </td>
-                            <td class='headerCusRight'></td>
-                        </tr>
-                    </table>
-                </div>
-            </td>
-        </tr>
-    </table>
+                </nav><!-- #site-navigation -->
+            </div><!-- #navbar -->
+            <div class="clear"></div>
+        </div>
+    </header><!-- #masthead -->
 </div>
 
 
@@ -194,63 +193,108 @@
 </div>
 
 
-<div th:fragment="webFooterTable" id="webFooterTableFragment">
-    <table class="absBottomTable" cellpadding="0" cellspacing="0">
-        <tr>
-            <td align="center">
-                <div id="absBottomForms" class="forms sideForms absForms">
-                    <div style="position:absolute;"></div><!-- for ie6 -->
-
-                </div>
-            </td>
-        </tr>
-    </table>
-    <table id="webFooterTable" class="webFooterTable" cellpadding="0" cellspacing="0">
-        <tr>
-            <td align="center" valign="top" class="fk-moduleZoneWrap">
-                <div id="fk-webFooterZone" class="J_moduleZone fk-webFooterZone fk-moduleZone forms sideForms">
-                    <div class="fk-moduleZoneBg"></div>
-
-                </div>
-
-                <div id="webFooter" class="webFooter">
-                    <div id='footer' class='footer'>
-                        <table class='footerTop' cellpadding='0' cellspacing='0'>
-                            <tr valign='top'>
-                                <td class='topLeft'></td>
-                                <td class='topCenter'></td>
-                                <td class='topRight'></td>
-                            </tr>
-                        </table>
-                        <table class='footerMiddle' cellpadding='0' cellspacing='0'>
-                            <tr valign='top'>
-                                <td class='middleLeft'></td>
-                                <td class='middleCenter' align='center'>
-                                    <div class='footerContent'>
-                                        <div class='footerInfo'>
-                                            <p><font face="Arial">©</font>&nbsp;<span th:text="${company.name}"></span>&nbsp;All Rights Reserved.</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class='middleRight'></td>
-                            </tr>
-                        </table>
-                        <table class='footerBottom' cellpadding='0' cellspacing='0'>
-                            <tr valign='top'>
-                                <td class='bottomLeft'></td>
-                                <td class='bottomCenter'></td>
-                                <td class='bottomRight'></td>
-                            </tr>
-                        </table>
+<footer th:fragment="webFooterTable" class="sun" id="footer">
+    <section class="footer-center" id="footercenter">
+        <div class="container">
+            <div class="container-inner">
+                <div class="row">
+                    <div style="width:50%;" class="widget-2">
+                        <!-- Block CMS module -->
+                        <section class="footer-block" id="informations_block_left_1">
+                            <h4 class="title_block">Products</h4>
+                            <ul class="toggle-footer" style="">
+                                <li class="link">
+                                    <a target="_blank" th:each="cate:${categories}" th:title="${cate.enName}" th:href="@{'/product/cate/'+${cate.id}}" th:text="${cate.enName}">
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
                     </div>
-
+                    <div style="width:25%;" class="widget-2">
+                        <section class="footer-block" id="informations_block_left_2">
+                            <h4 class="title_block">Follow Us</h4>
+                            <ul class="toggle-footer" style="">
+                                <li class="link">
+                                    <a title="facebook" target="_blank" th:href="${company.contactUserFacebook}">
+                                        <i class="fa fa-facebook-square fa-2"></i>
+                                        <span>Facebook</span>
+                                    </a>
+                                </li>
+                                <li class="link">
+                                    <a title="twitter" target="_blank" th:href="${company.contactUserTwitter}">
+                                        <i class="fa fa-twitter-square fa-2"></i>
+                                        <span>Twitter</span>
+                                    </a>
+                                </li>
+                                <li class="link">
+                                    <a title="google-plus" target="_blank" th:href="${company.contactUserlinkedin}">
+                                        <i class="fa fa-linkedin-square fa-2"></i>
+                                        <span>linkedin</span>
+                                    </a>
+                                </li>
+                                <li class="link">
+                                    <a title="Instagram" target="_blank" th:href="${company.contactUserinstagram}">
+                                        <i class="fa fa-instagram fa-2"></i>
+                                        <span>Instagram</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+                        <!-- /Block CMS module -->
+                    </div>
+                    <div style="width:25%;" class="widget-2">
+                        <!-- MODULE Block contact infos -->
+                        <section class="footer-block" id="block_contact_infos">
+                            <div>
+                                <h4 class="title_block">Contact Us</h4>
+                                <ul class="toggle-footer" style="">
+                                    <li class="nohover">
+                                        <p>
+                                            <i class="fa fa-envelope-square fa-2"></i>
+                                            Email:<a th:href="@{'mailto:'+${company.email}}" th:text="${company.email}"></a>
+                                        </p>
+                                    </li>
+                                    <li>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone-square fa-2"></i>
+                                        <span th:text="'Tel:'+${company.telPhone}"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+</footer>
 
 
-            </td>
-        </tr>
-    </table>
-    <div class="clearfloat"></div>
-</div>
+<ul class="dice-menu" th:fragment="diceMenu" id="diceMenu">
+    <li class="categories"><span>Product Categories</span></li>
+    <li th:each="cate:${categories}" th:title="${cate.enName}">
+        <a th:text="${cate.enName}" th:href="@{'/product/cate/'+${cate.id}+'.html'}"></a>
+    </li>
+</ul>
+
+
+<nav th:fragment="pagination" aria-label="Page navigation" style="text-align:center;" th:if="${totalPage gt 0}">
+    <ul class="pagination">
+        <li th:class="${currentPageNo==1?'disabled':''}">
+            <a th:if="${currentPageNo!=1}" th:href="@{${urlPrefix}+${currentPageNo-1}+'.html#fullmeasureBottomForms'}" aria-label="Previous" th:utext="'&lt;span aria-hidden=&quot;true&quot;&gt;&laquo;&lt;/span&gt;'"></a>
+            <span th:if="${currentPageNo==1}" aria-hidden="true">&laquo;</span>
+        </li>
+        <li th:each="pageNo:${#numbers.sequence(1, totalPage)}" th:class="${currentPageNo==pageNo?'active':''}">
+            <span th:if="${currentPageNo==pageNo}" th:utext="${currentPageNo}+'&lt;span class=&quot;sr-only&quot;&gt;(current)&lt;/span&gt;'"></span>
+            <a th:if="${currentPageNo!=pageNo}" th:href="@{${urlPrefix}+${pageNo}+'.html#fullmeasureBottomForms'}" th:text="${pageNo}"></a>
+        </li>
+        <li th:class="${currentPageNo==totalPage?'disabled':''}">
+            <a th:if="${currentPageNo!=totalPage}" th:href="@{${urlPrefix}+${currentPageNo+1}+'.html#fullmeasureBottomForms'}" aria-label="Next" th:utext="'&lt;span aria-hidden=&quot;true&quot;&gt;&raquo;&lt;/span&gt;'">
+            </a>
+            <span th:if="${currentPageNo==totalPage}" aria-hidden="true">&raquo;</span>
+        </li>
+    </ul>
+</nav>
 
 </html>

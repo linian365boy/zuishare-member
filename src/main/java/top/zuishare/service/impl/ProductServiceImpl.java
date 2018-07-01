@@ -38,8 +38,14 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private Gson gson;
 
-    public List<Product> listProducts(int colId, int limit){
-        return productDao.getIndexProducts(colId, limit);
+    @Override
+    public List<Product> listProducts(int limit, int pageNo){
+        return productDao.getProducts(limit, (pageNo-1) * limit);
+    }
+
+    @Override
+    public long countProducts(){
+        return productDao.countProducts();
     }
 
     @Override
@@ -82,6 +88,16 @@ public class ProductServiceImpl implements ProductService {
                             gson.toJson(products), Constants.TIMEOUTDAYS, TimeUnit.DAYS);
         }
         return products;
+    }
+
+    @Override
+    public List<Product> queryProductsByCateId(int cateId, int limit, int pageNo) {
+        return productDao.queryProductsByCateId(cateId, limit, (pageNo-1) * limit);
+    }
+
+    @Override
+    public long countProductsByCateId(int cateId){
+        return productDao.countProductsByCateId(cateId);
     }
 
 }
