@@ -11,7 +11,6 @@ import org.springframework.util.CollectionUtils;
 import top.zuishare.constants.Constants;
 import top.zuishare.dao.ProductDao;
 import top.zuishare.service.ProductService;
-import top.zuishare.spi.model.Advertisement;
 import top.zuishare.spi.model.Product;
 import top.zuishare.util.RedisUtil;
 

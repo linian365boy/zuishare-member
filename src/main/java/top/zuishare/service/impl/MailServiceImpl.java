@@ -16,11 +16,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import top.zuishare.constants.BussinessConfig;
 import top.zuishare.service.MailService;
-
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.IOException;
 
 @Service("mailService")
 public class MailServiceImpl implements MailService {

@@ -16,8 +16,6 @@ import top.zuishare.dto.ResultDto;
 import top.zuishare.service.*;
 import top.zuishare.spi.model.*;
 import top.zuishare.spi.util.Tools;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,7 +62,7 @@ public class ViewController {
      */
     @RequestMapping(value = "/feedback/add", method = RequestMethod.POST)
     @ResponseBody
-    public ResultDto addFeedback(Feedback feedback){
+    public ResultDto<Map<String, String>> addFeedback(Feedback feedback){
         logger.info("receive fedback |{}", feedback);
         ResultDto<Map<String, String>> vo = new ResultDto<>();
         Map<String,String> messageMap = new HashMap<>();
