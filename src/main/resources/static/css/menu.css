@@ -355,7 +355,7 @@ ul, li {
     padding: 0;
     display: block;
     position: fixed;
-    top: 15%;
+    top: 20%;
     z-index: 100;
 }
 
@@ -373,7 +373,6 @@ ul, li {
 
 .dice-menu li a, .dice-menu li a:link, .dice-menu li a:visited{
     text-decoration: none;
-    background-color: #5ed7d9;
     color: #fff;
     display: block;
     max-width: 134px;
@@ -382,11 +381,7 @@ ul, li {
     overflow: hidden;
 }
 
-.dice-menu li:hover:nth-child(n+2) {
-	background-color:#1C588E;
-}
-
-.dice-menu li:hover:nth-child(n+2) a{
+.dice-menu li:hover:nth-child(n+2),.dice-menu li:hover:nth-child(n+2) a,.dice-menu .activeCate {
 	background-color:#1C588E;
 }
 
@@ -395,4 +390,24 @@ ul, li {
     display: block;
     background-color: #C40000;
     top: 15%;
+}
+
+.dice-menu .categories{
+    width: 74px;
+}
+
+.dice-menu .productCate {
+    display: none;
+}
+
+.dice-menu:hover .productCate{
+    display: block;
+}
+
+.dice-menu:hover .categories{
+    width: 134px;
+}
+
+.dice-menu:hover .fa-plus{
+    display: none;
 }

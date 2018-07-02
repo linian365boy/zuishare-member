@@ -48,12 +48,6 @@ $(document).ready(function(){
         jQuery('html, body').animate({scrollTop: 0}, 1000);
     });
 
-    jQuery('#diceMenu .categories').on('mouseover', function(){
-        jQuery('#diceMenu li:nth-child(n+2)').show();
-
-    });
-
-
 });
 
 

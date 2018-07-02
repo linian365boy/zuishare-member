@@ -8,3 +8,4 @@
 4. 查询company信息，使用redis string结构
 5. 查询webconfig信息，使用redis string结构
 6. 查询cate products，使用redis sorted set结构
+

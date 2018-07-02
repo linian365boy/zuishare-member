@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="format-detection" content="telephone=no,email=no,address=no"/>
     <meta name="renderer" content="webkit"/>
-    <meta name="mobile-agent" content="format=html5;url=http://m.fkjj21.icoc.me/pd.jsp?pid=4"/>
     <meta name="description" itemprop="description" th:content="${product.enName}+' - '+${company.name}"/>
     <meta itemprop="name" th:content="${product.enName}+' - '+${company.name}"/>
     <meta name="keywords" th:content="${config.keyword}"/>
@@ -663,7 +662,7 @@
         </transition>
     </div>
 </div>
-<link type='text/css' href='//2.ss.faisys.com/css/fontsIco.min.css?v=201806111403' rel='stylesheet'/>
+<link type='text/css' th:href='@{/css/fontsIco.min.css}' rel='stylesheet'/>
 
 </body>
 </html>

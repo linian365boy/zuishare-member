@@ -45,7 +45,6 @@
         .fk_siteBackToTop{width:50px;}
         .fk_siteBackToTop{height:50px;}
         .fk_siteBackToTop{margin:1px;}
-        .fk_siteBackToTop{background-image:url(//0.ss.faisys.com/image/backToTop/secondStyle/03.png?v=201505251717);}
     </style>
     <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.min.css}"/>
@@ -272,8 +271,8 @@
 
 
 <ul class="dice-menu" th:fragment="diceMenu" id="diceMenu">
-    <li class="categories"><span>Product Categories</span></li>
-    <li th:each="cate:${categories}" th:title="${cate.enName}">
+    <li class="categories"><span>Product Categories</span><i class="fa fa-plus" style="position:fixed;" aria-hidden="true"></i></li>
+    <li th:each="cate:${categories}" th:class="'productCate '+${currentCateId==cate.id?'activeCate':''}" th:title="${cate.enName}">
         <a th:text="${cate.enName}" th:href="@{'/product/cate/'+${cate.id}+'.html'}"></a>
     </li>
 </ul>

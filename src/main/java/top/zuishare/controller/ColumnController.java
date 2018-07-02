@@ -121,6 +121,7 @@ public class ColumnController {
         map.put("list", products);
         map.put("currentPageNo", pageNo);
         map.put("urlPrefix", urlPrefix);
+        map.put("currentCateId", 0);
         logger.info("products page totalPage=>{}, totalNum=>{}", totalPage, count);
         return Constants.PRODUCT_COLUMN_NAME;
     }
@@ -188,6 +189,7 @@ public class ColumnController {
         map.put("totalPage", totalPage);
         map.put("currentPageNo", pageNo);
         map.put("urlPrefix", urlPrefix);
+        map.put("currentCateId", cateId);
         logger.info("get category products totalPage=>{}, totalNum=>{}", totalPage, count);
         return "products";
     }
