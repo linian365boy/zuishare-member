@@ -14,38 +14,8 @@
     <link rel="canonical" th:href="${config.website}"/>
     <link type="text/css" th:href="@{/css/base2.min.css}" rel="stylesheet"/>
     <link type="text/css" th:href="@{/css/fkTheme.min.css}" rel="stylesheet" id="jzThemeFrame"/>
-    <link type="text/css" th:href="@{/css/newSearchBoxStyle.min.css}" rel="stylesheet"/>
-    <link type="text/css" th:href="@{/css/edit.min.css}" rel="stylesheet"/>
-    <link type="text/css" th:href="@{/css/vcomponents.min.css}" rel="stylesheet"/>
-    <link type="text/css" th:href="@{/css/colorpicker.min.css}"
-          rel="stylesheet"/>
-    <link type="text/css" th:href="@{/css/fkeditor.min.css}" rel="stylesheet"/>
-    <link type="text/css" th:href="@{/css/poshytipAndmCustomScrollbar.min.css}"
-          rel="stylesheet"/>
     <link type="text/css" th:href="@{/css/jzcusstyle.css}"
           rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/video-js.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/video.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/datepicker.min.css}"/>
-    <style type="text/css" id="styleWebSite">
-        #bannerV2 .fk-inBannerListZone{width:1200px;}
-        #bannerV2 .fk-inBannerListZone{margin-left:-600px;}
-    </style>
-    <style type="text/css" id="styleBannerBg">
-        .webBannerTable{background:none !important;}
-        .webBanner{background:none !important;}
-    </style>
-    <style type="text/css" id="stylebacktotop">
-        .fk_siteBackToTop{display:none;}
-        .fk_siteBackToTop{cursor:pointer;}
-        .fk_siteBackToTop{z-index:9030;}
-        .fk_siteBackToTop{right:40px;}
-        .fk_siteBackToTop{bottom:50px;}
-        .fk_siteBackToTop{position:fixed;}
-        .fk_siteBackToTop{width:50px;}
-        .fk_siteBackToTop{height:50px;}
-        .fk_siteBackToTop{margin:1px;}
-    </style>
     <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.min.css}"/>
 </head>
@@ -104,13 +74,6 @@
 
 <footer th:fragment="footerCssJs" id="footerCssJs">
     <script type="text/javascript" th:src="@{/js/jquery-1.9.1.min.js}"></script>
-    <script type="text/javascript"
-            th:src="@{/js/jquery-mousewheel.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/fai.min.js}"></script>
-    <script type="text/javascript"
-            th:src="@{/js/jquery-ui-core.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/2052.min.js}"></script>
-    <link type='text/css' th:href='@{/css/fontsIco.min.css}' rel='stylesheet'/>
     <script type="text/javascript" th:src="@{/js/waypoints.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/tools.js}"></script>
 </footer>
@@ -146,52 +109,6 @@
     </header><!-- #masthead -->
 </div>
 
-
-<div th:fragment="absTableAndFullTopForms" id="absTableAndFullTopForms">
-    <table class="absMiddleTable" cellpadding="0" cellspacing="0">
-        <tbody>
-        <tr>
-            <td align="center">
-                <div id="absForms" class="forms sideForms absForms">
-
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <div id="fullmeasureTopForms"
-         class="fullmeasureContainer forms fk-fullmeasureForms fullmeasureForms fullmeasureTopForms"
-         style="display:none">
-
-        <wbr style="display:none;"/>
-    </div>
-</div>
-
-
-<div th:fragment="floatDiv" id="floatDiv">
-    <div class="floatLeftTop" style='top:45px'>
-        <div id="floatLeftTopForms" class="forms sideForms floatForms">
-
-        </div>
-    </div>
-    <div class="floatRightTop" style='top:45px'>
-        <div id="floatRightTopForms" class="forms sideForms floatForms">
-
-        </div>
-    </div>
-    <div class="floatLeftBottom">
-        <div id="floatLeftBottomForms" class="forms sideForms floatForms">
-
-        </div>
-    </div>
-    <div class="floatRightBottom">
-        <div id="floatRightBottomForms" class="forms sideForms floatForms">
-
-        </div>
-    </div>
-</div>
-
-
 <footer th:fragment="webFooterTable" class="sun" id="footer">
     <section class="footer-center" id="footercenter">
         <div class="container">
@@ -203,7 +120,7 @@
                             <h4 class="title_block">Products</h4>
                             <ul class="toggle-footer" style="">
                                 <li class="link">
-                                    <a target="_blank" th:each="cate:${categories}" th:title="${cate.enName}" th:href="@{'/product/cate/'+${cate.id}}" th:text="${cate.enName}">
+                                    <a target="_blank" th:each="cate:${categories}" th:title="${cate.enName}" th:href="@{'/product/cate/'+${cate.id}+'.html'}" th:text="${cate.enName}">
                                     </a>
                                 </li>
                             </ul>

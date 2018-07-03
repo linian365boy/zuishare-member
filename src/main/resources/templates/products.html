@@ -3,7 +3,6 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"/>
     <head th:replace="fragments/fragment :: headJsCss"></head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/productSlide.min.css}"/>
 </head>
 <body class="g_body g_locale2052 g_cusSiteWidth fk-baseEditToolV2 ">
 
@@ -248,8 +247,6 @@
             </tr>
             </tbody>
         </table>
-
-        <div th:replace="fragments/fragment :: absTableAndFullTopForms"></div>
 
         <table id="webContainerTable" class="webContainerTable" cellpadding="0" cellspacing="0">
             <tbody>
@@ -697,24 +694,9 @@
                 </div>
             </div>
 
-
-            <wbr style="display:none;"/>
         </div>
 
         <div th:replace="fragments/fragment :: webFooterTable"></div>
-    </div>
-</div>
-
-
-<footer th:replace="fragments/fragment :: floatDiv"></footer>
-
-<div id="popupLevel" class="popupLevel">
-    <div id="popupLevelWrap" class="popupLevelWrap">
-        <div id="popupLevelEditToolArea" class="popupLevelEditToolArea">
-            <div id="popupLevelEditPanel" class="popupLevelEditPanel"></div>
-            <div id="popupLevelEditTool" class="popupLevelEditTool"></div>
-        </div>
-        <div id="popupLevelForms" class="forms sideForms popupLevelForms"></div>
     </div>
 </div>
 

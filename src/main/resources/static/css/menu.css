@@ -186,6 +186,8 @@ ul.nav-container ul a, .nav-container ul ul a {
 
 .nav-container li a {
     padding: 38px 23px;
+    font-size: 16px;
+    font-family: Helvetica, Tahoma, Arial;
 }
 
 .nav-container .current_page_item > a, .nav-container .current_page_ancestor > a, .nav-container .current-menu-item > a, .nav-container .current-menu-ancestor > a, .nav-container li a:hover {
