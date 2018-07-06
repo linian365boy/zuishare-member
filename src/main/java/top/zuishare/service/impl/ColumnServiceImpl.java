@@ -19,7 +19,7 @@ import top.zuishare.constants.Constants;
 import top.zuishare.dao.ColumnDao;
 import top.zuishare.service.ColumnService;
 import top.zuishare.spi.model.Column;
-import top.zuishare.util.RedisUtil;
+import top.zuishare.spi.util.RedisUtil;
 
 /**
  * @author niange

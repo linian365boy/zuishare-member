@@ -22,7 +22,7 @@ import top.zuishare.constants.Constants;
 import top.zuishare.dao.NewsDao;
 import top.zuishare.service.NewsService;
 import top.zuishare.spi.model.News;
-import top.zuishare.util.RedisUtil;
+import top.zuishare.spi.util.RedisUtil;
 
 /**
  * @author niange

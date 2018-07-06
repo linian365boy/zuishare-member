@@ -22,7 +22,7 @@ import top.zuishare.constants.Constants;
 import top.zuishare.dao.ProductDao;
 import top.zuishare.service.ProductService;
 import top.zuishare.spi.model.Product;
-import top.zuishare.util.RedisUtil;
+import top.zuishare.spi.util.RedisUtil;
 
 /**
  * @author niange

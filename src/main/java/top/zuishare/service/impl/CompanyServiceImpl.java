@@ -1,18 +1,19 @@
 package top.zuishare.service.impl;
 
-import com.google.gson.GsonBuilder;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+
+import com.google.gson.GsonBuilder;
+
 import top.zuishare.service.CompanyService;
 import top.zuishare.spi.dto.ConstantVariable;
 import top.zuishare.spi.model.Company;
+import top.zuishare.spi.util.RedisUtil;
 import top.zuishare.spi.util.Tools;
-import top.zuishare.util.RedisUtil;
 
 /**
  * @author niange

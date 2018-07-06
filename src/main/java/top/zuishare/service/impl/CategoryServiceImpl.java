@@ -19,7 +19,7 @@ import top.zuishare.dao.CategoryDao;
 import top.zuishare.service.CategoryService;
 import top.zuishare.spi.model.Advertisement;
 import top.zuishare.spi.model.Category;
-import top.zuishare.util.RedisUtil;
+import top.zuishare.spi.util.RedisUtil;
 
 /**
  * @author niange
