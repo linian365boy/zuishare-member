@@ -48,15 +48,16 @@ public class ProductServiceImpl implements ProductService {
     	List<Product> products = null;
     	int start = (pageNo-1) * limit;
     	try {
-            Set<String> productSets = stringRedisTemplate.opsForZSet().range(
+            Set<String> productIdsSet = stringRedisTemplate.opsForZSet().range(
             		RedisUtil.getProductsKey(), start, start + limit-1);
-            if (CollectionUtils.isEmpty(productSets)) {
-                products = getIndexProductsList(start, limit);
+            if (CollectionUtils.isEmpty(productIdsSet)) {
+                products = getProductsList(start, limit);
                 logger.info("get products from db, start=>{}, limit=>{}, products size=>{}", 
                 		start, limit, products == null ? 0 : products.size());
             }else{
             	products = new ArrayList<>(limit);
-            	for(String productStr : productSets) {
+            	List<String> productsList = stringRedisTemplate.opsForValue().multiGet(productIdsSet);
+            	for(String productStr : productsList) {
             		products.add(gson.fromJson(productStr, Product.class));
             	}
                 logger.info("get products from redis , start=>{}, limit=>{}, products size=>{}",
@@ -64,7 +65,7 @@ public class ProductServiceImpl implements ProductService {
             }
     	}catch(Exception e) {
     		logger.error("redis happend error.", e);
-            products = getIndexProductsList(start, limit);
+            products = getProductsList(start, limit);
     	}
     	return products;
     }
@@ -72,30 +73,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public long countProducts(){
         return stringRedisTemplate.opsForZSet().size(RedisUtil.getProductsKey());
-    }
-
-    @Override
-    public List<Product> queryIndexProduct(int limit) {
-        List<Product> products = null;
-        try {
-            //1. 先从缓存中获取
-            Set<String> productSets = stringRedisTemplate.opsForZSet().range(RedisUtil.getProductsKey(), 0, limit-1);
-            if (CollectionUtils.isEmpty(productSets)) {
-                //2. 再DB中获取
-                products = getIndexProductsList(0, limit);
-                logger.info("get products from db");
-            }else{
-            	products = new ArrayList<>(limit);
-            	for(String productStr : productSets) {
-            		products.add(gson.fromJson(productStr, Product.class));
-            	}
-                logger.info("get products from redis");
-            }
-        }catch (Exception e){
-            logger.error("redis happend error.", e);
-            products = getIndexProductsList(0, limit);
-        }
-        return products;
     }
 
     @Override
@@ -113,12 +90,12 @@ public class ProductServiceImpl implements ProductService {
     	return product;
     }
 
-    private List<Product> getIndexProductsList(int start, int limit){
+    private List<Product> getProductsList(int start, int limit){
         List<Product> products = productDao.getProductsList();
         Set<TypedTuple<String>> tuples = new HashSet<>();
         if(!CollectionUtils.isEmpty(products)) {
 	        for(Product proc : products) {
-	        	tuples.add(new DefaultTypedTuple<String>(gson.toJson(proc), System.nanoTime() * 1.0));
+	        	tuples.add(new DefaultTypedTuple<String>(String.valueOf(proc.getId()), System.nanoTime() * 1.0));
 	        }
 	        // 设置过期时间30天
 	        if (!CollectionUtils.isEmpty(products)) {
@@ -156,23 +133,25 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> queryProductsByCateId(int cateId, int limit, int pageNo) {
         List<Product> products = null;
+        int start = (pageNo-1)*limit;
         try {
             //1. 先从缓存中获取
-            Set<String> productSets = stringRedisTemplate.opsForZSet().range(RedisUtil.getCateProductKey(cateId), (pageNo-1)*limit, limit-1);
-            if (CollectionUtils.isEmpty(productSets)) {
+            Set<String> productIdsSet = stringRedisTemplate.opsForZSet().range(RedisUtil.getCateProductKey(cateId), start, start+limit-1);
+            if (CollectionUtils.isEmpty(productIdsSet)) {
                 //2. 再DB中获取
-                products = queryProductsByCateIdFromDb(cateId, (pageNo-1) * limit ,limit);
-                logger.info("get products from db");
+                products = queryProductsByCateIdFromDb(cateId, start ,limit);
+                logger.info("get products from db, products size=>{}", products == null ? 0 : products.size());
             }else{
             	products = new ArrayList<>(limit);
-            	for(String productStr : productSets) {
-            		products.add(gson.fromJson(productStr, Product.class));
+            	List<String> productsStr = stringRedisTemplate.opsForValue().multiGet(productIdsSet);
+            	for(String jsonStr : productsStr) {
+            		products.add(gson.fromJson(jsonStr, Product.class));
             	}
-                logger.info("get products from redis");
+                logger.info("get products from redis, products size=>{}", products == null ? 0 : products.size());
             }
         }catch (Exception e){
             logger.error("redis happend error.", e);
-            products = queryProductsByCateIdFromDb(cateId, (pageNo-1) * limit ,limit);
+            products = queryProductsByCateIdFromDb(cateId, start, limit);
         }
         return products;
     }

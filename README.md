@@ -2,9 +2,9 @@
 > 技术栈：spring boot + spring + spring mvc + mybatis + thymeleaf
 
 #### use redis
-1. 查询product列表，使用redis sorted set结构
+1. 查询product列表，使用redis sorted set结构							【ok】key/member/score(member=id,score=time)
 2. 查询product categories列表，使用redis string结构，list转string		【ok】
-3. 查询news列表，使用redis sorted set结构								【ok】
+3. 查询news列表，使用redis sorted set结构								【ok】key/member/score(member=id,score=time)
 4. 查询company信息，使用redis string结构								【ok】
 5. 查询webconfig信息，使用redis string结构								【ok】
 6. 查询cate products列表，使用redis sorted set结构						【ok】

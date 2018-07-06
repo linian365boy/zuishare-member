@@ -17,8 +17,6 @@ public interface ProductService {
 
     long countProducts();
 
-    List<Product> queryIndexProduct(int limit);
-
     Product loadProduct(int productId);
 
     List<Product> queryProductsByCateId(int cateId, int limit, int pageNo);

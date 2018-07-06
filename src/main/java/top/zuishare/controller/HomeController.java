@@ -52,7 +52,7 @@ public class HomeController {
         // 查网站信息
         WebConfig config = webConfigService.loadWebConfig(bussinessConfig.getWebConfigPath());
         // 首页展示的产品
-        List<Product> indexProducts = productService.queryIndexProduct(bussinessConfig.getIndexProductsSize());
+        List<Product> indexProducts = productService.listProducts(bussinessConfig.getIndexProductsSize(), 1);
 
         List<Category> categories = categoryService.queryCategory();
 

@@ -47,16 +47,17 @@ public class NewsServiceImpl implements NewsService {
     	List<News> news = null;
     	int start = (pageNo-1) * limit;
     	try {
-            Set<String> newsSets = stringRedisTemplate.opsForZSet().range(
+            Set<String> newsIdSets = stringRedisTemplate.opsForZSet().range(
             		RedisUtil.getNewsKey(), start, start + limit-1);
-            if (CollectionUtils.isEmpty(newsSets)) {
+            if (CollectionUtils.isEmpty(newsIdSets)) {
             	news = getNewsList(start, limit);
                 logger.info("get news from db, start=>{}, limit=>{}, news size=>{}", 
                 		start, limit, news == null ? 0 : news.size());
             }else{
             	news = new ArrayList<>(limit);
-            	for(String newsStr : newsSets) {
-            		news.add(gson.fromJson(newsStr, News.class));
+            	List<String> newsList = stringRedisTemplate.opsForValue().multiGet(newsIdSets);
+            	for(String jsonStr : newsList) {
+            		news.add(gson.fromJson(jsonStr, News.class));
             	}
                 logger.info("get news from redis , start=>{}, limit=>{}, news size=>{}",
                 		start, limit, news == null ? 0 : news.size());
@@ -78,7 +79,7 @@ public class NewsServiceImpl implements NewsService {
         Set<TypedTuple<String>> tuples = new HashSet<>();
         if(!CollectionUtils.isEmpty(newsList)) {
 	        for(News news : newsList) {
-	        	tuples.add(new DefaultTypedTuple<String>(gson.toJson(news), System.nanoTime() * 1.0));
+	        	tuples.add(new DefaultTypedTuple<String>(String.valueOf(news.getId()), System.nanoTime() * 1.0));
 	        }
 	        // 设置过期时间30天
 	        if (!CollectionUtils.isEmpty(newsList)) {
