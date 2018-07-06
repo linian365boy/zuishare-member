@@ -1,10 +1,10 @@
 package top.zuishare.dao;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import top.zuishare.spi.model.News;
-
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import top.zuishare.spi.model.News;
 
 /**
  * @author niange
@@ -17,7 +17,7 @@ import java.util.List;
 @Mapper
 public interface NewsDao {
 
-    List<News> getIndexNews(@Param("limit") int limit, @Param("start") int start);
+    List<News> getNewsList();
 
     News loadNews(int newsId);
 

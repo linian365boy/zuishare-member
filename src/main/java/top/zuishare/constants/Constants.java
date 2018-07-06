@@ -99,6 +99,8 @@ public class Constants {
     
     public static final String ID = "id";
     
+    public static final String CODE_STR = "code";
+    
     /**
      * 产品栏目的限定名称
      */

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +79,14 @@ public class ColumnServiceImpl implements ColumnService {
     }
 
     public Column getColumnByCode(String code){
-        return columnDao.getColumnByCode(code);
+    	Column col = null;
+    	String columnStr = stringRedisTemplate.opsForValue().get(RedisUtil.getColumnKeyByCode(code));
+    	if(StringUtils.isBlank(columnStr)) {
+    		col = columnDao.getColumnByCode(code);
+    	}else {
+    		col = gson.fromJson(columnStr, Column.class);
+    	}
+        return col;
     }
 
 }

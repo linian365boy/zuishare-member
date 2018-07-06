@@ -23,7 +23,7 @@
     
     <select id="queryProductsByCateId" resultType="top.zuishare.spi.model.Product" parameterType="int">
         select id,enName,hot,picUrl from tb_product where status=1 and publish is true and categoryId=#{cateId}
-        order by priority desc,id desc limit #{start},#{limit}
+        order by priority desc,id desc
     </select>
 
     <select id="countProductsByCateId" resultType="long" parameterType="int">

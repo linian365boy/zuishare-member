@@ -25,7 +25,7 @@ public interface ProductDao {
 
     Product loadProduct(int productId);
 
-    List<Product> queryProductsByCateId(@Param("cateId") int cateId,@Param("limit") int limit,@Param("start") int start);
+    List<Product> queryProductsByCateId(@Param("cateId") int cateId);
 
     long countProductsByCateId(int cateId);
     

@@ -3,8 +3,8 @@
 
 <mapper namespace="top.zuishare.dao.NewsDao">
 
-    <select id="getIndexNews" resultType="top.zuishare.spi.model.News">
-        select id,clicks,title,publishDate,keyWords from tb_news where publishDate is not null order by publishDate desc,id desc limit #{start},#{limit}
+    <select id="getNewsList" resultType="top.zuishare.spi.model.News">
+        select id,clicks,title,publishDate,keyWords from tb_news where publishDate is not null order by publishDate desc,id desc
     </select>
     
     <select id="loadNews" resultType="top.zuishare.spi.model.News" parameterType="int">

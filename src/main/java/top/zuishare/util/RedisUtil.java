@@ -273,5 +273,35 @@ public class RedisUtil {
     			.toString();
     }
     
+    /**
+     * 获取栏目详情key，根据code
+     * column:aboutus:code
+     * @return
+     */
+    public static String getColumnKeyByCode(String code) {
+    	return new StringBuilder()
+    			.append(Constants.COLUMNCLASS)
+    			.append(Constants.KEYDELIMITER)
+    			.append(code)
+    			.append(Constants.KEYDELIMITER)
+    			.append(Constants.CODE_STR)
+    			.toString();
+    }
+    
+    
+    /**
+     * 获取栏目详情key，根据code
+     * column:5:id
+     * @return
+     */
+    public static String getColumnKeyById(int columnId) {
+    	return new StringBuilder()
+    			.append(Constants.COLUMNCLASS)
+    			.append(Constants.KEYDELIMITER)
+    			.append(columnId)
+    			.append(Constants.KEYDELIMITER)
+    			.append(Constants.ID)
+    			.toString();
+    }
     
 }
