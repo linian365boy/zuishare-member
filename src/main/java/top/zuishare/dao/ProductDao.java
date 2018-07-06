@@ -21,11 +21,13 @@ public interface ProductDao {
 
     long countProducts();
 
-    List<Product> getIndexProductsList(int limit);
+    List<Product> getProductsList();
 
     Product loadProduct(int productId);
 
     List<Product> queryProductsByCateId(@Param("cateId") int cateId,@Param("limit") int limit,@Param("start") int start);
 
     long countProductsByCateId(int cateId);
+    
+    
 }

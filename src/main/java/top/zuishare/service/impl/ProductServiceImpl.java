@@ -1,22 +1,27 @@
 package top.zuishare.service.impl;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.DefaultTypedTuple;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations.TypedTuple;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+
+import com.google.gson.Gson;
+
 import top.zuishare.constants.Constants;
 import top.zuishare.dao.ProductDao;
 import top.zuishare.service.ProductService;
 import top.zuishare.spi.model.Product;
 import top.zuishare.util.RedisUtil;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author niange
@@ -53,18 +58,17 @@ public class ProductServiceImpl implements ProductService {
         //1、从缓存中获取
         try {
             //先从缓存中获取
-            //先从缓存中获取
-            String productsStr = stringRedisTemplate.opsForValue().get(RedisUtil.getIndexProductsKey());
-            //json 反序列化
-            products = gson.fromJson(productsStr,
-                    new TypeToken<ArrayList<Product>>() {
-                    }.getType());
-            if (CollectionUtils.isEmpty(products)) {
+            Set<String> productSets = stringRedisTemplate.opsForZSet().range(RedisUtil.getProductsKey(), 0, limit-1);
+            if (CollectionUtils.isEmpty(productSets)) {
                 //2、再DB中获取
                 products = getIndexProductsList(limit);
-                logger.info("get ads from db");
+                logger.info("get products from db");
             }else{
-                logger.info("get ads from redis");
+            	products = new ArrayList<>(limit);
+            	for(String productStr : productSets) {
+            		products.add(gson.fromJson(productStr, Product.class));
+            	}
+                logger.info("get products from redis");
             }
         }catch (Exception e){
             logger.error("redis happend error.", e);
@@ -79,14 +83,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private List<Product> getIndexProductsList(int limit){
-        List<Product> products = productDao.getIndexProductsList(limit);
-        // 设置过期时间30天
-        if (!CollectionUtils.isEmpty(products)) {
-            stringRedisTemplate.opsForValue()
-                    .set(RedisUtil.getIndexProductsKey(),
-                            gson.toJson(products), Constants.TIMEOUTDAYS, TimeUnit.DAYS);
+        List<Product> products = productDao.getProductsList();
+        Set<TypedTuple<String>> tuples = new HashSet<>();
+        if(!CollectionUtils.isEmpty(products)) {
+	        for(Product proc : products) {
+	        	tuples.add(new DefaultTypedTuple<String>(gson.toJson(proc), System.nanoTime() * 1.0));
+	        }
+	        // 设置过期时间30天
+	        if (!CollectionUtils.isEmpty(products)) {
+	        	stringRedisTemplate.opsForZSet().add(RedisUtil.getProductsKey(), tuples);
+	        	stringRedisTemplate.expire(RedisUtil.getProductsKey(), Constants.TIMEOUTDAYS, TimeUnit.DAYS);
+	        }
+	        return products.subList(0, products.size()<limit ? products.size() : limit);
         }
-        return products;
+        return null;
     }
 
     @Override

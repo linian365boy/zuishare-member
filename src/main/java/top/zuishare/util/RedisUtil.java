@@ -130,29 +130,146 @@ public class RedisUtil {
                 .toString();
     }
 
-
+    /**
+     * 获取首页栏目列表key
+     * @return
+     */
     public static String getIndexColumnKey(){
         return new StringBuilder()
                 .append(Constants.COLUMNCLASS)
                 .append(Constants.KEYDELIMITER)
-                .append(Constants.REDIS_COLUMN_KEY)
+                .append(Constants.REDIS_LIST_KEY)
                 .toString();
     }
-
+    
+    /**
+     * 获取首页滚动图片key
+     * @return
+     */
     public static String getIndexAdsKey(){
         return new StringBuilder()
                 .append(Constants.ADCLASS)
                 .append(Constants.KEYDELIMITER)
-                .append(Constants.REDIS_AD_KEY)
+                .append(Constants.REDIS_LIST_KEY)
                 .toString();
     }
-
-    public static String getIndexProductsKey(){
+    
+    /**
+     * 获取产品列表key
+     * products:list
+     * @return
+     */
+    public static String getProductsKey(){
         return new StringBuilder()
                 .append(Constants.PRODUCTCLASS)
                 .append(Constants.KEYDELIMITER)
-                .append(Constants.REDIS_PRODUCT_KEY)
+                .append(Constants.REDIS_LIST_KEY)
                 .toString();
     }
-
+    
+    /**
+     * 获取新闻列表key
+     * news:list
+     * @return
+     */
+    public static String getNewsKey(){
+        return new StringBuilder()
+                .append(Constants.NEWSCLASS)
+                .append(Constants.KEYDELIMITER)
+                .append(Constants.REDIS_LIST_KEY)
+                .toString();
+    }
+    
+    /**
+     * 获取分类产品列表key
+     * category:5:id:products:list
+     * @return
+     */
+    public static String getCateProductKey(int cateId){
+        return new StringBuilder()
+                .append(Constants.CATEGORYCLASS)
+                .append(Constants.KEYDELIMITER)
+                .append(cateId)
+                .append(Constants.KEYDELIMITER)
+                .append(Constants.ID)
+                .append(Constants.PRODUCTCLASS)
+                .append(Constants.KEYDELIMITER)
+                .append(Constants.REDIS_LIST_KEY)
+                .toString();
+    }
+    
+    /**
+     * 获取产品详情key
+     * product:5:id
+     * @return
+     */
+    public static String getProductDetailKey(int productId) {
+    	return new StringBuilder()
+    			.append(Constants.PRODUCTCLASS)
+    			.append(productId)
+    			.append(Constants.ID)
+    			.toString();
+    }
+    
+    /**
+     * 获取新闻详情key
+     * product:5:id
+     * @return
+     */
+    public static String getNewsDetailKey(int newsId) {
+    	return new StringBuilder()
+    			.append(Constants.NEWSCLASS)
+    			.append(newsId)
+    			.append(Constants.ID)
+    			.toString();
+    }
+    
+    /**
+     * 获取公司信息
+     * company
+     * @return
+     */
+    public static String getCompanyKey() {
+    	return new StringBuilder()
+    			.append(Constants.COMPANYCLASS)
+    			.toString();
+    }
+    
+    /**
+     * 获取webconfig信息
+     * webconfig
+     * @return
+     */
+    public static String getWebConfigKey() {
+    	return new StringBuilder()
+    			.append(Constants.WEBCONFIG)
+    			.toString();
+    }
+    
+    /**
+     * 获取column列表信息
+     * column:list
+     * @return
+     */
+    public static String getColumnsKey() {
+    	return new StringBuilder()
+    			.append(Constants.COLUMNCLASS)
+    			.append(Constants.KEYDELIMITER)
+    			.append(Constants.REDIS_LIST_KEY)
+    			.toString();
+    }
+    
+    /**
+     * 获取产品分类列表信息
+     * category:list
+     * @return
+     */
+    public static String getProductCatesKey() {
+    	return new StringBuilder()
+    			.append(Constants.CATEGORYCLASS)
+    			.append(Constants.KEYDELIMITER)
+    			.append(Constants.REDIS_LIST_KEY)
+    			.toString();
+    }
+    
 }

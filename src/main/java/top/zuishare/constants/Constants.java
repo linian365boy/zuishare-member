@@ -80,23 +80,25 @@ public class Constants {
 
 
     ///////////////////////////////////////////////////////////////////
-    /**
-     *所有正常发布的ad
-     */
-    public static final String REDIS_AD_KEY = "list";
-
-    public static final String REDIS_PRODUCT_KEY = "list";
 
     public static final String ADCLASS = "ad";
 
     public static final String PRODUCTCLASS = "product";
 
-    /**
-     * 所有正常发布的column
-     */
-    public static final String REDIS_COLUMN_KEY = "list";
+    public static final String REDIS_LIST_KEY = "list";
 
     public static final String COLUMNCLASS = "column";
+    
+    public static final String NEWSCLASS = "news";
+    
+    public static final String CATEGORYCLASS = "category";
+    
+    public static final String COMPANYCLASS = "company";
+    
+    public static final String WEBCONFIG = "webconfig";
+    
+    public static final String ID = "id";
+    
     /**
      * 产品栏目的限定名称
      */

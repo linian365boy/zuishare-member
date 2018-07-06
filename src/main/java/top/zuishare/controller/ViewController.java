@@ -44,8 +44,6 @@ public class ViewController {
     @Autowired
     private BussinessConfig bussinessConfig;
     @Autowired
-    private AdService adService;
-    @Autowired
     private WebConfigService webConfigService;
     @Autowired
     private ColumnService columnService;
@@ -116,18 +114,9 @@ public class ViewController {
         Product product = productService.loadProduct(productId);
         if (product == null)
             return "redirect:errors/404";
-        // 查公司信息
-        Company company = companyService.loadCompany(bussinessConfig.getCompanyConfigPath());
-        // 查网站信息
-        WebConfig config = webConfigService.loadWebConfig(bussinessConfig.getWebConfigPath());
-        // 查菜单
-        List<Column> columns = columnService.queryIndexColumn();
+        common("products", map);
         List<Category> categories = categoryService.queryCategory();
-        map.put("config", config);
-        map.put("columns", columns);
         map.put("product", product);
-        map.put("company", company);
-        map.put("currentColumn", columnService.getColumnByCode("products"));
         map.put("categories", categories);
         return "product_detail";
     }
@@ -139,23 +128,23 @@ public class ViewController {
         if (news == null) {
             return "redirect:errors/404";
         }
-        // 查公司信息
-        Company company = companyService.loadCompany(bussinessConfig.getCompanyConfigPath());
-        // 查滚动图片
-        List<Advertisement> ads = adService.queryIndexAd(bussinessConfig.getIndexAds());
-        // 查网站信息
-        WebConfig config = webConfigService.loadWebConfig(bussinessConfig.getWebConfigPath());
+        common("news", map);
+        map.put("news", news);
+        return "news_detail";
+    }
+    
+    public void common(String code, ModelMap map){
         // 查菜单
         List<Column> columns = columnService.queryIndexColumn();
-        List<Category> categories = categoryService.queryCategory();
+        // 查公司信息
+        Company company = companyService.loadCompany(bussinessConfig.getCompanyConfigPath());
+        // 查网站信息
+        WebConfig config = webConfigService.loadWebConfig(bussinessConfig.getWebConfigPath());
+        Column column = columnService.getColumnByCode(code);
+        map.put("currentColumn", column);
         map.put("columns", columns);
-        map.put("config", config);
-        map.put("ads", ads);
-        map.put("news", news);
         map.put("company", company);
-        map.put("currentColumn", columnService.getColumnByCode("news"));
-        map.put("categories", categories);
-        return "news_detail";
+        map.put("config", config);
     }
 
 }
