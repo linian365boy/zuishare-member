@@ -1,22 +1,24 @@
 package top.zuishare.service.impl;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import top.zuishare.constants.Constants;
 import top.zuishare.dao.ColumnDao;
 import top.zuishare.service.ColumnService;
 import top.zuishare.spi.model.Column;
 import top.zuishare.util.RedisUtil;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author niange

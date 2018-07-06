@@ -143,18 +143,6 @@ public class RedisUtil {
     }
     
     /**
-     * 获取首页滚动图片key
-     * @return
-     */
-    public static String getIndexAdsKey(){
-        return new StringBuilder()
-                .append(Constants.ADCLASS)
-                .append(Constants.KEYDELIMITER)
-                .append(Constants.REDIS_LIST_KEY)
-                .toString();
-    }
-    
-    /**
      * 获取产品列表key
      * products:list
      * @return
@@ -225,7 +213,7 @@ public class RedisUtil {
     }
     
     /**
-     * 获取公司信息
+     * 获取公司信息key
      * company
      * @return
      */
@@ -236,7 +224,7 @@ public class RedisUtil {
     }
     
     /**
-     * 获取webconfig信息
+     * 获取webconfig信息key
      * webconfig
      * @return
      */
@@ -247,7 +235,7 @@ public class RedisUtil {
     }
     
     /**
-     * 获取column列表信息
+     * 获取column列表信息key
      * column:list
      * @return
      */
@@ -260,7 +248,7 @@ public class RedisUtil {
     }
     
     /**
-     * 获取产品分类列表信息
+     * 获取产品分类列表信息key
      * category:list
      * @return
      */
@@ -271,5 +259,19 @@ public class RedisUtil {
     			.append(Constants.REDIS_LIST_KEY)
     			.toString();
     }
+    
+    /**
+     * 获取滚动图片列表信息key
+     * ad:list
+     * @return
+     */
+    public static String getAdsKey() {
+    	return new StringBuilder()
+    			.append(Constants.ADCLASS)
+    			.append(Constants.KEYDELIMITER)
+    			.append(Constants.REDIS_LIST_KEY)
+    			.toString();
+    }
+    
     
 }

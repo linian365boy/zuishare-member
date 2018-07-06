@@ -42,17 +42,17 @@ public class AdServiceImpl implements AdService {
         //1、从缓存中获取
         try{
             //先从缓存中获取
-            String categoryStr = stringRedisTemplate.opsForValue().get(RedisUtil.getIndexAdsKey());
+            String adsStr = stringRedisTemplate.opsForValue().get(RedisUtil.getAdsKey());
             //json 反序列化
-            ads = gson.fromJson(categoryStr,
+            ads = gson.fromJson(adsStr,
                     new TypeToken<ArrayList<Advertisement>>() {
                     }.getType());
             if (CollectionUtils.isEmpty(ads)) {
                 //2、再DB中获取
                 ads = queryAdsFromDB(maxLimit);
-                logger.info("get ads from db");
+                logger.info("get ads from db, ads.size=>{}", ads == null ? 0:ads.size());
             }else{
-                logger.info("get ads from redis");
+                logger.info("get ads from redis, ads.size=>{}", ads == null ? 0:ads.size());
             }
         }catch (Exception e){
             logger.error("redis happend error.", e);
@@ -68,7 +68,7 @@ public class AdServiceImpl implements AdService {
         // 设置过期时间30天
         if (!CollectionUtils.isEmpty(ads)) {
             stringRedisTemplate.opsForValue()
-                    .set(RedisUtil.getIndexAdsKey(),
+                    .set(RedisUtil.getAdsKey(),
                             gson.toJson(ads), Constants.TIMEOUTDAYS, TimeUnit.DAYS);
         }
         return ads;
