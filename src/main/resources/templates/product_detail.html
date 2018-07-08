@@ -369,7 +369,8 @@
                                                                                                             </table>
 
                                                                                                         </div>
-                                                                                                        <div class='pd-fl pd-mt8 shareContainer shareContainer_J '>
+
+                                                                                                        <!--<div class='pd-fl pd-mt8 shareContainer shareContainer_J '>
                                                                                                             <table class='shareInfo shareInfo_J'>
                                                                                                                 <tr>
                                                                                                                     <td valign='top'
@@ -417,8 +418,9 @@
                                                                                                                     </td>
                                                                                                                 </tr>
                                                                                                             </table>
-                                                                                                        </div>
-                                                                                                        <div class='fk-noTitlePageStyle'
+                                                                                                        </div>-->
+
+                                                                                                        <!--<div class='fk-noTitlePageStyle'
                                                                                                              id='prevAndNextDiv'
                                                                                                              style=''>
                                                                                                             <table style='width:100%;height:100%;'
@@ -432,16 +434,16 @@
                                                                                                                              class='pagenation'>
                                                                                                                             <div class='pagePrev fk-productPage'>
                                                                                                                                 <a hidefocus='true'
-                                                                                                                                   href='pd.jsp?id=6#fai_14_top&amp;pfc=null'><span>上一个</span></a>
+                                                                                                                                   href='javascript:void(0)'><span>pre</span></a>
                                                                                                                             </div>
                                                                                                                             <div class='pageNext fk-productPage'>
-                                                                                                                                <span>下一个</span>
+                                                                                                                                <span>next</span>
                                                                                                                             </div>
                                                                                                                         </div>
                                                                                                                     </td>
                                                                                                                 </tr>
                                                                                                             </table>
-                                                                                                        </div>
+                                                                                                        </div>-->
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </td>
@@ -467,25 +469,21 @@
                                                                                                                         <span th:text="${product.id}"></span>
                                                                                                                     </td>
                                                                                                                 </tr>
-                                                                                                                <tr class='J_saleFullReduce fk-mallPrice'>
+                                                                                                                <tr class='J_saleFullReduce'>
                                                                                                                     <td valign='top'
                                                                                                                         class='propName g_minor'
-                                                                                                                        style='width:75px;min-width:75px;max-width: 75px;'
-                                                                                                                        title='Price'>
-                                                                                                                        Price:&nbsp;
+                                                                                                                        title='Product introduction'>
+                                                                                                                        Product introduction:&nbsp;
                                                                                                                     </td>
                                                                                                                     <td colspan="2"
                                                                                                                         valign='top'
-                                                                                                                        class='propValue J_mallPrice g_stress mallPriceBig fk-mainFontColor'>
+                                                                                                                        class='propValue g_stress fk-mainFontColor'>
                                                                                                                         <table border='0'
                                                                                                                                cellspacing='0'
                                                                                                                                cellpadding='0'>
                                                                                                                             <tr>
                                                                                                                                 <td>
-                                                                                                                                    <span class='f-mallUnit'>￥</span><span
-                                                                                                                                        id='realMallAmount'
-                                                                                                                                        curVal='￥'
-                                                                                                                                        class='mallPrice pd-lh105' th:text="140.00"></span>
+                                                                                                                                    <span th:text="${product.introduce}"></span>
                                                                                                                                 </td>
                                                                                                                             </tr>
                                                                                                                         </table>

@@ -115,9 +115,7 @@ public class ViewController {
         if (product == null)
             return "redirect:errors/404";
         common("products", map);
-        List<Category> categories = categoryService.queryCategory();
         map.put("product", product);
-        map.put("categories", categories);
         return "product_detail";
     }
 
@@ -141,10 +139,12 @@ public class ViewController {
         // 查网站信息
         WebConfig config = webConfigService.loadWebConfig(bussinessConfig.getWebConfigPath());
         Column column = columnService.getColumnByCode(code);
+        List<Category> categories = categoryService.queryCategory();
         map.put("currentColumn", column);
         map.put("columns", columns);
         map.put("company", company);
         map.put("config", config);
+        map.put("categories", categories);
     }
 
 }

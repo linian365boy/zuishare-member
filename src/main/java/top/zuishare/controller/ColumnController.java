@@ -41,6 +41,8 @@ public class ColumnController {
     private NewsService newsService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private InfoService infoService;
 
     /*@RequestMapping("/column/{code}")
     public String toColumn(@PathVariable("code") String code, ModelMap map){
@@ -65,6 +67,7 @@ public class ColumnController {
     public String toColumn(@PathVariable("code") String code, ModelMap map){
         long start = System.currentTimeMillis();
         common(code, map);
+        Info info = null;
         switch (code){
             case Constants.PRODUCT_COLUMN_NAME:
                 logger.info("enter column page cost {} ms", System.currentTimeMillis() - start);
@@ -73,14 +76,17 @@ public class ColumnController {
                 logger.info("enter column page cost {} ms", System.currentTimeMillis() - start);
                 return news(map, 1, "/column/"+Constants.NEWS_COLUMN_NAME+"/");
             case "aboutUs":
+                info = infoService.loadInfo(code);
+                map.put("info", info);
                 return code;
             case "contactUs":
+                info = infoService.loadInfo(code);
+                map.put("info", info);
                 return code;
             default:
-                // 查滚动图片
-                List<Advertisement> ads = adService.queryIndexAd(bussinessConfig.getIndexAds());
-                map.put("ads", ads);
                 logger.info("enter column page cost {} ms", System.currentTimeMillis() - start);
+                info = infoService.loadInfo(code);
+                map.put("info", info);
                 return "column";
         }
     }
@@ -97,9 +103,10 @@ public class ColumnController {
         Column column = columnService.getColumnByCode(code);
 
         List<Category> categories = categoryService.queryCategory();
+        // 查滚动图片
+        List<Advertisement> ads = adService.queryIndexAd(bussinessConfig.getIndexAds());
 
-        logger.info("query category size => {}", categories == null ? 0 : categories.size());
-
+        map.put("ads", ads);
         map.put("currentColumn", column);
         map.put("columns", columns);
         map.put("company", company);

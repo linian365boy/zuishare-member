@@ -55,8 +55,13 @@ public class ProductServiceImpl implements ProductService {
                 logger.info("get products from db, start=>{}, limit=>{}, products size=>{}", 
                 		start, limit, products == null ? 0 : products.size());
             }else{
+                logger.debug("get product id set from redis, start=>{}, limit=>{}, id set=>{}", start, limit, productIdsSet);
             	products = new ArrayList<>(limit);
-            	List<String> productsList = stringRedisTemplate.opsForValue().multiGet(productIdsSet);
+            	Set<String> keys = new HashSet<>(limit);
+                for(String productStr : productIdsSet) {
+                    keys.add(RedisUtil.getProductDetailKey(Integer.valueOf(productStr)));
+                }
+            	List<String> productsList = stringRedisTemplate.opsForValue().multiGet(keys);
             	for(String productStr : productsList) {
             		products.add(gson.fromJson(productStr, Product.class));
             	}
@@ -67,6 +72,7 @@ public class ProductServiceImpl implements ProductService {
     		logger.error("redis happend error.", e);
             products = getProductsList(start, limit);
     	}
+        logger.debug("listProducts result => {}", products);
     	return products;
     }
 
@@ -83,7 +89,6 @@ public class ProductServiceImpl implements ProductService {
     	if(StringUtils.isBlank(productStr)) {
     		//2. query from db, and set to redis
     		product = loadProductFromDb(productId);
-    		stringRedisTemplate.opsForValue().set(RedisUtil.getProductDetailKey(productId), gson.toJson(product), Constants.TIMEOUTDAYS, TimeUnit.DAYS);
     	}else {
     		product = gson.fromJson(productStr, Product.class);
     	}
@@ -95,7 +100,8 @@ public class ProductServiceImpl implements ProductService {
         Set<TypedTuple<String>> tuples = new HashSet<>();
         if(!CollectionUtils.isEmpty(products)) {
 	        for(Product proc : products) {
-	        	tuples.add(new DefaultTypedTuple<String>(String.valueOf(proc.getId()), System.nanoTime() * 1.0));
+                long autoId = stringRedisTemplate.opsForValue().increment(RedisUtil.getGenerateIncreaseKey() , 1);
+	        	tuples.add(new DefaultTypedTuple<String>(String.valueOf(proc.getId()), System.currentTimeMillis()+autoId * 1.0));
 	        }
 	        // 设置过期时间30天
 	        if (!CollectionUtils.isEmpty(products)) {
@@ -109,7 +115,7 @@ public class ProductServiceImpl implements ProductService {
     
     private Product loadProductFromDb(int productId) {
     	Product product = productDao.loadProduct(productId);
-    	stringRedisTemplate.opsForValue().set(RedisUtil.getProductsKey(), gson.toJson(product), Constants.TIMEOUTDAYS, TimeUnit.DAYS);
+    	stringRedisTemplate.opsForValue().set(RedisUtil.getProductDetailKey(productId), gson.toJson(product), Constants.TIMEOUTDAYS, TimeUnit.DAYS);
     	return product;
     }
     
@@ -118,7 +124,8 @@ public class ProductServiceImpl implements ProductService {
     	Set<TypedTuple<String>> tuples = new HashSet<>();
     	if(!CollectionUtils.isEmpty(products)) {
     		for(Product proc : products) {
-	        	tuples.add(new DefaultTypedTuple<String>(gson.toJson(proc), System.nanoTime() * 1.0));
+                long autoId = stringRedisTemplate.opsForValue().increment(RedisUtil.getGenerateIncreaseKey() , 1);
+	        	tuples.add(new DefaultTypedTuple<String>(gson.toJson(proc), System.currentTimeMillis()+autoId * 1.0));
 	        }
     		// 设置过期时间30天
 	        if (!CollectionUtils.isEmpty(products)) {
@@ -143,7 +150,11 @@ public class ProductServiceImpl implements ProductService {
                 logger.info("get products from db, products size=>{}", products == null ? 0 : products.size());
             }else{
             	products = new ArrayList<>(limit);
-            	List<String> productsStr = stringRedisTemplate.opsForValue().multiGet(productIdsSet);
+            	Set<String> keys = new HashSet<>(limit);
+            	for(String proid : productIdsSet){
+            	    keys.add(RedisUtil.getProductDetailKey(Integer.valueOf(proid)));
+                }
+            	List<String> productsStr = stringRedisTemplate.opsForValue().multiGet(keys);
             	for(String jsonStr : productsStr) {
             		products.add(gson.fromJson(jsonStr, Product.class));
             	}

@@ -48,7 +48,7 @@ public class CategoryServiceImpl implements CategoryService {
     		String categoriesStr = stringRedisTemplate.opsForValue().get(RedisUtil.getProductCatesKey());
     		//json 反序列化
     		cates = gson.fromJson(categoriesStr,
-                    new TypeToken<ArrayList<Advertisement>>() {
+                    new TypeToken<ArrayList<Category>>() {
                     }.getType());
             if (CollectionUtils.isEmpty(cates)) {
                 //2、再DB中获取

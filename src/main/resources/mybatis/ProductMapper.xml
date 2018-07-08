@@ -18,7 +18,7 @@
     </select>
     
     <select id="loadProduct" resultType="top.zuishare.spi.model.Product" parameterType="int">
-        select id,enName,hot,picUrl,description from tb_product where id=#{productId} and status=1 and publish is true limit 1
+        select id,enName,hot,picUrl,description,introduce from tb_product where id=#{productId} and status=1 and publish is true limit 1
     </select>
     
     <select id="queryProductsByCateId" resultType="top.zuishare.spi.model.Product" parameterType="int">

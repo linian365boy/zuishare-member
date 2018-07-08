@@ -55,7 +55,11 @@ public class NewsServiceImpl implements NewsService {
                 		start, limit, news == null ? 0 : news.size());
             }else{
             	news = new ArrayList<>(limit);
-            	List<String> newsList = stringRedisTemplate.opsForValue().multiGet(newsIdSets);
+            	Set<String> keys = new HashSet<>(limit);
+            	for(String newsId : newsIdSets){
+					keys.add(RedisUtil.getNewsDetailKey(Integer.valueOf(newsId)));
+				}
+            	List<String> newsList = stringRedisTemplate.opsForValue().multiGet(keys);
             	for(String jsonStr : newsList) {
             		news.add(gson.fromJson(jsonStr, News.class));
             	}
@@ -66,6 +70,7 @@ public class NewsServiceImpl implements NewsService {
     		logger.error("redis happend error.", e);
     		news = getNewsList(start, limit);
     	}
+    	logger.info("listNews return news=>{}", news);
     	return news;
     }
 
@@ -79,7 +84,8 @@ public class NewsServiceImpl implements NewsService {
         Set<TypedTuple<String>> tuples = new HashSet<>();
         if(!CollectionUtils.isEmpty(newsList)) {
 	        for(News news : newsList) {
-	        	tuples.add(new DefaultTypedTuple<String>(String.valueOf(news.getId()), System.nanoTime() * 1.0));
+				long autoId = stringRedisTemplate.opsForValue().increment(RedisUtil.getGenerateIncreaseKey() , 1);
+	        	tuples.add(new DefaultTypedTuple<String>(String.valueOf(news.getId()), System.currentTimeMillis()+autoId * 1.0));
 	        }
 	        // 设置过期时间30天
 	        if (!CollectionUtils.isEmpty(newsList)) {
