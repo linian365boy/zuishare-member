@@ -66,6 +66,10 @@ function addFeedback(){
         if(json.code != 0){
             alert(json.message);
         }else{
+            $("#nameText").val('');
+            $("#emailText").val('');
+            $("#telephoneText").val('')
+            $("#messageText").val('');
             alert("You have successfully sent the message, and we will contact you soon.");
         }
     },"json");
