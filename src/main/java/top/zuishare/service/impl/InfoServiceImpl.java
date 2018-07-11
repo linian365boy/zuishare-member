@@ -39,7 +39,7 @@ public class InfoServiceImpl implements InfoService {
         }else{
             info = loadInfoFromDb(code);
         }
-        logger.info("load info data=>{}", info.getCode());
+        logger.info("load info data=>{}", info != null ? info.getCode(): null);
         return info;
     }
 

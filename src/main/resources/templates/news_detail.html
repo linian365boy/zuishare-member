@@ -7,7 +7,6 @@
     <meta name="description" itemprop="description" th:content="${news.title}"/>
     <meta itemprop="name" th:content="${news.title}"/>
     <meta name="keywords" th:content="${news.title}+'-'+${company.name}"/>
-    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"/>
     <head th:replace="fragments/fragment :: headJsCss"></head>
     <link type='text/css' th:href='@{/css/detail2.min.css}' rel='stylesheet'/>
     <link type="text/css" th:href="@{/css/jzcusstyle.css}" rel="stylesheet" />
@@ -268,7 +267,6 @@
 </div>
 
 <footer th:replace="fragments/fragment :: footerCssJs"></footer>
-<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
 

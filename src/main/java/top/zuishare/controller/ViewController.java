@@ -49,6 +49,8 @@ public class ViewController {
     private ColumnService columnService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private AdService adService;
 
     private static final Logger logger = LoggerFactory.getLogger(ViewController.class);
 
@@ -140,6 +142,10 @@ public class ViewController {
         WebConfig config = webConfigService.loadWebConfig(bussinessConfig.getWebConfigPath());
         Column column = columnService.getColumnByCode(code);
         List<Category> categories = categoryService.queryCategory();
+        // 查滚动图片
+        List<Advertisement> ads = adService.queryIndexAd(bussinessConfig.getIndexAds());
+
+        map.put("ads", ads);
         map.put("currentColumn", column);
         map.put("columns", columns);
         map.put("company", company);

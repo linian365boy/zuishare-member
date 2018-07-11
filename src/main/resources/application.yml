@@ -65,6 +65,16 @@ spring:
           ssl:
             enable: true
 
+  resources:
+    cache-period: 604800
+    chain:
+      gzipped: true
+      cache: false
+      strategy:
+        content:
+          enabled: true
+          paths: /**
+
 mybatis:
   type-aliases-package: top.zuishare.spi.model
   mapper-locations: classpath:mybatis/*Mapper.xml

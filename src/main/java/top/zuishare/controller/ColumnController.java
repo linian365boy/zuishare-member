@@ -44,24 +44,6 @@ public class ColumnController {
     @Autowired
     private InfoService infoService;
 
-    /*@RequestMapping("/column/{code}")
-    public String toColumn(@PathVariable("code") String code, ModelMap map){
-        long start = System.currentTimeMillis();
-        common(code, map);
-        if(code.equalsIgnoreCase(Constants.PRODUCT_COLUMN_NAME)){
-            logger.info("enter column page cost {} ms", System.currentTimeMillis() - start);
-            return products(map);
-        }else if(code.equalsIgnoreCase(Constants.NEWS_COLUMN_NAME)){
-            logger.info("enter column page cost {} ms", System.currentTimeMillis() - start);
-            return news(map);
-        }else {
-            // 查滚动图片
-            List<Advertisement> ads = adService.queryIndexAd(bussinessConfig.getIndexAds());
-            map.put("ads", ads);
-            logger.info("enter column page cost {} ms", System.currentTimeMillis() - start);
-            return "column";
-        }
-    }*/
 
     @RequestMapping("/column/{code}")
     public String toColumn(@PathVariable("code") String code, ModelMap map){
@@ -86,6 +68,10 @@ public class ColumnController {
             default:
                 logger.info("enter column page cost {} ms", System.currentTimeMillis() - start);
                 info = infoService.loadInfo(code);
+                if(info == null) {
+                    info = new Info();
+                    info.setContent("You are not config the column.");
+                }
                 map.put("info", info);
                 return "column";
         }
