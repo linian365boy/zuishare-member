@@ -14,7 +14,7 @@
 
     <select id="getHotProducts" resultType="top.zuishare.spi.model.Product">
         select id,enName,hot,picUrl,priority from tb_product where status=1 and hot is true and publish is true
-        order by priority desc,id desc
+        order by priority desc,id desc limit #{limit}
     </select>
     
     <select id="loadProduct" resultType="top.zuishare.spi.model.Product" parameterType="int">
