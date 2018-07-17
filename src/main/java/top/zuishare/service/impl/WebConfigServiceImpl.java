@@ -32,7 +32,7 @@ public class WebConfigServiceImpl implements WebConfigService {
     @Override
     public WebConfig loadWebConfig(String path) {
     	// query from redis
-    	String webconfigStr = stringRedisTemplate.opsForValue().get(RedisUtil.getCompanyKey());
+    	String webconfigStr = stringRedisTemplate.opsForValue().get(RedisUtil.getWebConfigKey());
     	if(StringUtils.isBlank(webconfigStr)) {
     		// query from file
     		webconfigStr = Tools.getJsonStrFromPath(path);

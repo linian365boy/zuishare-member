@@ -3,17 +3,17 @@
 
 <mapper namespace="top.zuishare.dao.ProductDao">
 
-    <select id="getProducts" resultType="top.zuishare.spi.model.Product">
-        select id,enName,hot,picUrl from tb_product where status=1 and publish is true
-        order by priority desc,id desc limit #{start},#{limit}
-    </select>
-
     <select id="countProducts" resultType="long">
         select count(1) from tb_product where status=1 and publish is true limit 1
     </select>
     
     <select id="getProductsList" resultType="top.zuishare.spi.model.Product">
-        select id,enName,hot,picUrl from tb_product where status=1 and hot is true and publish is true
+        select id,enName,hot,picUrl,priority from tb_product where status=1 and publish is true
+        order by priority desc,id desc
+    </select>
+
+    <select id="getHotProducts" resultType="top.zuishare.spi.model.Product">
+        select id,enName,hot,picUrl,priority from tb_product where status=1 and hot is true and publish is true
         order by priority desc,id desc
     </select>
     
@@ -22,7 +22,7 @@
     </select>
     
     <select id="queryProductsByCateId" resultType="top.zuishare.spi.model.Product" parameterType="int">
-        select id,enName,hot,picUrl from tb_product where status=1 and publish is true and categoryId=#{cateId}
+        select id,enName,hot,picUrl,priority from tb_product where status=1 and publish is true and categoryId=#{cateId}
         order by priority desc,id desc
     </select>
 

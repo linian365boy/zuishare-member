@@ -15,6 +15,8 @@ public interface ProductService {
 
     List<Product> listProducts(int limit, int pageNo);
 
+    List<Product> listHotProducts(int limit);
+
     long countProducts();
 
     Product loadProduct(int productId);

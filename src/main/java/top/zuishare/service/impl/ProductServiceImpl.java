@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import com.google.gson.reflect.TypeToken;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +22,10 @@ import com.google.gson.Gson;
 import top.zuishare.constants.Constants;
 import top.zuishare.dao.ProductDao;
 import top.zuishare.service.ProductService;
+import top.zuishare.spi.model.Column;
 import top.zuishare.spi.model.Product;
 import top.zuishare.spi.util.RedisUtil;
+import top.zuishare.util.RedisHelper;
 
 /**
  * @author niange
@@ -42,6 +45,42 @@ public class ProductServiceImpl implements ProductService {
     private StringRedisTemplate stringRedisTemplate;
     @Autowired
     private Gson gson;
+
+    @Override
+    public List<Product> listHotProducts(int limit) {
+        List<Product> products = null;
+        try{
+            String productStr = stringRedisTemplate.opsForValue().get(RedisUtil.getHotProductsKey());
+            //json 反序列化
+            products = gson.fromJson(productStr,
+                    new TypeToken<ArrayList<Product>>() {
+                    }.getType());
+            if (CollectionUtils.isEmpty(products)) {
+                //2、再DB中获取
+                products = getHotProductsList(limit);
+                logger.info("get index hot products from db");
+            }else{
+                logger.info("get index hot products from redis");
+            }
+        }catch (Exception e){
+            logger.error("redis happend error.", e);
+            products = getHotProductsList(limit);
+        }
+        logger.info("query index hot products => {}", products);
+        return products;
+    }
+
+
+    private List<Product> getHotProductsList(int limit) {
+        List<Product> products = productDao.getHotProducts(limit);
+        // 设置过期时间30天
+        if (!CollectionUtils.isEmpty(products)) {
+            stringRedisTemplate.opsForValue()
+                    .set(RedisUtil.getHotProductsKey(),
+                            gson.toJson(products), Constants.TIMEOUTDAYS, TimeUnit.DAYS);
+        }
+        return products;
+    }
 
     @Override
     public List<Product> listProducts(int limit, int pageNo){
@@ -101,7 +140,8 @@ public class ProductServiceImpl implements ProductService {
         if(!CollectionUtils.isEmpty(products)) {
 	        for(Product proc : products) {
                 long autoId = stringRedisTemplate.opsForValue().increment(RedisUtil.getGenerateIncreaseKey() , 1);
-	        	tuples.add(new DefaultTypedTuple<String>(String.valueOf(proc.getId()), System.currentTimeMillis()+autoId * 1.0));
+	        	tuples.add(new DefaultTypedTuple<>(String.valueOf(proc.getId()),
+                        RedisHelper.getZsetScore(proc.getPriority(), autoId)));
 	        }
 	        // 设置过期时间30天
 	        if (!CollectionUtils.isEmpty(products)) {
@@ -125,7 +165,8 @@ public class ProductServiceImpl implements ProductService {
     	if(!CollectionUtils.isEmpty(products)) {
     		for(Product proc : products) {
                 long autoId = stringRedisTemplate.opsForValue().increment(RedisUtil.getGenerateIncreaseKey() , 1);
-	        	tuples.add(new DefaultTypedTuple<String>(gson.toJson(proc), System.currentTimeMillis()+autoId * 1.0));
+	        	tuples.add(new DefaultTypedTuple<>(gson.toJson(proc),
+                        RedisHelper.getZsetScore(proc.getPriority(), autoId)));
 	        }
     		// 设置过期时间30天
 	        if (!CollectionUtils.isEmpty(products)) {

@@ -52,7 +52,7 @@ public class HomeController {
         // 查网站信息
         WebConfig config = webConfigService.loadWebConfig(bussinessConfig.getWebConfigPath());
         // 首页展示的产品
-        List<Product> indexProducts = productService.listProducts(bussinessConfig.getIndexProductsSize(), 1);
+        List<Product> hotProducts = productService.listHotProducts(bussinessConfig.getIndexProductsSize());
 
         List<Category> categories = categoryService.queryCategory();
 
@@ -60,8 +60,9 @@ public class HomeController {
         map.put("ads", ads);
         map.put("columns", columns);
         map.put("company", company);
+        logger.info("load config data=>{}", config);
         map.put("config", config);
-        map.put("indexProducts", indexProducts);
+        map.put("indexProducts", hotProducts);
         map.put("categories", categories);
 
         logger.info("enter home page cost {} ms", System.currentTimeMillis() - start);

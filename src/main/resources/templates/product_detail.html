@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xlang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="${product.enName}+' - '+${company.name}"></title>
+    <title th:text="${product.enName}+'-'+${currentColumn.enName}+'-'+${company.name}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="Cache-Control" content="no-transform"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -9,7 +9,7 @@
     <meta name="renderer" content="webkit"/>
     <meta name="description" itemprop="description" th:content="${product.enName}+' - '+${company.name}"/>
     <meta itemprop="name" th:content="${product.enName}+' - '+${company.name}"/>
-    <meta name="keywords" th:content="${config.keyword}"/>
+    <meta name="keywords" th:content="${product.keyWords}+','+${config.keyword}"/>
     <head th:replace="fragments/fragment :: headJsCss"></head>
     <link type='text/css' th:href='@{/css/detail2.min.css}' rel='stylesheet'/>
     <link type="text/css" th:href="@{/css/jzcusstyle.css}" rel="stylesheet" />

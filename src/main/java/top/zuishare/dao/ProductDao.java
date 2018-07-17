@@ -17,7 +17,7 @@ import java.util.List;
 @Mapper
 public interface ProductDao {
 
-    List<Product> getProducts(@Param("limit") int limit, @Param("start") int start);
+    List<Product> getHotProducts(int limit);
 
     long countProducts();
 

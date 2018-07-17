@@ -2,16 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="headJsCss" id="headJsCss">
-    <title th:text="'Home - '+${company.name}+' - Welcome'">Home</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="Cache-Control" content="no-transform"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="format-detection" content="telephone=no,email=no,address=no"/>
     <meta name="renderer" content="webkit"/>
-    <meta property="og:url" th:content="${config.website}"/>
-    <meta name="keywords" th:content="${config.keyword}"/>
+    <meta property="og:url" th:content="${company.website}"/>
     <meta name="description" th:content="${config.description}"/>
-    <link rel="canonical" th:href="${config.website}"/>
+    <link rel="canonical" th:href="${company.website}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
     <link type="text/css" th:href="@{/css/base2.min.css}" rel="stylesheet"/>
     <link type="text/css" th:href="@{/css/fkTheme.min.css}" rel="stylesheet" id="jzThemeFrame"/>

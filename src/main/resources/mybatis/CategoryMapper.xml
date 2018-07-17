@@ -4,7 +4,7 @@
 <mapper namespace="top.zuishare.dao.CategoryDao">
 
     <select id="queryCategory" resultType="top.zuishare.spi.model.Category">
-        select id,enName from tb_category order by createDate desc,id desc
+        select id,enName from tb_category order by priority desc,id desc
     </select>
 
 </mapper>

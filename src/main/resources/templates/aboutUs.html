@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta name="keywords" th:content="${currentColumn.enName}+','+${config.keyword}"/>
+    <title th:text="${currentColumn.enName}+'-'+${company.name}">Home</title>
     <head th:replace="fragments/fragment :: headJsCss"></head>
     <link type='text/css' th:href='@{/css/fkModule.min.css}' rel='stylesheet' id='jzModule2_1_1'/>
-    <!--<link type="text/css" th:href="@{/css/jzcusstyle.css}" rel="stylesheet" />-->
 </head>
 <body class="g_body g_locale2052 g_cusSiteWidth fk-baseEditToolV2 ">
 <div id="g_main" class="g_main g_col108  forMacAndChrome">

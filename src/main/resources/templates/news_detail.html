@@ -3,10 +3,10 @@
 <html xlang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title th:text="${news.title}+'-'+${company.name}"></title>
+    <title th:text="${news.title}+'-'+${currentColumn.enName}+'-'+${company.name}"></title>
     <meta name="description" itemprop="description" th:content="${news.title}"/>
     <meta itemprop="name" th:content="${news.title}"/>
-    <meta name="keywords" th:content="${news.title}+'-'+${company.name}"/>
+    <meta name="keywords" th:content="${news.keyWords}+','+${config.keyword}"/>
     <head th:replace="fragments/fragment :: headJsCss"></head>
     <link type='text/css' th:href='@{/css/detail2.min.css}' rel='stylesheet'/>
     <link type="text/css" th:href="@{/css/jzcusstyle.css}" rel="stylesheet" />

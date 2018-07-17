@@ -23,6 +23,7 @@ import top.zuishare.dao.NewsDao;
 import top.zuishare.service.NewsService;
 import top.zuishare.spi.model.News;
 import top.zuishare.spi.util.RedisUtil;
+import top.zuishare.util.RedisHelper;
 
 /**
  * @author niange
@@ -85,7 +86,8 @@ public class NewsServiceImpl implements NewsService {
         if(!CollectionUtils.isEmpty(newsList)) {
 	        for(News news : newsList) {
 				long autoId = stringRedisTemplate.opsForValue().increment(RedisUtil.getGenerateIncreaseKey() , 1);
-	        	tuples.add(new DefaultTypedTuple<String>(String.valueOf(news.getId()), System.currentTimeMillis()+autoId * 1.0));
+	        	tuples.add(new DefaultTypedTuple<>(String.valueOf(news.getId()),
+						RedisHelper.getZsetScore(news.getPriority(), autoId)));
 	        }
 	        // 设置过期时间30天
 	        if (!CollectionUtils.isEmpty(newsList)) {

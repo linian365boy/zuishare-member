@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta name="keywords" th:content="${currentColumn.enName}+','+${config.keyword}"/>
+    <title th:text="${currentColumn.enName}+'-'+${company.name}">Home</title>
     <head th:replace="fragments/fragment :: headJsCss"></head>
     <link type='text/css' th:href='@{/css/fkModule.min.css}' rel='stylesheet' id='jzModule2_1_1'/>
 </head>
