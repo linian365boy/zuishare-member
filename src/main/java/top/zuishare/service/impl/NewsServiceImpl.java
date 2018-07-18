@@ -1,11 +1,6 @@
 package top.zuishare.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-
+import com.google.gson.Gson;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,15 +10,14 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations.TypedTuple;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-
-import com.google.gson.Gson;
-
 import top.zuishare.constants.Constants;
 import top.zuishare.dao.NewsDao;
 import top.zuishare.service.NewsService;
 import top.zuishare.spi.model.News;
 import top.zuishare.spi.util.RedisUtil;
-import top.zuishare.util.RedisHelper;
+
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author niange
@@ -48,7 +42,7 @@ public class NewsServiceImpl implements NewsService {
     	List<News> news = null;
     	int start = (pageNo-1) * limit;
     	try {
-            Set<String> newsIdSets = stringRedisTemplate.opsForZSet().range(
+            Set<String> newsIdSets = stringRedisTemplate.opsForZSet().reverseRange(
             		RedisUtil.getNewsKey(), start, start + limit-1);
             if (CollectionUtils.isEmpty(newsIdSets)) {
             	news = getNewsList(start, limit);
@@ -85,9 +79,7 @@ public class NewsServiceImpl implements NewsService {
         Set<TypedTuple<String>> tuples = new HashSet<>();
         if(!CollectionUtils.isEmpty(newsList)) {
 	        for(News news : newsList) {
-				long autoId = stringRedisTemplate.opsForValue().increment(RedisUtil.getGenerateIncreaseKey() , 1);
-	        	tuples.add(new DefaultTypedTuple<>(String.valueOf(news.getId()),
-						RedisHelper.getZsetScore(news.getPriority(), autoId)));
+	        	tuples.add(new DefaultTypedTuple<>(String.valueOf(news.getId()), news.getPriority() * 1.0));
 	        }
 	        // 设置过期时间30天
 	        if (!CollectionUtils.isEmpty(newsList)) {

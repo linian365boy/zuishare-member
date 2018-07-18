@@ -1,11 +1,6 @@
 package top.zuishare.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-
+import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -16,16 +11,17 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations.TypedTuple;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-
-import com.google.gson.Gson;
-
 import top.zuishare.constants.Constants;
 import top.zuishare.dao.ProductDao;
 import top.zuishare.service.ProductService;
-import top.zuishare.spi.model.Column;
 import top.zuishare.spi.model.Product;
 import top.zuishare.spi.util.RedisUtil;
-import top.zuishare.util.RedisHelper;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author niange
@@ -87,7 +83,7 @@ public class ProductServiceImpl implements ProductService {
     	List<Product> products = null;
     	int start = (pageNo-1) * limit;
     	try {
-            Set<String> productIdsSet = stringRedisTemplate.opsForZSet().range(
+            Set<String> productIdsSet = stringRedisTemplate.opsForZSet().reverseRange(
             		RedisUtil.getProductsKey(), start, start + limit-1);
             if (CollectionUtils.isEmpty(productIdsSet)) {
                 products = getProductsList(start, limit);
@@ -139,9 +135,7 @@ public class ProductServiceImpl implements ProductService {
         Set<TypedTuple<String>> tuples = new HashSet<>();
         if(!CollectionUtils.isEmpty(products)) {
 	        for(Product proc : products) {
-                long autoId = stringRedisTemplate.opsForValue().increment(RedisUtil.getGenerateIncreaseKey() , 1);
-	        	tuples.add(new DefaultTypedTuple<>(String.valueOf(proc.getId()),
-                        RedisHelper.getZsetScore(proc.getPriority(), autoId)));
+	        	tuples.add(new DefaultTypedTuple<>(String.valueOf(proc.getId()), proc.getPriority() * 1.0));
 	        }
 	        // 设置过期时间30天
 	        if (!CollectionUtils.isEmpty(products)) {
@@ -164,9 +158,7 @@ public class ProductServiceImpl implements ProductService {
     	Set<TypedTuple<String>> tuples = new HashSet<>();
     	if(!CollectionUtils.isEmpty(products)) {
     		for(Product proc : products) {
-                long autoId = stringRedisTemplate.opsForValue().increment(RedisUtil.getGenerateIncreaseKey() , 1);
-	        	tuples.add(new DefaultTypedTuple<>(gson.toJson(proc),
-                        RedisHelper.getZsetScore(proc.getPriority(), autoId)));
+	        	tuples.add(new DefaultTypedTuple<>(String.valueOf(proc.getId()), proc.getPriority() * 1.0));
 	        }
     		// 设置过期时间30天
 	        if (!CollectionUtils.isEmpty(products)) {
@@ -184,7 +176,7 @@ public class ProductServiceImpl implements ProductService {
         int start = (pageNo-1)*limit;
         try {
             //1. 先从缓存中获取
-            Set<String> productIdsSet = stringRedisTemplate.opsForZSet().range(RedisUtil.getCateProductKey(cateId), start, start+limit-1);
+            Set<String> productIdsSet = stringRedisTemplate.opsForZSet().reverseRange(RedisUtil.getCateProductKey(cateId), start, start+limit-1);
             if (CollectionUtils.isEmpty(productIdsSet)) {
                 //2. 再DB中获取
                 products = queryProductsByCateIdFromDb(cateId, start ,limit);
