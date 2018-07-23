@@ -90,9 +90,9 @@ public class ProductServiceImpl implements ProductService {
                 logger.info("get products from db, start=>{}, limit=>{}, products size=>{}", 
                 		start, limit, products == null ? 0 : products.size());
             }else{
-                logger.debug("get product id set from redis, start=>{}, limit=>{}, id set=>{}", start, limit, productIdsSet);
+                logger.info("get product id set from redis, start=>{}, limit=>{}, id set=>{}", start, limit, productIdsSet);
             	products = new ArrayList<>(limit);
-            	Set<String> keys = new HashSet<>(limit);
+            	List<String> keys = new ArrayList<>(limit);
                 for(String productStr : productIdsSet) {
                     keys.add(RedisUtil.getProductDetailKey(Integer.valueOf(productStr)));
                 }
@@ -107,7 +107,7 @@ public class ProductServiceImpl implements ProductService {
     		logger.error("redis happend error.", e);
             products = getProductsList(start, limit);
     	}
-        logger.debug("listProducts result => {}", products);
+        logger.info("listProducts result => {}", products);
     	return products;
     }
 
@@ -183,7 +183,7 @@ public class ProductServiceImpl implements ProductService {
                 logger.info("get products from db, products size=>{}", products == null ? 0 : products.size());
             }else{
             	products = new ArrayList<>(limit);
-            	Set<String> keys = new HashSet<>(limit);
+            	List<String> keys = new ArrayList<>(limit);
             	for(String proid : productIdsSet){
             	    keys.add(RedisUtil.getProductDetailKey(Integer.valueOf(proid)));
                 }

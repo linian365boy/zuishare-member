@@ -114,70 +114,100 @@
         <div class="container">
             <div class="container-inner">
                 <div class="row">
-                    <div style="width:50%;" class="widget-2">
+                    <div style="width:33%;" class="widget-2">
                         <!-- Block CMS module -->
                         <section class="footer-block" id="informations_block_left_1">
                             <h4 class="title_block">Products</h4>
                             <ul class="toggle-footer" style="">
-                                <li class="link">
-                                    <a target="_blank" th:each="cate:${categories}" th:title="${cate.enName}" th:href="@{'/product/cate/'+${cate.id}+'.html'}" th:text="${cate.enName}">
+                                <li class="link" th:each="cate:${categories}" >
+                                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                    <a target="_blank" th:title="${cate.enName}" th:href="@{'/product/cate/'+${cate.id}+'.html'}" th:text="${cate.enName}">
                                     </a>
                                 </li>
                             </ul>
                         </section>
                     </div>
-                    <div style="width:25%;" class="widget-2">
+                    <div style="width:34%;" class="widget-2">
                         <section class="footer-block" id="informations_block_left_2">
                             <h4 class="title_block">Follow Us</h4>
                             <ul class="toggle-footer" style="">
                                 <li class="link">
-                                    <a title="facebook" target="_blank" th:href="${company.contactUserFacebook}">
-                                        <i class="fa fa-facebook-square fa-2"></i>
+                                    <a title="Facebook" target="_blank" th:href="${company.contactUserFacebook}">
+                                        <i class="fa fa-facebook-square fa-2" aria-hidden="true"></i>
                                         <span>Facebook</span>
                                     </a>
                                 </li>
                                 <li class="link">
-                                    <a title="twitter" target="_blank" th:href="${company.contactUserTwitter}">
-                                        <i class="fa fa-twitter-square fa-2"></i>
+                                    <a title="Twitter" target="_blank" th:href="${company.contactUserTwitter}">
+                                        <i class="fa fa-twitter-square fa-2" aria-hidden="true"></i>
                                         <span>Twitter</span>
                                     </a>
                                 </li>
                                 <li class="link">
-                                    <a title="google-plus" target="_blank" th:href="${company.contactUserlinkedin}">
-                                        <i class="fa fa-linkedin-square fa-2"></i>
-                                        <span>linkedin</span>
+                                    <a title="Linkedin" target="_blank" th:href="${company.contactUserlinkedin}">
+                                        <i class="fa fa-linkedin-square fa-2" aria-hidden="true"></i>
+                                        <span>Linkedin</span>
                                     </a>
                                 </li>
                                 <li class="link">
                                     <a title="Instagram" target="_blank" th:href="${company.contactUserinstagram}">
-                                        <i class="fa fa-instagram fa-2"></i>
+                                        <i class="fa fa-instagram fa-2" aria-hidden="true"></i>
                                         <span>Instagram</span>
+                                    </a>
+                                </li>
+                                <li class="link">
+                                    <a title="Skype" target="_blank" th:href="${company.contactUserSkype}">
+                                        <i class="fa fa-skype fa-2" aria-hidden="true"></i>
+                                        <span>Skype</span>
                                     </a>
                                 </li>
                             </ul>
                         </section>
                         <!-- /Block CMS module -->
                     </div>
-                    <div style="width:25%;" class="widget-2">
-                        <!-- MODULE Block contact infos -->
-                        <section class="footer-block" id="block_contact_infos">
-                            <div>
-                                <h4 class="title_block">Contact Us</h4>
-                                <ul class="toggle-footer" style="">
-                                    <li class="nohover">
-                                        <p>
-                                            <i class="fa fa-envelope-square fa-2"></i>
-                                            Email:<a th:href="@{'mailto:'+${company.email}}" th:text="${company.email}"></a>
-                                        </p>
-                                    </li>
-                                    <li>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-phone-square fa-2"></i>
-                                        <span th:text="'Tel:'+${company.telPhone}"></span>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div style="width:33%;" class="widget-2">
+                        <!-- Block CMS module -->
+                        <section class="footer-block" id="informations_block_left_3">
+                            <h4 class="title_block">Contact Information</h4>
+                            <ul class="toggle-footer" style="">
+                                <li class="link" title="company name">
+                                    <p>
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                    <span th:text="${company.name}"></span>
+                                    </p>
+                                </li>
+                                <li class="link" title="company address">
+                                    <p>
+                                    <i class="fa fa-map-marker fa-lg" aria-hidden="true"></i>
+                                    <span th:text="${company.address}"></span>
+                                    </p>
+                                </li>
+                                <li class="nohover" title="company email">
+                                    <p>
+                                        <i class="fa fa-envelope-square fa-2" aria-hidden="true"></i>
+                                        Email:<a th:href="@{'mailto:'+${company.email}}" th:text="${company.email}"></a>
+                                    </p>
+                                </li>
+                                <li>
+                                </li>
+                                <li>
+                                    <i class="fa fa-phone-square fa-2" aria-hidden="true"></i>
+                                    <span th:text="'Tel:'+${company.telPhone}"></span>
+                                </li>
+
+                                <li class="nohover">
+                                    <p>
+                                        <i class="fa fa-envelope-square fa-2" aria-hidden="true"></i>
+                                        Email:<a th:href="@{'mailto:'+${company.secondEmail}}" th:text="${company.secondEmail}"></a>
+                                    </p>
+                                </li>
+                                <li>
+                                </li>
+                                <li>
+                                    <i class="fa fa-phone-square fa-2" aria-hidden="true"></i>
+                                    <span th:text="'Tel:'+${company.secondTelPhone}"></span>
+                                </li>
+                            </ul>
                         </section>
                     </div>
                 </div>
@@ -188,7 +218,7 @@
 
 
 <ul class="dice-menu" th:fragment="diceMenu" id="diceMenu">
-    <li class="categories"><span>Product Categories</span><i class="fa fa-plus" style="position:fixed;" aria-hidden="true"></i></li>
+    <li class="categories"><span>Product Catalogs</span><i class="fa fa-plus" style="position:fixed;" aria-hidden="true"></i></li>
     <li th:each="cate:${categories}" th:class="'productCate '+${currentCateId==cate.id?'activeCate':''}" th:title="${cate.enName}">
         <a th:text="${cate.enName}" th:href="@{'/product/cate/'+${cate.id}+'.html'}"></a>
     </li>

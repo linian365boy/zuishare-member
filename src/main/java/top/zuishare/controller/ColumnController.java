@@ -90,9 +90,10 @@ public class ColumnController {
 
         List<Category> categories = categoryService.queryCategory();
         // 查滚动图片
-        List<Advertisement> ads = adService.queryIndexAd(bussinessConfig.getIndexAds());
-
-        map.put("ads", ads);
+        if (!code.equals(Constants.PRODUCT_COLUMN_NAME)) {
+            List<Advertisement> ads = adService.queryIndexAd(bussinessConfig.getIndexAds());
+            map.put("ads", ads);
+        }
         map.put("currentColumn", column);
         map.put("columns", columns);
         map.put("company", company);

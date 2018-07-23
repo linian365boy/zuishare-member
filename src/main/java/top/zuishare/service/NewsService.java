@@ -17,6 +17,8 @@ public interface NewsService {
 
     News loadNews(int newsId);
 
+    void increaseViewNum(News news);
+
     long countNews();
 
 }

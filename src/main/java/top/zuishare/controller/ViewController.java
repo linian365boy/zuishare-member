@@ -16,6 +16,9 @@ import top.zuishare.dto.ResultDto;
 import top.zuishare.service.*;
 import top.zuishare.spi.model.*;
 import top.zuishare.spi.util.Tools;
+import top.zuishare.util.IpUtil;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +54,8 @@ public class ViewController {
     private CategoryService categoryService;
     @Autowired
     private AdService adService;
+    @Autowired
+    private RedisService redisService;
 
     private static final Logger logger = LoggerFactory.getLogger(ViewController.class);
 
@@ -123,12 +128,16 @@ public class ViewController {
 
 
     @RequestMapping("/news/{newsId}")
-    public String newsDetail(@PathVariable("newsId") int newsId, ModelMap map){
+    public String newsDetail(@PathVariable("newsId") int newsId, ModelMap map, HttpServletRequest request){
         News news = newsService.loadNews(newsId);
         if (news == null) {
             return "redirect:errors/404";
         }
         common("news", map);
+        //点击量新增
+        if(redisService.getDisLock(newsId +":"+ IpUtil.getIpAddr(request))) {
+            newsService.increaseViewNum(news);
+        }
         map.put("news", news);
         return "news_detail";
     }

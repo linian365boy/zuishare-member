@@ -18,7 +18,9 @@
     </select>
     
     <select id="loadProduct" resultType="top.zuishare.spi.model.Product" parameterType="int">
-        select id,enName,hot,picUrl,description,introduce from tb_product where id=#{productId} and status=1 and publish is true limit 1
+        select tp.id,tp.enName,tp.hot,tp.picUrl,tp.description,tp.introduce,tp.categoryId,tc.enName as categoryEnName
+        from tb_product tp inner join tb_category tc on tp.categoryId = tc.id  where tp.id=#{productId} and tp.status=1
+        and tp.publish is true limit 1
     </select>
     
     <select id="queryProductsByCateId" resultType="top.zuishare.spi.model.Product" parameterType="int">

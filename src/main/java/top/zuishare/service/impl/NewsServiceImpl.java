@@ -15,8 +15,12 @@ import top.zuishare.dao.NewsDao;
 import top.zuishare.service.NewsService;
 import top.zuishare.spi.model.News;
 import top.zuishare.spi.util.RedisUtil;
+import top.zuishare.util.IpUtil;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -50,7 +54,7 @@ public class NewsServiceImpl implements NewsService {
                 		start, limit, news == null ? 0 : news.size());
             }else{
             	news = new ArrayList<>(limit);
-            	Set<String> keys = new HashSet<>(limit);
+            	List<String> keys = new ArrayList<>(limit);
             	for(String newsId : newsIdSets){
 					keys.add(RedisUtil.getNewsDetailKey(Integer.valueOf(newsId)));
 				}
@@ -73,6 +77,17 @@ public class NewsServiceImpl implements NewsService {
     public News loadNews(int newsId) {
         return loadNewsFromDb(newsId);
     }
+
+    @Override
+    public void increaseViewNum(News news){
+		//点击量+1，放入redis队列
+		//key:Article:viewNum value:id:newArticleViewNum
+		int newsId = news.getId();
+		int newViewNum = news.getClicks() + 1;
+		stringRedisTemplate.opsForList().leftPush(RedisUtil.getArticleViewNumKey(),
+				newsId + Constants.KEYDELIMITER + newViewNum);
+		logger.info("increaseViewNum lpush data to redis", newsId, newViewNum);
+	}
     
     private List<News> getNewsList(int start, int limit){
     	List<News> newsList = newsDao.getNewsList();
