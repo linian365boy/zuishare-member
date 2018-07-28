@@ -41,6 +41,14 @@ public class BussinessConfig {
      * 邮件收件人，可以包含多个
      */
     private String emailToUsers;
+    /**
+     * 执行的Python脚本地址
+     */
+    private String pythonUrl;
+    /**
+     * python版本
+     */
+    private String pythonVersion;
 
     public String getPicPath() {
         return picPath;
@@ -96,5 +104,21 @@ public class BussinessConfig {
 
     public void setEmailToUsers(String emailToUsers) {
         this.emailToUsers = emailToUsers;
+    }
+
+    public String getPythonUrl() {
+        return pythonUrl;
+    }
+
+    public void setPythonUrl(String pythonUrl) {
+        this.pythonUrl = pythonUrl;
+    }
+
+    public String getPythonVersion() {
+        return pythonVersion;
+    }
+
+    public void setPythonVersion(String pythonVersion) {
+        this.pythonVersion = pythonVersion;
     }
 }

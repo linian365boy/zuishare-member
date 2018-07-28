@@ -91,7 +91,8 @@ zuishare:
   indexAds: ${index.ad.limit}
   indexProductsSize: ${index.products.limit}
   emailToUsers: ${email.to.users}
-
+  pythonUrl: ${python.url}
+  pythonVersion: ${python.version}
 
 server:
   port: 8081
