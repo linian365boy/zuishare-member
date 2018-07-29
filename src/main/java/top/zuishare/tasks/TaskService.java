@@ -24,7 +24,7 @@ public class TaskService {
     /**
      * 每天凌晨00:01:00开始执行任务
      */
-    @Scheduled(cron = "0 0/2 * * * ?")
+    @Scheduled(cron = "0 1 0 * * ?")
     public void generateSiteMap() {
         long start = System.currentTimeMillis();
         logger.info("start generate sitemap...");

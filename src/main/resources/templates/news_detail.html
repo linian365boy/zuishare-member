@@ -126,52 +126,13 @@
                                                                                     <div class='title' th:text="${news.title}">
                                                                                     </div>
                                                                                     <div class='newsInfoWrap'>
-                                                                                        <div class='rightInfo'></div>
-                                                                                        <div class='leftInfo'></div>
+                                                                                        <div class='rightInfo' th:text="'date:&nbsp;'+${#dates.format(news.publishDate,'yyyy-MM-dd')}"></div>
+                                                                                        <div class='leftInfo' th:text="'view:&nbsp;'+${news.clicks}"></div>
                                                                                     </div>
                                                                                     <div class='line1'></div>
                                                                                     <div class='richContent  richContent0' th:utext="${news.content}">
                                                                                     </div>
                                                                                     <div class='line2'></div>
-                                                                                    <!--<div class='middlePanel'>-->
-                                                                                        <!--<div id='prevAndNextDivV2'>
-                                                                                            <div id='newsPagenation12'
-                                                                                                 class='newsPagenation'>
-                                                                                                <div class='pagenationV2'>
-                                                                                                    <span class='pageTag'>Next</span><a
-                                                                                                        hidefocus='true'
-                                                                                                        href='javascript:void(0)'>Next news title</a>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>-->
-                                                                                        <!--<div class='newsGroup'>
-                                                                                            <span class='newsGroupName'>News Category：</span>
-                                                                                            <a class='newsGroupTag'
-                                                                                               href='nr.jsp?mid=12'
-                                                                                               target='_self'>New1</a>
-                                                                                        </div>-->
-                                                                                        <!--<div class='shareInfo'><span
-                                                                                                class='shareTag'>Share to：</span>
-                                                                                            <div class='shareListPanel'>
-                                                                                                <a class='shareIcon Weixin'
-                                                                                                   hidefocus='true'
-                                                                                                   title='Weixin'
-                                                                                                   href='javascript:;'
-                                                                                                   onclick="return false;"></a><a
-                                                                                                    class='shareIcon sina_weibo'
-                                                                                                    hidefocus='true'
-                                                                                                    title='Weibo'
-                                                                                                    href='javascript:;'
-                                                                                                    onclick=''></a><a
-                                                                                                    class='shareIcon qq_zone'
-                                                                                                    hidefocus='true'
-                                                                                                    title='qq zone'
-                                                                                                    href='javascript:;'
-                                                                                                    onclick=''></a>
-                                                                                            </div>
-                                                                                        </div>-->
-                                                                                        <!--<div class='clearfloat'></div>-->
-                                                                                    <!--</div>-->
                                                                                 </div>
                                                                             </div>
                                                                         </td>
